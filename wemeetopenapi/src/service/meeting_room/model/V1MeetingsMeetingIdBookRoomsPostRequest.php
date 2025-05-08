@@ -5,7 +5,7 @@
  *
  * SAAS版RESTFUL风格API
  *
- * The version of the OpenAPI document: v1.0.2
+ * The version of the OpenAPI document: v1.0.4
  */
 namespace wemeet\openapi\service\meeting_room\model;
 
@@ -14,6 +14,19 @@ use wemeet\openapi\core\xhttp\ModelInterface;
 
 class V1MeetingsMeetingIdBookRoomsPostRequest implements ModelInterface, \JsonSerializable
 {
+    /**
+     * 会议室ID列表
+    * 类型：
+     */
+    protected $meetingRoomIdList;
+    /**
+    * 类型：
+     */
+    protected $operatorId;
+    /**
+    * 类型：
+     */
+    protected $operatorIdType;
 
     /**
      * true：在会议开始前的一小时内，在 Room 上显示会议主题。默认值为 true。 false：在会议开始前的一小时内，在 Room 上不显示会议主题。 说明：该参数并不影响预定时间晚过当前时间一个小时以上的会议。超过一小时的会议默认不显示会议主题。
@@ -24,11 +37,62 @@ class V1MeetingsMeetingIdBookRoomsPostRequest implements ModelInterface, \JsonSe
     public function __construct(
         $jsonArray = []
     ) {
+        if (isset($jsonArray['meeting_room_id_list'])) {
+            $this->meetingRoomIdList = $jsonArray['meeting_room_id_list'];
+        } else {
+            throw new \InvalidArgumentException('Missing required parameter meeting_room_id_list');
+        }
+        if (isset($jsonArray['operator_id'])) {
+            $this->operatorId = $jsonArray['operator_id'];
+        } else {
+            throw new \InvalidArgumentException('Missing required parameter operator_id');
+        }
+        if (isset($jsonArray['operator_id_type'])) {
+            $this->operatorIdType = $jsonArray['operator_id_type'];
+        } else {
+            throw new \InvalidArgumentException('Missing required parameter operator_id_type');
+        }
         if (isset($jsonArray['subject_visible'])) {
             $this->subjectVisible = $jsonArray['subject_visible'];
         }
     }
 
+    public function meetingRoomIdList(array $meetingRoomIdList): V1MeetingsMeetingIdBookRoomsPostRequest {
+        $this->meetingRoomIdList = $meetingRoomIdList;
+        return $this;
+    }
+
+    public function getMeetingRoomIdList() {
+        return $this->meetingRoomIdList;
+    }
+
+    public function setMeetingRoomIdList(array $meetingRoomIdList) {
+        $this->meetingRoomIdList = $meetingRoomIdList;
+    }
+    public function operatorId(string $operatorId): V1MeetingsMeetingIdBookRoomsPostRequest {
+        $this->operatorId = $operatorId;
+        return $this;
+    }
+
+    public function getOperatorId() {
+        return $this->operatorId;
+    }
+
+    public function setOperatorId(string $operatorId) {
+        $this->operatorId = $operatorId;
+    }
+    public function operatorIdType(int $operatorIdType): V1MeetingsMeetingIdBookRoomsPostRequest {
+        $this->operatorIdType = $operatorIdType;
+        return $this;
+    }
+
+    public function getOperatorIdType() {
+        return $this->operatorIdType;
+    }
+
+    public function setOperatorIdType(int $operatorIdType) {
+        $this->operatorIdType = $operatorIdType;
+    }
     public function subjectVisible(bool $subjectVisible): V1MeetingsMeetingIdBookRoomsPostRequest {
         $this->subjectVisible = $subjectVisible;
         return $this;
@@ -48,6 +112,9 @@ class V1MeetingsMeetingIdBookRoomsPostRequest implements ModelInterface, \JsonSe
       * @var string[]
       */
     protected static $openAPITypes = [
+        'meeting_room_id_list' => 'string[]',
+        'operator_id' => 'string',
+        'operator_id_type' => 'int',
         'subject_visible' => 'bool'
     ];
 
@@ -59,6 +126,9 @@ class V1MeetingsMeetingIdBookRoomsPostRequest implements ModelInterface, \JsonSe
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
+        'meeting_room_id_list' => null,
+        'operator_id' => null,
+        'operator_id_type' => 'int64',
         'subject_visible' => null
     ];
 
@@ -68,6 +138,9 @@ class V1MeetingsMeetingIdBookRoomsPostRequest implements ModelInterface, \JsonSe
       * @var boolean[]
       */
     protected static array $openAPINullables = [
+        'meeting_room_id_list' => false,
+        'operator_id' => false,
+        'operator_id_type' => false,
         'subject_visible' => false
     ];
 
@@ -157,6 +230,9 @@ class V1MeetingsMeetingIdBookRoomsPostRequest implements ModelInterface, \JsonSe
      * @var string[]
      */
     protected static $attributeMap = [
+        'meeting_room_id_list' => 'meeting_room_id_list',
+        'operator_id' => 'operator_id',
+        'operator_id_type' => 'operator_id_type',
         'subject_visible' => 'subject_visible'
     ];
 
@@ -166,6 +242,9 @@ class V1MeetingsMeetingIdBookRoomsPostRequest implements ModelInterface, \JsonSe
      * @var string[]
      */
     protected static $setters = [
+        'meeting_room_id_list' => 'setMeetingRoomIdList',
+        'operator_id' => 'setOperatorId',
+        'operator_id_type' => 'setOperatorIdType',
         'subject_visible' => 'setSubjectVisible'
     ];
 
@@ -175,6 +254,9 @@ class V1MeetingsMeetingIdBookRoomsPostRequest implements ModelInterface, \JsonSe
      * @var string[]
      */
     protected static $getters = [
+        'meeting_room_id_list' => 'getMeetingRoomIdList',
+        'operator_id' => 'getOperatorId',
+        'operator_id_type' => 'getOperatorIdType',
         'subject_visible' => 'getSubjectVisible'
     ];
 
@@ -211,6 +293,9 @@ class V1MeetingsMeetingIdBookRoomsPostRequest implements ModelInterface, \JsonSe
 
     public function jsonSerialize(): mixed {
         $data = [
+            'meeting_room_id_list' => $this->meetingRoomIdList,
+            'operator_id' => $this->operatorId,
+            'operator_id_type' => $this->operatorIdType,
             'subject_visible' => $this->subjectVisible,
         ];
         return array_filter($data, function($value) {

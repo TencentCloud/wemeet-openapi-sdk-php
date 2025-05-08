@@ -5,7 +5,7 @@
  *
  * SAAS版RESTFUL风格API
  *
- * The version of the OpenAPI document: v1.0.2
+ * The version of the OpenAPI document: v1.0.4
  */
 namespace wemeet\openapi\service\record_intelligence\model;
 

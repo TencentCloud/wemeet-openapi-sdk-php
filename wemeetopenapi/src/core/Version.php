@@ -13,7 +13,7 @@ namespace wemeet\openapi\core;
 class Version {
 
     // Version SDK 版本
-    public $version = "openapi-sdk-php/v1.0.2";
+    public $version = "openapi-sdk-php/v1.0.4";
 
     public function getVersion() {
         return $this->version;
