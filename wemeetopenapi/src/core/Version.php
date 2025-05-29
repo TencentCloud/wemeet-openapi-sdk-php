@@ -5,7 +5,7 @@
  *
  * SAAS版RESTFUL风格API
  *
- * The version of the OpenAPI document: v1.0.2
+ * The version of the OpenAPI document: v1.0.5
  */
 namespace wemeet\openapi\core;
 
@@ -13,7 +13,7 @@ namespace wemeet\openapi\core;
 class Version {
 
     // Version SDK 版本
-    public $version = "openapi-sdk-php/v1.0.4";
+    public $version = "openapi-sdk-php/v1.0.5";
 
     public function getVersion() {
         return $this->version;

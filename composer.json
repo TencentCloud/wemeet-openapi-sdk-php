@@ -1,6 +1,6 @@
 {
     "name": "wemeet/openapi",
-    "version": "v1.0.4",
+    "version": "v1.0.5",
     "description": "SAAS版RESTFUL风格API",
     "keywords": [
         "openapitools",
@@ -32,37 +32,39 @@
     },
     "autoload": {
         "psr-4": {
-            "wemeet\\openapi\\service\\meetings\\api\\" : "wemeetopenapi/src/service/meetings/api/",
-            "wemeet\\openapi\\service\\meetings\\model\\" : "wemeetopenapi/src/service/meetings/model/",
-            "wemeet\\openapi\\service\\application_group\\api\\" : "wemeetopenapi/src/service/application_group/api/",
-            "wemeet\\openapi\\service\\application_group\\model\\" : "wemeetopenapi/src/service/application_group/model/",
-            "wemeet\\openapi\\service\\meeting_control\\api\\" : "wemeetopenapi/src/service/meeting_control/api/",
-            "wemeet\\openapi\\service\\meeting_control\\model\\" : "wemeetopenapi/src/service/meeting_control/model/",
-            "wemeet\\openapi\\service\\user_manager\\api\\" : "wemeetopenapi/src/service/user_manager/api/",
-            "wemeet\\openapi\\service\\user_manager\\model\\" : "wemeetopenapi/src/service/user_manager/model/",
-            "wemeet\\openapi\\service\\records\\api\\" : "wemeetopenapi/src/service/records/api/",
-            "wemeet\\openapi\\service\\records\\model\\" : "wemeetopenapi/src/service/records/model/",
-            "wemeet\\openapi\\service\\record_intelligence\\api\\" : "wemeetopenapi/src/service/record_intelligence/api/",
-            "wemeet\\openapi\\service\\record_intelligence\\model\\" : "wemeetopenapi/src/service/record_intelligence/model/",
-            "wemeet\\openapi\\service\\meeting_guest\\api\\" : "wemeetopenapi/src/service/meeting_guest/api/",
-            "wemeet\\openapi\\service\\meeting_guest\\model\\" : "wemeetopenapi/src/service/meeting_guest/model/",
-            "wemeet\\openapi\\service\\pstn\\api\\" : "wemeetopenapi/src/service/pstn/api/",
-            "wemeet\\openapi\\service\\pstn\\model\\" : "wemeetopenapi/src/service/pstn/model/",
-            "wemeet\\openapi\\service\\meeting_room\\api\\" : "wemeetopenapi/src/service/meeting_room/api/",
-            "wemeet\\openapi\\service\\meeting_room\\model\\" : "wemeetopenapi/src/service/meeting_room/model/",
-            "wemeet\\openapi\\service\\layout\\api\\" : "wemeetopenapi/src/service/layout/api/",
-            "wemeet\\openapi\\service\\layout\\model\\" : "wemeetopenapi/src/service/layout/model/",
-            "wemeet\\openapi\\" : "wemeetopenapi/src/",
-            "wemeet\\openapi\\core\\" : "wemeetopenapi/src/core/",
-            "wemeet\\openapi\\core\\authenticator\\" : "wemeetopenapi/src/core/authenticator/",
-            "wemeet\\openapi\\core\\xhttp\\" : "wemeetopenapi/src/core/xhttp/",
-            "wemeet\\openapi\\core\\exception\\" : "wemeetopenapi/src/core/exception/"
+            "wemeet\\openapi\\service\\meetings\\api\\": "wemeetopenapi/src/service/meetings/api/",
+            "wemeet\\openapi\\service\\meetings\\model\\": "wemeetopenapi/src/service/meetings/model/",
+            "wemeet\\openapi\\service\\application_group\\api\\": "wemeetopenapi/src/service/application_group/api/",
+            "wemeet\\openapi\\service\\application_group\\model\\": "wemeetopenapi/src/service/application_group/model/",
+            "wemeet\\openapi\\service\\meeting_control\\api\\": "wemeetopenapi/src/service/meeting_control/api/",
+            "wemeet\\openapi\\service\\meeting_control\\model\\": "wemeetopenapi/src/service/meeting_control/model/",
+            "wemeet\\openapi\\service\\user_manager\\api\\": "wemeetopenapi/src/service/user_manager/api/",
+            "wemeet\\openapi\\service\\user_manager\\model\\": "wemeetopenapi/src/service/user_manager/model/",
+            "wemeet\\openapi\\service\\records\\api\\": "wemeetopenapi/src/service/records/api/",
+            "wemeet\\openapi\\service\\records\\model\\": "wemeetopenapi/src/service/records/model/",
+            "wemeet\\openapi\\service\\record_intelligence\\api\\": "wemeetopenapi/src/service/record_intelligence/api/",
+            "wemeet\\openapi\\service\\record_intelligence\\model\\": "wemeetopenapi/src/service/record_intelligence/model/",
+            "wemeet\\openapi\\service\\meeting_guest\\api\\": "wemeetopenapi/src/service/meeting_guest/api/",
+            "wemeet\\openapi\\service\\meeting_guest\\model\\": "wemeetopenapi/src/service/meeting_guest/model/",
+            "wemeet\\openapi\\service\\pstn\\api\\": "wemeetopenapi/src/service/pstn/api/",
+            "wemeet\\openapi\\service\\pstn\\model\\": "wemeetopenapi/src/service/pstn/model/",
+            "wemeet\\openapi\\service\\meeting_room\\api\\": "wemeetopenapi/src/service/meeting_room/api/",
+            "wemeet\\openapi\\service\\meeting_room\\model\\": "wemeetopenapi/src/service/meeting_room/model/",
+            "wemeet\\openapi\\service\\layout\\api\\": "wemeetopenapi/src/service/layout/api/",
+            "wemeet\\openapi\\service\\layout\\model\\": "wemeetopenapi/src/service/layout/model/",
+            "wemeet\\openapi\\": "wemeetopenapi/src/",
+            "wemeet\\openapi\\core\\": "wemeetopenapi/src/core/",
+            "wemeet\\openapi\\core\\authenticator\\": "wemeetopenapi/src/core/authenticator/",
+            "wemeet\\openapi\\core\\xhttp\\": "wemeetopenapi/src/core/xhttp/",
+            "wemeet\\openapi\\core\\exception\\": "wemeetopenapi/src/core/exception/"
         },
-        "classmap":[
+        "classmap": [
             "wemeetopenapi/src"
         ]
     },
     "autoload-dev": {
-        "psr-4": { "wemeet\\openapi\\Test\\" : "wemeetopenapi/test/" }
+        "psr-4": {
+            "wemeet\\openapi\\Test\\": "wemeetopenapi/test/"
+        }
     }
 }
