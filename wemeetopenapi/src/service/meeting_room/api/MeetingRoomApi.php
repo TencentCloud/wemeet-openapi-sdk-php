@@ -5,7 +5,7 @@
  *
  * SAAS版RESTFUL风格API
  *
- * The version of the OpenAPI document: v1.0.5
+ * The version of the OpenAPI document: v1.0.7
  */
 namespace wemeet\openapi\service\meeting_room\api;
 
@@ -67,6 +67,12 @@ class MeetingRoomApi
          $pathParams = [];
 
          $queryParams = [];
+         if (is_null($request->getOperatorId())) {
+            throw new InvalidArgumentException("operator_id is required and must be specified");
+         }
+         if (is_null($request->getOperatorIdType())) {
+            throw new InvalidArgumentException("operator_id_type is required and must be specified");
+         }
          if ($request->getPage() !== null) {
              $queryParams['page'] = $request->getPage();
          }
@@ -75,6 +81,12 @@ class MeetingRoomApi
          }
          if ($request->getMeetingRoomName() !== null) {
              $queryParams['meeting_room_name'] = $request->getMeetingRoomName();
+         }
+         if ($request->getOperatorId() !== null) {
+             $queryParams['operator_id'] = $request->getOperatorId();
+         }
+         if ($request->getOperatorIdType() !== null) {
+             $queryParams['operator_id_type'] = $request->getOperatorIdType();
          }
 
          $requestBody = null;
@@ -190,6 +202,12 @@ class MeetingRoomApi
          $pathParams = [];
 
          $queryParams = [];
+         if (is_null($request->getOperatorId())) {
+            throw new InvalidArgumentException("operator_id is required and must be specified");
+         }
+         if (is_null($request->getOperatorIdType())) {
+            throw new InvalidArgumentException("operator_id_type is required and must be specified");
+         }
          if ($request->getPage() !== null) {
              $queryParams['page'] = $request->getPage();
          }
@@ -198,6 +216,12 @@ class MeetingRoomApi
          }
          if ($request->getMeetingRoomName() !== null) {
              $queryParams['meeting_room_name'] = $request->getMeetingRoomName();
+         }
+         if ($request->getOperatorId() !== null) {
+             $queryParams['operator_id'] = $request->getOperatorId();
+         }
+         if ($request->getOperatorIdType() !== null) {
+             $queryParams['operator_id_type'] = $request->getOperatorIdType();
          }
 
          $requestBody = null;
@@ -262,6 +286,18 @@ class MeetingRoomApi
          }
 
          $queryParams = [];
+         if (is_null($request->getOperatorId())) {
+            throw new InvalidArgumentException("operator_id is required and must be specified");
+         }
+         if (is_null($request->getOperatorIdType())) {
+            throw new InvalidArgumentException("operator_id_type is required and must be specified");
+         }
+         if ($request->getOperatorId() !== null) {
+             $queryParams['operator_id'] = $request->getOperatorId();
+         }
+         if ($request->getOperatorIdType() !== null) {
+             $queryParams['operator_id_type'] = $request->getOperatorIdType();
+         }
 
          $requestBody = null;
 
@@ -462,6 +498,18 @@ class MeetingRoomApi
          }
 
          $queryParams = [];
+         if (is_null($request->getOperatorIdType())) {
+            throw new InvalidArgumentException("operator_id_type is required and must be specified");
+         }
+         if (is_null($request->getOperatorId())) {
+            throw new InvalidArgumentException("operator_id is required and must be specified");
+         }
+         if ($request->getOperatorIdType() !== null) {
+             $queryParams['operator_id_type'] = $request->getOperatorIdType();
+         }
+         if ($request->getOperatorId() !== null) {
+             $queryParams['operator_id'] = $request->getOperatorId();
+         }
 
          $requestBody = null;
 
@@ -633,6 +681,12 @@ class MeetingRoomApi
          $pathParams = [];
 
          $queryParams = [];
+         if (is_null($request->getOperatorIdType())) {
+            throw new InvalidArgumentException("operator_id_type is required and must be specified");
+         }
+         if (is_null($request->getOperatorId())) {
+            throw new InvalidArgumentException("operator_id is required and must be specified");
+         }
          if ($request->getControllerName() !== null) {
              $queryParams['controller_name'] = $request->getControllerName();
          }
@@ -641,6 +695,12 @@ class MeetingRoomApi
          }
          if ($request->getPageSize() !== null) {
              $queryParams['page_size'] = $request->getPageSize();
+         }
+         if ($request->getOperatorIdType() !== null) {
+             $queryParams['operator_id_type'] = $request->getOperatorIdType();
+         }
+         if ($request->getOperatorId() !== null) {
+             $queryParams['operator_id'] = $request->getOperatorId();
          }
 
          $requestBody = null;
@@ -652,6 +712,7 @@ class MeetingRoomApi
              $headers['Content-Type'] = 'multipart/form-data; boundary=' . $requestBody->getBoundary();
          }
 
+         $requestBody = Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($request->getBody()));
 
          foreach ($authentications as $auth) {
              if (!$auth instanceof Authentication) {
@@ -709,12 +770,6 @@ class MeetingRoomApi
          }
          if (is_null($request->getInstanceid())) {
             throw new InvalidArgumentException("instanceid is required and must be specified");
-         }
-         if (is_null($request->getTargetRoomsId())) {
-            throw new InvalidArgumentException("target_rooms_id is required and must be specified");
-         }
-         if (is_null($request->getTargetRoomsIdType())) {
-            throw new InvalidArgumentException("target_rooms_id_type is required and must be specified");
          }
          if ($request->getOperatorIdType() !== null) {
              $queryParams['operator_id_type'] = $request->getOperatorIdType();
@@ -974,6 +1029,18 @@ class MeetingRoomApi
          }
 
          $queryParams = [];
+         if (is_null($request->getOperatorId())) {
+            throw new InvalidArgumentException("operator_id is required and must be specified");
+         }
+         if (is_null($request->getOperatorIdType())) {
+            throw new InvalidArgumentException("operator_id_type is required and must be specified");
+         }
+         if ($request->getOperatorId() !== null) {
+             $queryParams['operator_id'] = $request->getOperatorId();
+         }
+         if ($request->getOperatorIdType() !== null) {
+             $queryParams['operator_id_type'] = $request->getOperatorIdType();
+         }
 
          $requestBody = null;
 
@@ -1157,6 +1224,18 @@ class MeetingRoomApi
          $pathParams = [];
 
          $queryParams = [];
+         if (is_null($request->getOperatorId())) {
+            throw new InvalidArgumentException("operator_id is required and must be specified");
+         }
+         if (is_null($request->getOperatorIdType())) {
+            throw new InvalidArgumentException("operator_id_type is required and must be specified");
+         }
+         if ($request->getOperatorId() !== null) {
+             $queryParams['operator_id'] = $request->getOperatorId();
+         }
+         if ($request->getOperatorIdType() !== null) {
+             $queryParams['operator_id_type'] = $request->getOperatorIdType();
+         }
 
          $requestBody = null;
 
@@ -1214,6 +1293,18 @@ class MeetingRoomApi
          $pathParams = [];
 
          $queryParams = [];
+         if (is_null($request->getOperatorId())) {
+            throw new InvalidArgumentException("operator_id is required and must be specified");
+         }
+         if (is_null($request->getOperatorIdType())) {
+            throw new InvalidArgumentException("operator_id_type is required and must be specified");
+         }
+         if ($request->getOperatorId() !== null) {
+             $queryParams['operator_id'] = $request->getOperatorId();
+         }
+         if ($request->getOperatorIdType() !== null) {
+             $queryParams['operator_id_type'] = $request->getOperatorIdType();
+         }
 
          $requestBody = null;
 
@@ -1224,6 +1315,7 @@ class MeetingRoomApi
              $headers['Content-Type'] = 'multipart/form-data; boundary=' . $requestBody->getBoundary();
          }
 
+         $requestBody = Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($request->getBody()));
 
          foreach ($authentications as $auth) {
              if (!$auth instanceof Authentication) {
@@ -1259,11 +1351,19 @@ class MeetingRoomApi
 
 class ApiV1DevicesGetRequest {
 
+    protected string|null $operator_id = null;
+    protected string|null $operator_id_type = null;
     protected string|null $page = null;
     protected string|null $page_size = null;
     protected string|null $meeting_room_name = null;
     protected object|null $body = null;
 
+    public function getOperatorId(): string|null  {
+        return $this->operator_id;
+    }
+    public function getOperatorIdType(): string|null  {
+        return $this->operator_id_type;
+    }
     public function getPage(): string|null  {
         return $this->page;
     }
@@ -1277,6 +1377,16 @@ class ApiV1DevicesGetRequest {
         return $this->body;
     }
 
+
+    public function withOperatorId(string $operator_id): ApiV1DevicesGetRequest  {
+        $this->operator_id = $operator_id;
+        return $this;
+    }
+
+    public function withOperatorIdType(string $operator_id_type): ApiV1DevicesGetRequest  {
+        $this->operator_id_type = $operator_id_type;
+        return $this;
+    }
 
     public function withPage(string $page): ApiV1DevicesGetRequest  {
         $this->page = $page;
@@ -1360,11 +1470,19 @@ class ApiV1MeetingRoomsCancelRoomCallPutResponse extends ApiResponse {
 
 class ApiV1MeetingRoomsGetRequest {
 
+    protected string|null $operator_id = null;
+    protected string|null $operator_id_type = null;
     protected string|null $page = null;
     protected string|null $page_size = null;
     protected string|null $meeting_room_name = null;
     protected object|null $body = null;
 
+    public function getOperatorId(): string|null  {
+        return $this->operator_id;
+    }
+    public function getOperatorIdType(): string|null  {
+        return $this->operator_id_type;
+    }
     public function getPage(): string|null  {
         return $this->page;
     }
@@ -1378,6 +1496,16 @@ class ApiV1MeetingRoomsGetRequest {
         return $this->body;
     }
 
+
+    public function withOperatorId(string $operator_id): ApiV1MeetingRoomsGetRequest  {
+        $this->operator_id = $operator_id;
+        return $this;
+    }
+
+    public function withOperatorIdType(string $operator_id_type): ApiV1MeetingRoomsGetRequest  {
+        $this->operator_id_type = $operator_id_type;
+        return $this;
+    }
 
     public function withPage(string $page): ApiV1MeetingRoomsGetRequest  {
         $this->page = $page;
@@ -1425,10 +1553,18 @@ class ApiV1MeetingRoomsGetResponse extends ApiResponse {
 class ApiV1MeetingRoomsMeetingRoomIdActiveCodePostRequest {
 
     protected string|null $meeting_room_id = null;
+    protected string|null $operator_id = null;
+    protected string|null $operator_id_type = null;
     protected object|null $body = null;
 
     public function getMeetingRoomId(): string|null  {
         return $this->meeting_room_id;
+    }
+    public function getOperatorId(): string|null  {
+        return $this->operator_id;
+    }
+    public function getOperatorIdType(): string|null  {
+        return $this->operator_id_type;
     }
     public function getBody(): object|null  {
         return $this->body;
@@ -1437,6 +1573,16 @@ class ApiV1MeetingRoomsMeetingRoomIdActiveCodePostRequest {
 
     public function withMeetingRoomId(string $meeting_room_id): ApiV1MeetingRoomsMeetingRoomIdActiveCodePostRequest  {
         $this->meeting_room_id = $meeting_room_id;
+        return $this;
+    }
+
+    public function withOperatorId(string $operator_id): ApiV1MeetingRoomsMeetingRoomIdActiveCodePostRequest  {
+        $this->operator_id = $operator_id;
+        return $this;
+    }
+
+    public function withOperatorIdType(string $operator_id_type): ApiV1MeetingRoomsMeetingRoomIdActiveCodePostRequest  {
+        $this->operator_id_type = $operator_id_type;
         return $this;
     }
     public function withBody(object $body)  {
@@ -1573,10 +1719,18 @@ class ApiV1MeetingRoomsMeetingRoomIdBackgroundPostResponse extends ApiResponse {
 class ApiV1MeetingRoomsMeetingRoomIdGetRequest {
 
     protected string|null $meeting_room_id = null;
+    protected string|null $operator_id_type = null;
+    protected string|null $operator_id = null;
     protected object|null $body = null;
 
     public function getMeetingRoomId(): string|null  {
         return $this->meeting_room_id;
+    }
+    public function getOperatorIdType(): string|null  {
+        return $this->operator_id_type;
+    }
+    public function getOperatorId(): string|null  {
+        return $this->operator_id;
     }
     public function getBody(): object|null  {
         return $this->body;
@@ -1585,6 +1739,16 @@ class ApiV1MeetingRoomsMeetingRoomIdGetRequest {
 
     public function withMeetingRoomId(string $meeting_room_id): ApiV1MeetingRoomsMeetingRoomIdGetRequest  {
         $this->meeting_room_id = $meeting_room_id;
+        return $this;
+    }
+
+    public function withOperatorIdType(string $operator_id_type): ApiV1MeetingRoomsMeetingRoomIdGetRequest  {
+        $this->operator_id_type = $operator_id_type;
+        return $this;
+    }
+
+    public function withOperatorId(string $operator_id): ApiV1MeetingRoomsMeetingRoomIdGetRequest  {
+        $this->operator_id = $operator_id;
         return $this;
     }
     public function withBody(object $body)  {
@@ -1692,10 +1856,19 @@ class ApiV1MeetingRoomsModifyRoomConfigInfoPostResponse extends ApiResponse {
 
 class ApiV1MeetingRoomsMonitorDeviceControllerInfoGetRequest {
 
+    protected string|null $operator_id_type = null;
+    protected string|null $operator_id = null;
     protected string|null $controller_name = null;
     protected string|null $page = null;
     protected string|null $page_size = null;
+    protected object|null $body = null;
 
+    public function getOperatorIdType(): string|null  {
+        return $this->operator_id_type;
+    }
+    public function getOperatorId(): string|null  {
+        return $this->operator_id;
+    }
     public function getControllerName(): string|null  {
         return $this->controller_name;
     }
@@ -1705,7 +1878,20 @@ class ApiV1MeetingRoomsMonitorDeviceControllerInfoGetRequest {
     public function getPageSize(): string|null  {
         return $this->page_size;
     }
+    public function getBody(): object|null  {
+        return $this->body;
+    }
 
+
+    public function withOperatorIdType(string $operator_id_type): ApiV1MeetingRoomsMonitorDeviceControllerInfoGetRequest  {
+        $this->operator_id_type = $operator_id_type;
+        return $this;
+    }
+
+    public function withOperatorId(string $operator_id): ApiV1MeetingRoomsMonitorDeviceControllerInfoGetRequest  {
+        $this->operator_id = $operator_id;
+        return $this;
+    }
 
     public function withControllerName(string $controller_name): ApiV1MeetingRoomsMonitorDeviceControllerInfoGetRequest  {
         $this->controller_name = $controller_name;
@@ -1719,6 +1905,10 @@ class ApiV1MeetingRoomsMonitorDeviceControllerInfoGetRequest {
 
     public function withPageSize(string $page_size): ApiV1MeetingRoomsMonitorDeviceControllerInfoGetRequest  {
         $this->page_size = $page_size;
+        return $this;
+    }
+    public function withBody(object $body)  {
+        $this->body = $body;
         return $this;
     }
 
@@ -1751,12 +1941,12 @@ class ApiV1MeetingRoomsOperatorIdMeetingsGetRequest {
     protected string|null $operator_id = null;
     protected string|null $operator_id_type = null;
     protected string|null $instanceid = null;
-    protected string|null $target_rooms_id = null;
-    protected string|null $target_rooms_id_type = null;
     protected string|null $start_time = null;
     protected string|null $end_time = null;
     protected string|null $page = null;
     protected string|null $page_size = null;
+    protected string|null $target_rooms_id = null;
+    protected string|null $target_rooms_id_type = null;
     protected object|null $body = null;
 
     public function getOperatorId(): string|null  {
@@ -1767,12 +1957,6 @@ class ApiV1MeetingRoomsOperatorIdMeetingsGetRequest {
     }
     public function getInstanceid(): string|null  {
         return $this->instanceid;
-    }
-    public function getTargetRoomsId(): string|null  {
-        return $this->target_rooms_id;
-    }
-    public function getTargetRoomsIdType(): string|null  {
-        return $this->target_rooms_id_type;
     }
     public function getStartTime(): string|null  {
         return $this->start_time;
@@ -1785,6 +1969,12 @@ class ApiV1MeetingRoomsOperatorIdMeetingsGetRequest {
     }
     public function getPageSize(): string|null  {
         return $this->page_size;
+    }
+    public function getTargetRoomsId(): string|null  {
+        return $this->target_rooms_id;
+    }
+    public function getTargetRoomsIdType(): string|null  {
+        return $this->target_rooms_id_type;
     }
     public function getBody(): object|null  {
         return $this->body;
@@ -1806,16 +1996,6 @@ class ApiV1MeetingRoomsOperatorIdMeetingsGetRequest {
         return $this;
     }
 
-    public function withTargetRoomsId(string $target_rooms_id): ApiV1MeetingRoomsOperatorIdMeetingsGetRequest  {
-        $this->target_rooms_id = $target_rooms_id;
-        return $this;
-    }
-
-    public function withTargetRoomsIdType(string $target_rooms_id_type): ApiV1MeetingRoomsOperatorIdMeetingsGetRequest  {
-        $this->target_rooms_id_type = $target_rooms_id_type;
-        return $this;
-    }
-
     public function withStartTime(string $start_time): ApiV1MeetingRoomsOperatorIdMeetingsGetRequest  {
         $this->start_time = $start_time;
         return $this;
@@ -1833,6 +2013,16 @@ class ApiV1MeetingRoomsOperatorIdMeetingsGetRequest {
 
     public function withPageSize(string $page_size): ApiV1MeetingRoomsOperatorIdMeetingsGetRequest  {
         $this->page_size = $page_size;
+        return $this;
+    }
+
+    public function withTargetRoomsId(string $target_rooms_id): ApiV1MeetingRoomsOperatorIdMeetingsGetRequest  {
+        $this->target_rooms_id = $target_rooms_id;
+        return $this;
+    }
+
+    public function withTargetRoomsIdType(string $target_rooms_id_type): ApiV1MeetingRoomsOperatorIdMeetingsGetRequest  {
+        $this->target_rooms_id_type = $target_rooms_id_type;
         return $this;
     }
     public function withBody(object $body)  {
@@ -1978,10 +2168,18 @@ class ApiV1MeetingRoomsRoomConfigInfoPostResponse extends ApiResponse {
 class ApiV1MeetingRoomsScreencastCodeRoomsInfoGetRequest {
 
     protected string|null $screencast_code = null;
+    protected string|null $operator_id = null;
+    protected string|null $operator_id_type = null;
     protected object|null $body = null;
 
     public function getScreencastCode(): string|null  {
         return $this->screencast_code;
+    }
+    public function getOperatorId(): string|null  {
+        return $this->operator_id;
+    }
+    public function getOperatorIdType(): string|null  {
+        return $this->operator_id_type;
     }
     public function getBody(): object|null  {
         return $this->body;
@@ -1990,6 +2188,16 @@ class ApiV1MeetingRoomsScreencastCodeRoomsInfoGetRequest {
 
     public function withScreencastCode(string $screencast_code): ApiV1MeetingRoomsScreencastCodeRoomsInfoGetRequest  {
         $this->screencast_code = $screencast_code;
+        return $this;
+    }
+
+    public function withOperatorId(string $operator_id): ApiV1MeetingRoomsScreencastCodeRoomsInfoGetRequest  {
+        $this->operator_id = $operator_id;
+        return $this;
+    }
+
+    public function withOperatorIdType(string $operator_id_type): ApiV1MeetingRoomsScreencastCodeRoomsInfoGetRequest  {
+        $this->operator_id_type = $operator_id_type;
         return $this;
     }
     public function withBody(object $body)  {
@@ -2070,12 +2278,12 @@ class ApiV1MeetingsMeetingIdBookRoomsPostResponse extends ApiResponse {
 class ApiV1MeetingsMeetingIdReleaseRoomsPostRequest {
 
     protected string|null $meeting_id = null;
-    protected object|null $body = null;
+    protected \wemeet\openapi\service\meeting_room\model\V1MeetingsMeetingIdReleaseRoomsPostRequest $body;
 
     public function getMeetingId(): string|null  {
         return $this->meeting_id;
     }
-    public function getBody(): object|null  {
+    public function getBody(): \wemeet\openapi\service\meeting_room\model\V1MeetingsMeetingIdReleaseRoomsPostRequest  {
         return $this->body;
     }
 
@@ -2084,7 +2292,7 @@ class ApiV1MeetingsMeetingIdReleaseRoomsPostRequest {
         $this->meeting_id = $meeting_id;
         return $this;
     }
-    public function withBody(object $body)  {
+    public function withBody(\wemeet\openapi\service\meeting_room\model\V1MeetingsMeetingIdReleaseRoomsPostRequest $body)  {
         $this->body = $body;
         return $this;
     }
@@ -2115,12 +2323,30 @@ class ApiV1MeetingsMeetingIdReleaseRoomsPostResponse extends ApiResponse {
 
 class ApiV1RoomsInventoryAccountStatisticsGetRequest {
 
+    protected string|null $operator_id = null;
+    protected string|null $operator_id_type = null;
     protected object|null $body = null;
 
+    public function getOperatorId(): string|null  {
+        return $this->operator_id;
+    }
+    public function getOperatorIdType(): string|null  {
+        return $this->operator_id_type;
+    }
     public function getBody(): object|null  {
         return $this->body;
     }
 
+
+    public function withOperatorId(string $operator_id): ApiV1RoomsInventoryAccountStatisticsGetRequest  {
+        $this->operator_id = $operator_id;
+        return $this;
+    }
+
+    public function withOperatorIdType(string $operator_id_type): ApiV1RoomsInventoryAccountStatisticsGetRequest  {
+        $this->operator_id_type = $operator_id_type;
+        return $this;
+    }
     public function withBody(object $body)  {
         $this->body = $body;
         return $this;
@@ -2152,8 +2378,34 @@ class ApiV1RoomsInventoryAccountStatisticsGetResponse extends ApiResponse {
 
 class ApiV1RoomsInventoryGetRequest {
 
+    protected string|null $operator_id = null;
+    protected string|null $operator_id_type = null;
+    protected object|null $body = null;
+
+    public function getOperatorId(): string|null  {
+        return $this->operator_id;
+    }
+    public function getOperatorIdType(): string|null  {
+        return $this->operator_id_type;
+    }
+    public function getBody(): object|null  {
+        return $this->body;
+    }
 
 
+    public function withOperatorId(string $operator_id): ApiV1RoomsInventoryGetRequest  {
+        $this->operator_id = $operator_id;
+        return $this;
+    }
+
+    public function withOperatorIdType(string $operator_id_type): ApiV1RoomsInventoryGetRequest  {
+        $this->operator_id_type = $operator_id_type;
+        return $this;
+    }
+    public function withBody(object $body)  {
+        $this->body = $body;
+        return $this;
+    }
 
 }
 

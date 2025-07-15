@@ -5,7 +5,7 @@
  *
  * SAAS版RESTFUL风格API
  *
- * The version of the OpenAPI document: v1.0.5
+ * The version of the OpenAPI document: v1.0.7
  */
 namespace wemeet\openapi\service\records\api;
 
@@ -70,6 +70,12 @@ class RecordsApi
          if (is_null($request->getMeetingRecordId())) {
             throw new InvalidArgumentException("meeting_record_id is required and must be specified");
          }
+         if (is_null($request->getOperatorId())) {
+            throw new InvalidArgumentException("operator_id is required and must be specified");
+         }
+         if (is_null($request->getOperatorIdType())) {
+            throw new InvalidArgumentException("operator_id_type is required and must be specified");
+         }
          if ($request->getMeetingRecordId() !== null) {
              $queryParams['meeting_record_id'] = $request->getMeetingRecordId();
          }
@@ -79,17 +85,11 @@ class RecordsApi
          if ($request->getOperatorIdType() !== null) {
              $queryParams['operator_id_type'] = $request->getOperatorIdType();
          }
-         if ($request->getUserid() !== null) {
-             $queryParams['userid'] = $request->getUserid();
-         }
          if ($request->getPageSize() !== null) {
              $queryParams['page_size'] = $request->getPageSize();
          }
          if ($request->getPage() !== null) {
              $queryParams['page'] = $request->getPage();
-         }
-         if ($request->getAddressType() !== null) {
-             $queryParams['address_type'] = $request->getAddressType();
          }
 
          $requestBody = null;
@@ -154,17 +154,17 @@ class RecordsApi
          }
 
          $queryParams = [];
+         if (is_null($request->getOperatorId())) {
+            throw new InvalidArgumentException("operator_id is required and must be specified");
+         }
+         if (is_null($request->getOperatorIdType())) {
+            throw new InvalidArgumentException("operator_id_type is required and must be specified");
+         }
          if ($request->getOperatorId() !== null) {
              $queryParams['operator_id'] = $request->getOperatorId();
          }
          if ($request->getOperatorIdType() !== null) {
              $queryParams['operator_id_type'] = $request->getOperatorIdType();
-         }
-         if ($request->getUserid() !== null) {
-             $queryParams['userid'] = $request->getUserid();
-         }
-         if ($request->getAddressType() !== null) {
-             $queryParams['address_type'] = $request->getAddressType();
          }
 
          $requestBody = null;
@@ -817,6 +817,12 @@ class RecordsApi
          if (is_null($request->getMeetingRecordId())) {
             throw new InvalidArgumentException("meeting_record_id is required and must be specified");
          }
+         if (is_null($request->getOperatorId())) {
+            throw new InvalidArgumentException("operator_id is required and must be specified");
+         }
+         if (is_null($request->getOperatorIdType())) {
+            throw new InvalidArgumentException("operator_id_type is required and must be specified");
+         }
          if ($request->getMeetingId() !== null) {
              $queryParams['meeting_id'] = $request->getMeetingId();
          }
@@ -828,9 +834,6 @@ class RecordsApi
          }
          if ($request->getOperatorIdType() !== null) {
              $queryParams['operator_id_type'] = $request->getOperatorIdType();
-         }
-         if ($request->getUserid() !== null) {
-             $queryParams['userid'] = $request->getUserid();
          }
 
          $requestBody = null;
@@ -923,6 +926,7 @@ class RecordsApi
              $headers['Content-Type'] = 'multipart/form-data; boundary=' . $requestBody->getBoundary();
          }
 
+         $requestBody = Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($request->getBody()));
 
          foreach ($authentications as $auth) {
              if (!$auth instanceof Authentication) {
@@ -1074,6 +1078,12 @@ class RecordsApi
          }
 
          $queryParams = [];
+         if (is_null($request->getOperatorId())) {
+            throw new InvalidArgumentException("operator_id is required and must be specified");
+         }
+         if (is_null($request->getOperatorIdType())) {
+            throw new InvalidArgumentException("operator_id_type is required and must be specified");
+         }
          if ($request->getMeetingId() !== null) {
              $queryParams['meeting_id'] = $request->getMeetingId();
          }
@@ -1082,9 +1092,6 @@ class RecordsApi
          }
          if ($request->getOperatorIdType() !== null) {
              $queryParams['operator_id_type'] = $request->getOperatorIdType();
-         }
-         if ($request->getUserid() !== null) {
-             $queryParams['userid'] = $request->getUserid();
          }
 
          $requestBody = null;
@@ -1681,10 +1688,8 @@ class ApiV1AddressesGetRequest {
     protected string|null $meeting_record_id = null;
     protected string|null $operator_id = null;
     protected string|null $operator_id_type = null;
-    protected string|null $userid = null;
     protected string|null $page_size = null;
     protected string|null $page = null;
-    protected string|null $address_type = null;
     protected object|null $body = null;
 
     public function getMeetingRecordId(): string|null  {
@@ -1696,17 +1701,11 @@ class ApiV1AddressesGetRequest {
     public function getOperatorIdType(): string|null  {
         return $this->operator_id_type;
     }
-    public function getUserid(): string|null  {
-        return $this->userid;
-    }
     public function getPageSize(): string|null  {
         return $this->page_size;
     }
     public function getPage(): string|null  {
         return $this->page;
-    }
-    public function getAddressType(): string|null  {
-        return $this->address_type;
     }
     public function getBody(): object|null  {
         return $this->body;
@@ -1728,11 +1727,6 @@ class ApiV1AddressesGetRequest {
         return $this;
     }
 
-    public function withUserid(string $userid): ApiV1AddressesGetRequest  {
-        $this->userid = $userid;
-        return $this;
-    }
-
     public function withPageSize(string $page_size): ApiV1AddressesGetRequest  {
         $this->page_size = $page_size;
         return $this;
@@ -1740,11 +1734,6 @@ class ApiV1AddressesGetRequest {
 
     public function withPage(string $page): ApiV1AddressesGetRequest  {
         $this->page = $page;
-        return $this;
-    }
-
-    public function withAddressType(string $address_type): ApiV1AddressesGetRequest  {
-        $this->address_type = $address_type;
         return $this;
     }
     public function withBody(object $body)  {
@@ -1781,8 +1770,6 @@ class ApiV1AddressesRecordFileIdGetRequest {
     protected string|null $record_file_id = null;
     protected string|null $operator_id = null;
     protected string|null $operator_id_type = null;
-    protected string|null $userid = null;
-    protected string|null $address_type = null;
     protected object|null $body = null;
 
     public function getRecordFileId(): string|null  {
@@ -1793,12 +1780,6 @@ class ApiV1AddressesRecordFileIdGetRequest {
     }
     public function getOperatorIdType(): string|null  {
         return $this->operator_id_type;
-    }
-    public function getUserid(): string|null  {
-        return $this->userid;
-    }
-    public function getAddressType(): string|null  {
-        return $this->address_type;
     }
     public function getBody(): object|null  {
         return $this->body;
@@ -1817,16 +1798,6 @@ class ApiV1AddressesRecordFileIdGetRequest {
 
     public function withOperatorIdType(string $operator_id_type): ApiV1AddressesRecordFileIdGetRequest  {
         $this->operator_id_type = $operator_id_type;
-        return $this;
-    }
-
-    public function withUserid(string $userid): ApiV1AddressesRecordFileIdGetRequest  {
-        $this->userid = $userid;
-        return $this;
-    }
-
-    public function withAddressType(string $address_type): ApiV1AddressesRecordFileIdGetRequest  {
-        $this->address_type = $address_type;
         return $this;
     }
     public function withBody(object $body)  {
@@ -2339,17 +2310,13 @@ class ApiV1RecordsApprovalsMeetingRecordIdPutResponse extends ApiResponse {
 class ApiV1RecordsDeleteRequest {
 
     protected string|null $meeting_record_id = null;
-    protected string|null $meeting_id = null;
     protected string|null $operator_id = null;
     protected string|null $operator_id_type = null;
-    protected string|null $userid = null;
+    protected string|null $meeting_id = null;
     protected object|null $body = null;
 
     public function getMeetingRecordId(): string|null  {
         return $this->meeting_record_id;
-    }
-    public function getMeetingId(): string|null  {
-        return $this->meeting_id;
     }
     public function getOperatorId(): string|null  {
         return $this->operator_id;
@@ -2357,8 +2324,8 @@ class ApiV1RecordsDeleteRequest {
     public function getOperatorIdType(): string|null  {
         return $this->operator_id_type;
     }
-    public function getUserid(): string|null  {
-        return $this->userid;
+    public function getMeetingId(): string|null  {
+        return $this->meeting_id;
     }
     public function getBody(): object|null  {
         return $this->body;
@@ -2367,11 +2334,6 @@ class ApiV1RecordsDeleteRequest {
 
     public function withMeetingRecordId(string $meeting_record_id): ApiV1RecordsDeleteRequest  {
         $this->meeting_record_id = $meeting_record_id;
-        return $this;
-    }
-
-    public function withMeetingId(string $meeting_id): ApiV1RecordsDeleteRequest  {
-        $this->meeting_id = $meeting_id;
         return $this;
     }
 
@@ -2385,8 +2347,8 @@ class ApiV1RecordsDeleteRequest {
         return $this;
     }
 
-    public function withUserid(string $userid): ApiV1RecordsDeleteRequest  {
-        $this->userid = $userid;
+    public function withMeetingId(string $meeting_id): ApiV1RecordsDeleteRequest  {
+        $this->meeting_id = $meeting_id;
         return $this;
     }
     public function withBody(object $body)  {
@@ -2426,6 +2388,7 @@ class ApiV1RecordsEventsGetRequest {
     protected string|null $page = null;
     protected string|null $start_time = null;
     protected string|null $end_time = null;
+    protected object|null $body = null;
 
     public function getMeetingRecordId(): string|null  {
         return $this->meeting_record_id;
@@ -2444,6 +2407,9 @@ class ApiV1RecordsEventsGetRequest {
     }
     public function getEndTime(): string|null  {
         return $this->end_time;
+    }
+    public function getBody(): object|null  {
+        return $this->body;
     }
 
 
@@ -2474,6 +2440,10 @@ class ApiV1RecordsEventsGetRequest {
 
     public function withEndTime(string $end_time): ApiV1RecordsEventsGetRequest  {
         $this->end_time = $end_time;
+        return $this;
+    }
+    public function withBody(object $body)  {
+        $this->body = $body;
         return $this;
     }
 
@@ -2631,17 +2601,13 @@ class ApiV1RecordsGetResponse extends ApiResponse {
 class ApiV1RecordsRecordFileIdDeleteRequest {
 
     protected string|null $record_file_id = null;
-    protected string|null $meeting_id = null;
     protected string|null $operator_id = null;
     protected string|null $operator_id_type = null;
-    protected string|null $userid = null;
+    protected string|null $meeting_id = null;
     protected object|null $body = null;
 
     public function getRecordFileId(): string|null  {
         return $this->record_file_id;
-    }
-    public function getMeetingId(): string|null  {
-        return $this->meeting_id;
     }
     public function getOperatorId(): string|null  {
         return $this->operator_id;
@@ -2649,8 +2615,8 @@ class ApiV1RecordsRecordFileIdDeleteRequest {
     public function getOperatorIdType(): string|null  {
         return $this->operator_id_type;
     }
-    public function getUserid(): string|null  {
-        return $this->userid;
+    public function getMeetingId(): string|null  {
+        return $this->meeting_id;
     }
     public function getBody(): object|null  {
         return $this->body;
@@ -2659,11 +2625,6 @@ class ApiV1RecordsRecordFileIdDeleteRequest {
 
     public function withRecordFileId(string $record_file_id): ApiV1RecordsRecordFileIdDeleteRequest  {
         $this->record_file_id = $record_file_id;
-        return $this;
-    }
-
-    public function withMeetingId(string $meeting_id): ApiV1RecordsRecordFileIdDeleteRequest  {
-        $this->meeting_id = $meeting_id;
         return $this;
     }
 
@@ -2677,8 +2638,8 @@ class ApiV1RecordsRecordFileIdDeleteRequest {
         return $this;
     }
 
-    public function withUserid(string $userid): ApiV1RecordsRecordFileIdDeleteRequest  {
-        $this->userid = $userid;
+    public function withMeetingId(string $meeting_id): ApiV1RecordsRecordFileIdDeleteRequest  {
+        $this->meeting_id = $meeting_id;
         return $this;
     }
     public function withBody(object $body)  {

@@ -5,7 +5,7 @@
  *
  * SAAS版RESTFUL风格API
  *
- * The version of the OpenAPI document: v1.0.5
+ * The version of the OpenAPI document: v1.0.7
  */
 namespace wemeet\openapi\service\user_manager\model;
 
@@ -35,11 +35,6 @@ class V1UsersPost200Response implements ModelInterface, \JsonSerializable
      */
     protected $username = null;
 
-    /**
-    * 类型：string
-     */
-    protected $uuid = null;
-
     public function __construct(
         $jsonArray = []
     ) {
@@ -54,9 +49,6 @@ class V1UsersPost200Response implements ModelInterface, \JsonSerializable
         }
         if (isset($jsonArray['username'])) {
             $this->username = $jsonArray['username'];
-        }
-        if (isset($jsonArray['uuid'])) {
-            $this->uuid = $jsonArray['uuid'];
         }
     }
 
@@ -108,18 +100,6 @@ class V1UsersPost200Response implements ModelInterface, \JsonSerializable
     public function setUsername(string $username) {
         $this->username = $username;
     }
-    public function uuid(string $uuid): V1UsersPost200Response {
-        $this->uuid = $uuid;
-        return $this;
-    }
-
-    public function getUuid() {
-        return $this->uuid;
-    }
-
-    public function setUuid(string $uuid) {
-        $this->uuid = $uuid;
-    }
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -130,8 +110,7 @@ class V1UsersPost200Response implements ModelInterface, \JsonSerializable
         'email' => 'string',
         'phone' => 'string',
         'userid' => 'string',
-        'username' => 'string',
-        'uuid' => 'string'
+        'username' => 'string'
     ];
 
     /**
@@ -145,8 +124,7 @@ class V1UsersPost200Response implements ModelInterface, \JsonSerializable
         'email' => null,
         'phone' => null,
         'userid' => null,
-        'username' => null,
-        'uuid' => null
+        'username' => null
     ];
 
     /**
@@ -158,8 +136,7 @@ class V1UsersPost200Response implements ModelInterface, \JsonSerializable
         'email' => false,
         'phone' => false,
         'userid' => false,
-        'username' => false,
-        'uuid' => false
+        'username' => false
     ];
 
     /**
@@ -251,8 +228,7 @@ class V1UsersPost200Response implements ModelInterface, \JsonSerializable
         'email' => 'email',
         'phone' => 'phone',
         'userid' => 'userid',
-        'username' => 'username',
-        'uuid' => 'uuid'
+        'username' => 'username'
     ];
 
     /**
@@ -264,8 +240,7 @@ class V1UsersPost200Response implements ModelInterface, \JsonSerializable
         'email' => 'setEmail',
         'phone' => 'setPhone',
         'userid' => 'setUserid',
-        'username' => 'setUsername',
-        'uuid' => 'setUuid'
+        'username' => 'setUsername'
     ];
 
     /**
@@ -277,8 +252,7 @@ class V1UsersPost200Response implements ModelInterface, \JsonSerializable
         'email' => 'getEmail',
         'phone' => 'getPhone',
         'userid' => 'getUserid',
-        'username' => 'getUsername',
-        'uuid' => 'getUuid'
+        'username' => 'getUsername'
     ];
 
     /**
@@ -318,7 +292,6 @@ class V1UsersPost200Response implements ModelInterface, \JsonSerializable
             'phone' => $this->phone,
             'userid' => $this->userid,
             'username' => $this->username,
-            'uuid' => $this->uuid,
         ];
         return array_filter($data, function($value) {
             return !is_null($value) && $value !== '';

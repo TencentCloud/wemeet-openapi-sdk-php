@@ -5,7 +5,7 @@
  *
  * SAAS版RESTFUL风格API
  *
- * The version of the OpenAPI document: v1.0.5
+ * The version of the OpenAPI document: v1.0.7
  */
 namespace wemeet\openapi\service\meetings\model;
 
@@ -16,12 +16,18 @@ class V1MeetingsMeetingIdGet200ResponseMeetingInfoListInner implements ModelInte
 {
 
     /**
-    * 类型：\wemeet\openapi\service\meetings\model\V1MeetingsGet200ResponseMeetingInfoListInnerCurrentCoHostsInner[]
+     * 混合云企业会返回
+    * 类型：bool
+     */
+    protected $allowEnterpriseIntranetOnly = null;
+
+    /**
+    * 类型：\wemeet\openapi\service\meetings\model\V1MeetingsMeetingIdGet200ResponseMeetingInfoListInnerCurrentCoHostsInner[]
      */
     protected $currentCoHosts = null;
 
     /**
-    * 类型：\wemeet\openapi\service\meetings\model\V1MeetingsGet200ResponseMeetingInfoListInnerCurrentCoHostsInner[]
+    * 类型：\wemeet\openapi\service\meetings\model\V1MeetingsMeetingIdGet200ResponseMeetingInfoListInnerCurrentCoHostsInner[]
      */
     protected $currentHosts = null;
 
@@ -76,7 +82,7 @@ class V1MeetingsMeetingIdGet200ResponseMeetingInfoListInner implements ModelInte
     protected $hostKey = null;
 
     /**
-    * 类型：\wemeet\openapi\service\meetings\model\V1MeetingsGet200ResponseMeetingInfoListInnerCurrentCoHostsInner[]
+    * 类型：\wemeet\openapi\service\meetings\model\V1MeetingsMeetingIdGet200ResponseMeetingInfoListInnerCurrentCoHostsInner[]
      */
     protected $hosts = null;
 
@@ -94,6 +100,12 @@ class V1MeetingsMeetingIdGet200ResponseMeetingInfoListInner implements ModelInte
     * 类型：string
      */
     protected $location = null;
+
+    /**
+     * 0：公网会议，1:专网会议，混合云企业返回
+    * 类型：int
+     */
+    protected $mediaSetType = null;
 
     /**
     * 类型：string
@@ -116,7 +128,7 @@ class V1MeetingsMeetingIdGet200ResponseMeetingInfoListInner implements ModelInte
     protected $needPassword = null;
 
     /**
-    * 类型：\wemeet\openapi\service\meetings\model\V1MeetingsGet200ResponseMeetingInfoListInnerCurrentCoHostsInner[]
+    * 类型：\wemeet\openapi\service\meetings\model\V1MeetingsMeetingIdGet200ResponseMeetingInfoListInnerCurrentCoHostsInner[]
      */
     protected $participants = null;
 
@@ -178,6 +190,9 @@ class V1MeetingsMeetingIdGet200ResponseMeetingInfoListInner implements ModelInte
     public function __construct(
         $jsonArray = []
     ) {
+        if (isset($jsonArray['allow_enterprise_intranet_only'])) {
+            $this->allowEnterpriseIntranetOnly = $jsonArray['allow_enterprise_intranet_only'];
+        }
         if (isset($jsonArray['current_co_hosts'])) {
             $this->currentCoHosts = $jsonArray['current_co_hosts'];
         }
@@ -225,6 +240,9 @@ class V1MeetingsMeetingIdGet200ResponseMeetingInfoListInner implements ModelInte
         }
         if (isset($jsonArray['location'])) {
             $this->location = $jsonArray['location'];
+        }
+        if (isset($jsonArray['media_set_type'])) {
+            $this->mediaSetType = $jsonArray['media_set_type'];
         }
         if (isset($jsonArray['meeting_code'])) {
             $this->meetingCode = $jsonArray['meeting_code'];
@@ -276,6 +294,18 @@ class V1MeetingsMeetingIdGet200ResponseMeetingInfoListInner implements ModelInte
         }
     }
 
+    public function allowEnterpriseIntranetOnly(bool $allowEnterpriseIntranetOnly): V1MeetingsMeetingIdGet200ResponseMeetingInfoListInner {
+        $this->allowEnterpriseIntranetOnly = $allowEnterpriseIntranetOnly;
+        return $this;
+    }
+
+    public function getAllowEnterpriseIntranetOnly() {
+        return $this->allowEnterpriseIntranetOnly;
+    }
+
+    public function setAllowEnterpriseIntranetOnly(bool $allowEnterpriseIntranetOnly) {
+        $this->allowEnterpriseIntranetOnly = $allowEnterpriseIntranetOnly;
+    }
     public function currentCoHosts(array $currentCoHosts): V1MeetingsMeetingIdGet200ResponseMeetingInfoListInner {
         $this->currentCoHosts = $currentCoHosts;
         return $this;
@@ -467,6 +497,18 @@ class V1MeetingsMeetingIdGet200ResponseMeetingInfoListInner implements ModelInte
 
     public function setLocation(string $location) {
         $this->location = $location;
+    }
+    public function mediaSetType(int $mediaSetType): V1MeetingsMeetingIdGet200ResponseMeetingInfoListInner {
+        $this->mediaSetType = $mediaSetType;
+        return $this;
+    }
+
+    public function getMediaSetType() {
+        return $this->mediaSetType;
+    }
+
+    public function setMediaSetType(int $mediaSetType) {
+        $this->mediaSetType = $mediaSetType;
     }
     public function meetingCode(string $meetingCode): V1MeetingsMeetingIdGet200ResponseMeetingInfoListInner {
         $this->meetingCode = $meetingCode;
@@ -667,8 +709,9 @@ class V1MeetingsMeetingIdGet200ResponseMeetingInfoListInner implements ModelInte
       * @var string[]
       */
     protected static $openAPITypes = [
-        'current_co_hosts' => '\wemeet\openapi\service\meetings\model\V1MeetingsGet200ResponseMeetingInfoListInnerCurrentCoHostsInner[]',
-        'current_hosts' => '\wemeet\openapi\service\meetings\model\V1MeetingsGet200ResponseMeetingInfoListInnerCurrentCoHostsInner[]',
+        'allow_enterprise_intranet_only' => 'bool',
+        'current_co_hosts' => '\wemeet\openapi\service\meetings\model\V1MeetingsMeetingIdGet200ResponseMeetingInfoListInnerCurrentCoHostsInner[]',
+        'current_hosts' => '\wemeet\openapi\service\meetings\model\V1MeetingsMeetingIdGet200ResponseMeetingInfoListInnerCurrentCoHostsInner[]',
         'current_sub_meeting_id' => 'string',
         'enable_doc_upload_permission' => 'bool',
         'enable_enroll' => 'bool',
@@ -679,15 +722,16 @@ class V1MeetingsMeetingIdGet200ResponseMeetingInfoListInner implements ModelInte
         'has_more_sub_meeting' => 'int',
         'has_vote' => 'bool',
         'host_key' => 'string',
-        'hosts' => '\wemeet\openapi\service\meetings\model\V1MeetingsGet200ResponseMeetingInfoListInnerCurrentCoHostsInner[]',
+        'hosts' => '\wemeet\openapi\service\meetings\model\V1MeetingsMeetingIdGet200ResponseMeetingInfoListInnerCurrentCoHostsInner[]',
         'join_url' => 'string',
         'live_config' => '\wemeet\openapi\service\meetings\model\V1MeetingsMeetingIdGet200ResponseMeetingInfoListInnerLiveConfig',
         'location' => 'string',
+        'media_set_type' => 'int',
         'meeting_code' => 'string',
         'meeting_id' => 'string',
         'meeting_type' => 'int',
         'need_password' => 'bool',
-        'participants' => '\wemeet\openapi\service\meetings\model\V1MeetingsGet200ResponseMeetingInfoListInnerCurrentCoHostsInner[]',
+        'participants' => '\wemeet\openapi\service\meetings\model\V1MeetingsMeetingIdGet200ResponseMeetingInfoListInnerCurrentCoHostsInner[]',
         'password' => 'string',
         'recurring_rule' => '\wemeet\openapi\service\meetings\model\V1MeetingsMeetingIdGet200ResponseMeetingInfoListInnerRecurringRule',
         'remain_sub_meetings' => 'int',
@@ -709,6 +753,7 @@ class V1MeetingsMeetingIdGet200ResponseMeetingInfoListInner implements ModelInte
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
+        'allow_enterprise_intranet_only' => null,
         'current_co_hosts' => null,
         'current_hosts' => null,
         'current_sub_meeting_id' => null,
@@ -725,6 +770,7 @@ class V1MeetingsMeetingIdGet200ResponseMeetingInfoListInner implements ModelInte
         'join_url' => null,
         'live_config' => null,
         'location' => null,
+        'media_set_type' => 'int64',
         'meeting_code' => null,
         'meeting_id' => null,
         'meeting_type' => 'int64',
@@ -749,6 +795,7 @@ class V1MeetingsMeetingIdGet200ResponseMeetingInfoListInner implements ModelInte
       * @var boolean[]
       */
     protected static array $openAPINullables = [
+        'allow_enterprise_intranet_only' => false,
         'current_co_hosts' => false,
         'current_hosts' => false,
         'current_sub_meeting_id' => false,
@@ -765,6 +812,7 @@ class V1MeetingsMeetingIdGet200ResponseMeetingInfoListInner implements ModelInte
         'join_url' => false,
         'live_config' => false,
         'location' => false,
+        'media_set_type' => false,
         'meeting_code' => false,
         'meeting_id' => false,
         'meeting_type' => false,
@@ -869,6 +917,7 @@ class V1MeetingsMeetingIdGet200ResponseMeetingInfoListInner implements ModelInte
      * @var string[]
      */
     protected static $attributeMap = [
+        'allow_enterprise_intranet_only' => 'allow_enterprise_intranet_only',
         'current_co_hosts' => 'current_co_hosts',
         'current_hosts' => 'current_hosts',
         'current_sub_meeting_id' => 'current_sub_meeting_id',
@@ -885,6 +934,7 @@ class V1MeetingsMeetingIdGet200ResponseMeetingInfoListInner implements ModelInte
         'join_url' => 'join_url',
         'live_config' => 'live_config',
         'location' => 'location',
+        'media_set_type' => 'media_set_type',
         'meeting_code' => 'meeting_code',
         'meeting_id' => 'meeting_id',
         'meeting_type' => 'meeting_type',
@@ -909,6 +959,7 @@ class V1MeetingsMeetingIdGet200ResponseMeetingInfoListInner implements ModelInte
      * @var string[]
      */
     protected static $setters = [
+        'allow_enterprise_intranet_only' => 'setAllowEnterpriseIntranetOnly',
         'current_co_hosts' => 'setCurrentCoHosts',
         'current_hosts' => 'setCurrentHosts',
         'current_sub_meeting_id' => 'setCurrentSubMeetingId',
@@ -925,6 +976,7 @@ class V1MeetingsMeetingIdGet200ResponseMeetingInfoListInner implements ModelInte
         'join_url' => 'setJoinUrl',
         'live_config' => 'setLiveConfig',
         'location' => 'setLocation',
+        'media_set_type' => 'setMediaSetType',
         'meeting_code' => 'setMeetingCode',
         'meeting_id' => 'setMeetingId',
         'meeting_type' => 'setMeetingType',
@@ -949,6 +1001,7 @@ class V1MeetingsMeetingIdGet200ResponseMeetingInfoListInner implements ModelInte
      * @var string[]
      */
     protected static $getters = [
+        'allow_enterprise_intranet_only' => 'getAllowEnterpriseIntranetOnly',
         'current_co_hosts' => 'getCurrentCoHosts',
         'current_hosts' => 'getCurrentHosts',
         'current_sub_meeting_id' => 'getCurrentSubMeetingId',
@@ -965,6 +1018,7 @@ class V1MeetingsMeetingIdGet200ResponseMeetingInfoListInner implements ModelInte
         'join_url' => 'getJoinUrl',
         'live_config' => 'getLiveConfig',
         'location' => 'getLocation',
+        'media_set_type' => 'getMediaSetType',
         'meeting_code' => 'getMeetingCode',
         'meeting_id' => 'getMeetingId',
         'meeting_type' => 'getMeetingType',
@@ -1016,6 +1070,7 @@ class V1MeetingsMeetingIdGet200ResponseMeetingInfoListInner implements ModelInte
 
     public function jsonSerialize(): mixed {
         $data = [
+            'allow_enterprise_intranet_only' => $this->allowEnterpriseIntranetOnly,
             'current_co_hosts' => $this->currentCoHosts,
             'current_hosts' => $this->currentHosts,
             'current_sub_meeting_id' => $this->currentSubMeetingId,
@@ -1032,6 +1087,7 @@ class V1MeetingsMeetingIdGet200ResponseMeetingInfoListInner implements ModelInte
             'join_url' => $this->joinUrl,
             'live_config' => $this->liveConfig,
             'location' => $this->location,
+            'media_set_type' => $this->mediaSetType,
             'meeting_code' => $this->meetingCode,
             'meeting_id' => $this->meetingId,
             'meeting_type' => $this->meetingType,

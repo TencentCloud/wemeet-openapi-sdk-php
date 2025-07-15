@@ -5,7 +5,7 @@
  *
  * SAAS版RESTFUL风格API
  *
- * The version of the OpenAPI document: v1.0.5
+ * The version of the OpenAPI document: v1.0.7
  */
 namespace wemeet\openapi\service\records\model;
 
@@ -14,6 +14,16 @@ use wemeet\openapi\core\xhttp\ModelInterface;
 
 class V1RecordsSettingsMeetingRecordIdPutRequest implements ModelInterface, \JsonSerializable
 {
+    /**
+     * 操作者ID
+    * 类型：
+     */
+    protected $operatorId;
+    /**
+     * 操作者ID的类型。3. rooms_id 说明：当前仅支持 rooms_id。如操作者为企业内 userid 或 openId，请使用 userid 字段。
+    * 类型：
+     */
+    protected $operatorIdType;
 
     /**
      * 会议id
@@ -22,45 +32,28 @@ class V1RecordsSettingsMeetingRecordIdPutRequest implements ModelInterface, \Jso
     protected $meetingId = null;
 
     /**
-     * 操作者ID
-    * 类型：string
-     */
-    protected $operatorId = null;
-
-    /**
-     * 操作者ID的类型。3. rooms_id 说明：当前仅支持 rooms_id。如操作者为企业内 userid 或 openId，请使用 userid 字段。
-    * 类型：int
-     */
-    protected $operatorIdType = null;
-
-    /**
     * 类型：\wemeet\openapi\service\records\model\V1RecordsSettingsMeetingRecordIdPutRequestSharingConfig
      */
     protected $sharingConfig = null;
 
-    /**
-     * 用户id。仅会议创建者、企业超级管理员或有企业录制管理权限的用户可调用。调用方用于标示用户的唯一 ID（企业内部请使用企业唯一用户标识；OAuth2.0 鉴权用户请使用 openId）。 企业唯一用户标识说明： 1. 企业对接 SSO 时使用的员工唯一标识 ID。 2. 企业调用创建用户接口时传递的 userid 参数。
-    * 类型：string
-     */
-    protected $userid = null;
-
     public function __construct(
         $jsonArray = []
     ) {
-        if (isset($jsonArray['meeting_id'])) {
-            $this->meetingId = $jsonArray['meeting_id'];
-        }
         if (isset($jsonArray['operator_id'])) {
             $this->operatorId = $jsonArray['operator_id'];
+        } else {
+            throw new \InvalidArgumentException('Missing required parameter operator_id');
         }
         if (isset($jsonArray['operator_id_type'])) {
             $this->operatorIdType = $jsonArray['operator_id_type'];
+        } else {
+            throw new \InvalidArgumentException('Missing required parameter operator_id_type');
+        }
+        if (isset($jsonArray['meeting_id'])) {
+            $this->meetingId = $jsonArray['meeting_id'];
         }
         if (isset($jsonArray['sharing_config'])) {
             $this->sharingConfig = new V1RecordsSettingsMeetingRecordIdPutRequestSharingConfig($jsonArray['sharing_config']);
-        }
-        if (isset($jsonArray['userid'])) {
-            $this->userid = $jsonArray['userid'];
         }
     }
 
@@ -112,18 +105,6 @@ class V1RecordsSettingsMeetingRecordIdPutRequest implements ModelInterface, \Jso
     public function setSharingConfig(V1RecordsSettingsMeetingRecordIdPutRequestSharingConfig $sharingConfig) {
         $this->sharingConfig = $sharingConfig;
     }
-    public function userid(string $userid): V1RecordsSettingsMeetingRecordIdPutRequest {
-        $this->userid = $userid;
-        return $this;
-    }
-
-    public function getUserid() {
-        return $this->userid;
-    }
-
-    public function setUserid(string $userid) {
-        $this->userid = $userid;
-    }
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -134,8 +115,7 @@ class V1RecordsSettingsMeetingRecordIdPutRequest implements ModelInterface, \Jso
         'meeting_id' => 'string',
         'operator_id' => 'string',
         'operator_id_type' => 'int',
-        'sharing_config' => '\wemeet\openapi\service\records\model\V1RecordsSettingsMeetingRecordIdPutRequestSharingConfig',
-        'userid' => 'string'
+        'sharing_config' => '\wemeet\openapi\service\records\model\V1RecordsSettingsMeetingRecordIdPutRequestSharingConfig'
     ];
 
     /**
@@ -149,8 +129,7 @@ class V1RecordsSettingsMeetingRecordIdPutRequest implements ModelInterface, \Jso
         'meeting_id' => null,
         'operator_id' => null,
         'operator_id_type' => 'int64',
-        'sharing_config' => null,
-        'userid' => null
+        'sharing_config' => null
     ];
 
     /**
@@ -162,8 +141,7 @@ class V1RecordsSettingsMeetingRecordIdPutRequest implements ModelInterface, \Jso
         'meeting_id' => false,
         'operator_id' => false,
         'operator_id_type' => false,
-        'sharing_config' => false,
-        'userid' => false
+        'sharing_config' => false
     ];
 
     /**
@@ -255,8 +233,7 @@ class V1RecordsSettingsMeetingRecordIdPutRequest implements ModelInterface, \Jso
         'meeting_id' => 'meeting_id',
         'operator_id' => 'operator_id',
         'operator_id_type' => 'operator_id_type',
-        'sharing_config' => 'sharing_config',
-        'userid' => 'userid'
+        'sharing_config' => 'sharing_config'
     ];
 
     /**
@@ -268,8 +245,7 @@ class V1RecordsSettingsMeetingRecordIdPutRequest implements ModelInterface, \Jso
         'meeting_id' => 'setMeetingId',
         'operator_id' => 'setOperatorId',
         'operator_id_type' => 'setOperatorIdType',
-        'sharing_config' => 'setSharingConfig',
-        'userid' => 'setUserid'
+        'sharing_config' => 'setSharingConfig'
     ];
 
     /**
@@ -281,8 +257,7 @@ class V1RecordsSettingsMeetingRecordIdPutRequest implements ModelInterface, \Jso
         'meeting_id' => 'getMeetingId',
         'operator_id' => 'getOperatorId',
         'operator_id_type' => 'getOperatorIdType',
-        'sharing_config' => 'getSharingConfig',
-        'userid' => 'getUserid'
+        'sharing_config' => 'getSharingConfig'
     ];
 
     /**
@@ -322,7 +297,6 @@ class V1RecordsSettingsMeetingRecordIdPutRequest implements ModelInterface, \Jso
             'operator_id' => $this->operatorId,
             'operator_id_type' => $this->operatorIdType,
             'sharing_config' => $this->sharingConfig,
-            'userid' => $this->userid,
         ];
         return array_filter($data, function($value) {
             return !is_null($value) && $value !== '';

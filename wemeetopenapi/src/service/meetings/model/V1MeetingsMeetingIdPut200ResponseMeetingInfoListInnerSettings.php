@@ -5,7 +5,7 @@
  *
  * SAAS版RESTFUL风格API
  *
- * The version of the OpenAPI document: v1.0.5
+ * The version of the OpenAPI document: v1.0.7
  */
 namespace wemeet\openapi\service\meetings\model;
 
@@ -22,10 +22,10 @@ class V1MeetingsMeetingIdPut200ResponseMeetingInfoListInnerSettings implements M
     protected $changeNickname = null;
 
     /**
-     * 是否仅受邀成员可入会，默认值为false，true：仅受邀成员可入会，false：所有成员可入会
-    * 类型：bool
+     * 成员入会限制，1：所有成员可入会，2：仅受邀成员可入会，3：仅企业内部成员可入会 ；当only_user_join_type和only_allow_enterprise_user_join同时传的时候，以only_user_join_type为准
+    * 类型：int
      */
-    protected $onlyInviteesAllowed = null;
+    protected $onlyUserJoinType = null;
 
     public function __construct(
         $jsonArray = []
@@ -33,8 +33,8 @@ class V1MeetingsMeetingIdPut200ResponseMeetingInfoListInnerSettings implements M
         if (isset($jsonArray['change_nickname'])) {
             $this->changeNickname = $jsonArray['change_nickname'];
         }
-        if (isset($jsonArray['only_invitees_allowed'])) {
-            $this->onlyInviteesAllowed = $jsonArray['only_invitees_allowed'];
+        if (isset($jsonArray['only_user_join_type'])) {
+            $this->onlyUserJoinType = $jsonArray['only_user_join_type'];
         }
     }
 
@@ -50,17 +50,17 @@ class V1MeetingsMeetingIdPut200ResponseMeetingInfoListInnerSettings implements M
     public function setChangeNickname(int $changeNickname) {
         $this->changeNickname = $changeNickname;
     }
-    public function onlyInviteesAllowed(bool $onlyInviteesAllowed): V1MeetingsMeetingIdPut200ResponseMeetingInfoListInnerSettings {
-        $this->onlyInviteesAllowed = $onlyInviteesAllowed;
+    public function onlyUserJoinType(int $onlyUserJoinType): V1MeetingsMeetingIdPut200ResponseMeetingInfoListInnerSettings {
+        $this->onlyUserJoinType = $onlyUserJoinType;
         return $this;
     }
 
-    public function getOnlyInviteesAllowed() {
-        return $this->onlyInviteesAllowed;
+    public function getOnlyUserJoinType() {
+        return $this->onlyUserJoinType;
     }
 
-    public function setOnlyInviteesAllowed(bool $onlyInviteesAllowed) {
-        $this->onlyInviteesAllowed = $onlyInviteesAllowed;
+    public function setOnlyUserJoinType(int $onlyUserJoinType) {
+        $this->onlyUserJoinType = $onlyUserJoinType;
     }
 
     /**
@@ -70,7 +70,7 @@ class V1MeetingsMeetingIdPut200ResponseMeetingInfoListInnerSettings implements M
       */
     protected static $openAPITypes = [
         'change_nickname' => 'int',
-        'only_invitees_allowed' => 'bool'
+        'only_user_join_type' => 'int'
     ];
 
     /**
@@ -82,7 +82,7 @@ class V1MeetingsMeetingIdPut200ResponseMeetingInfoListInnerSettings implements M
       */
     protected static $openAPIFormats = [
         'change_nickname' => 'int64',
-        'only_invitees_allowed' => null
+        'only_user_join_type' => 'int64'
     ];
 
     /**
@@ -92,7 +92,7 @@ class V1MeetingsMeetingIdPut200ResponseMeetingInfoListInnerSettings implements M
       */
     protected static array $openAPINullables = [
         'change_nickname' => false,
-        'only_invitees_allowed' => false
+        'only_user_join_type' => false
     ];
 
     /**
@@ -182,7 +182,7 @@ class V1MeetingsMeetingIdPut200ResponseMeetingInfoListInnerSettings implements M
      */
     protected static $attributeMap = [
         'change_nickname' => 'change_nickname',
-        'only_invitees_allowed' => 'only_invitees_allowed'
+        'only_user_join_type' => 'only_user_join_type'
     ];
 
     /**
@@ -192,7 +192,7 @@ class V1MeetingsMeetingIdPut200ResponseMeetingInfoListInnerSettings implements M
      */
     protected static $setters = [
         'change_nickname' => 'setChangeNickname',
-        'only_invitees_allowed' => 'setOnlyInviteesAllowed'
+        'only_user_join_type' => 'setOnlyUserJoinType'
     ];
 
     /**
@@ -202,7 +202,7 @@ class V1MeetingsMeetingIdPut200ResponseMeetingInfoListInnerSettings implements M
      */
     protected static $getters = [
         'change_nickname' => 'getChangeNickname',
-        'only_invitees_allowed' => 'getOnlyInviteesAllowed'
+        'only_user_join_type' => 'getOnlyUserJoinType'
     ];
 
     /**
@@ -239,7 +239,7 @@ class V1MeetingsMeetingIdPut200ResponseMeetingInfoListInnerSettings implements M
     public function jsonSerialize(): mixed {
         $data = [
             'change_nickname' => $this->changeNickname,
-            'only_invitees_allowed' => $this->onlyInviteesAllowed,
+            'only_user_join_type' => $this->onlyUserJoinType,
         ];
         return array_filter($data, function($value) {
             return !is_null($value) && $value !== '';

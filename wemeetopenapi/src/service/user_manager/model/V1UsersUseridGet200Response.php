@@ -5,7 +5,7 @@
  *
  * SAAS版RESTFUL风格API
  *
- * The version of the OpenAPI document: v1.0.5
+ * The version of the OpenAPI document: v1.0.7
  */
 namespace wemeet\openapi\service\user_manager\model;
 
@@ -25,6 +25,18 @@ class V1UsersUseridGet200Response implements ModelInterface, \JsonSerializable
     * 类型：int
      */
     protected $accountVersion = null;
+
+    /**
+     * 增强会议体验：房间规模升级许可。 1：500方房间规模升级许可 2：1000方房间规模升级许可 3：2000方房间规模升级许可
+    * 类型：int
+     */
+    protected $addOnLargemeeting = null;
+
+    /**
+     * 增强会议体验：网络研讨会（Webinar）观众规模升级许可。 1：Webinar 观众规模提升至 300 观众 2：Webinar 观众规模提升至 500 观众 3：Webinar 观众规模提升至 1000 观众 4：Webinar 观众规模提升至 2000 观众 5：Webinar 观众规模提升至 3000 观众 6：Webinar 观众规模提升至 5000 观众 7：Webinar 观众规模提升至 8000 观众 8：Webinar 观众规模提升至 10000 观众
+    * 类型：int
+     */
+    protected $addOnWebinar = null;
 
     /**
      * ai账号类型 1:购买版 2:赠送版
@@ -53,6 +65,12 @@ class V1UsersUseridGet200Response implements ModelInterface, \JsonSerializable
     protected $email = null;
 
     /**
+     * 邮箱验证状态： 1：已验证 2：未验证
+    * 类型：int
+     */
+    protected $emailStatus = null;
+
+    /**
      * 是否有ai账号能力，true：有，false：无
     * 类型：bool
      */
@@ -62,6 +80,12 @@ class V1UsersUseridGet200Response implements ModelInterface, \JsonSerializable
     * 类型：string
      */
     protected $entryTime = null;
+
+    /**
+     * 是否为 VooV Meeting 客户端（国际账号），默认为0。 0：否 1：是
+    * 类型：int
+     */
+    protected $isVoov = null;
 
     /**
     * 类型：string
@@ -105,7 +129,7 @@ class V1UsersUseridGet200Response implements ModelInterface, \JsonSerializable
     protected $updateTime = null;
 
     /**
-     * 1：高级账号  2：免费账号  3：免费账号100方 4:高级账号300方，5:高级账号500方，6：高级账号1000方，7:高级账号2000方
+     * 1：高级账号  2：免费账号  3：免费账号100方 4:高级账号300方，5:高级账号500方，6：高级账号1000方，7:高级账号2000方8：高级账号100方（商业版） 9：高级账号（企业版/教育版/商业版）
     * 类型：int
      */
     protected $userAccountType = null;
@@ -134,6 +158,12 @@ class V1UsersUseridGet200Response implements ModelInterface, \JsonSerializable
         if (isset($jsonArray['account_version'])) {
             $this->accountVersion = $jsonArray['account_version'];
         }
+        if (isset($jsonArray['add_on_largemeeting'])) {
+            $this->addOnLargemeeting = $jsonArray['add_on_largemeeting'];
+        }
+        if (isset($jsonArray['add_on_webinar'])) {
+            $this->addOnWebinar = $jsonArray['add_on_webinar'];
+        }
         if (isset($jsonArray['ai_account_type'])) {
             $this->aiAccountType = $jsonArray['ai_account_type'];
         }
@@ -149,11 +179,17 @@ class V1UsersUseridGet200Response implements ModelInterface, \JsonSerializable
         if (isset($jsonArray['email'])) {
             $this->email = $jsonArray['email'];
         }
+        if (isset($jsonArray['email_status'])) {
+            $this->emailStatus = $jsonArray['email_status'];
+        }
         if (isset($jsonArray['enable_ai_account'])) {
             $this->enableAiAccount = $jsonArray['enable_ai_account'];
         }
         if (isset($jsonArray['entry_time'])) {
             $this->entryTime = $jsonArray['entry_time'];
+        }
+        if (isset($jsonArray['is_voov'])) {
+            $this->isVoov = $jsonArray['is_voov'];
         }
         if (isset($jsonArray['job_title'])) {
             $this->jobTitle = $jsonArray['job_title'];
@@ -217,6 +253,30 @@ class V1UsersUseridGet200Response implements ModelInterface, \JsonSerializable
     public function setAccountVersion(int $accountVersion) {
         $this->accountVersion = $accountVersion;
     }
+    public function addOnLargemeeting(int $addOnLargemeeting): V1UsersUseridGet200Response {
+        $this->addOnLargemeeting = $addOnLargemeeting;
+        return $this;
+    }
+
+    public function getAddOnLargemeeting() {
+        return $this->addOnLargemeeting;
+    }
+
+    public function setAddOnLargemeeting(int $addOnLargemeeting) {
+        $this->addOnLargemeeting = $addOnLargemeeting;
+    }
+    public function addOnWebinar(int $addOnWebinar): V1UsersUseridGet200Response {
+        $this->addOnWebinar = $addOnWebinar;
+        return $this;
+    }
+
+    public function getAddOnWebinar() {
+        return $this->addOnWebinar;
+    }
+
+    public function setAddOnWebinar(int $addOnWebinar) {
+        $this->addOnWebinar = $addOnWebinar;
+    }
     public function aiAccountType(int $aiAccountType): V1UsersUseridGet200Response {
         $this->aiAccountType = $aiAccountType;
         return $this;
@@ -277,6 +337,18 @@ class V1UsersUseridGet200Response implements ModelInterface, \JsonSerializable
     public function setEmail(string $email) {
         $this->email = $email;
     }
+    public function emailStatus(int $emailStatus): V1UsersUseridGet200Response {
+        $this->emailStatus = $emailStatus;
+        return $this;
+    }
+
+    public function getEmailStatus() {
+        return $this->emailStatus;
+    }
+
+    public function setEmailStatus(int $emailStatus) {
+        $this->emailStatus = $emailStatus;
+    }
     public function enableAiAccount(bool $enableAiAccount): V1UsersUseridGet200Response {
         $this->enableAiAccount = $enableAiAccount;
         return $this;
@@ -300,6 +372,18 @@ class V1UsersUseridGet200Response implements ModelInterface, \JsonSerializable
 
     public function setEntryTime(string $entryTime) {
         $this->entryTime = $entryTime;
+    }
+    public function isVoov(int $isVoov): V1UsersUseridGet200Response {
+        $this->isVoov = $isVoov;
+        return $this;
+    }
+
+    public function getIsVoov() {
+        return $this->isVoov;
+    }
+
+    public function setIsVoov(int $isVoov) {
+        $this->isVoov = $isVoov;
     }
     public function jobTitle(string $jobTitle): V1UsersUseridGet200Response {
         $this->jobTitle = $jobTitle;
@@ -454,13 +538,17 @@ class V1UsersUseridGet200Response implements ModelInterface, \JsonSerializable
     protected static $openAPITypes = [
         'account_type' => 'int',
         'account_version' => 'int',
+        'add_on_largemeeting' => 'int',
+        'add_on_webinar' => 'int',
         'ai_account_type' => 'int',
         'area' => 'string',
         'avatar_url' => 'string',
         'department_list' => '\wemeet\openapi\service\user_manager\model\V1UsersUseridGet200ResponseDepartmentListInner[]',
         'email' => 'string',
+        'email_status' => 'int',
         'enable_ai_account' => 'bool',
         'entry_time' => 'string',
+        'is_voov' => 'int',
         'job_title' => 'string',
         'phone' => 'string',
         'phone_status' => 'int',
@@ -485,13 +573,17 @@ class V1UsersUseridGet200Response implements ModelInterface, \JsonSerializable
     protected static $openAPIFormats = [
         'account_type' => 'int64',
         'account_version' => 'int64',
+        'add_on_largemeeting' => 'int64',
+        'add_on_webinar' => 'int64',
         'ai_account_type' => 'int64',
         'area' => null,
         'avatar_url' => null,
         'department_list' => null,
         'email' => null,
+        'email_status' => 'int64',
         'enable_ai_account' => null,
         'entry_time' => null,
+        'is_voov' => 'int64',
         'job_title' => null,
         'phone' => null,
         'phone_status' => 'int64',
@@ -514,13 +606,17 @@ class V1UsersUseridGet200Response implements ModelInterface, \JsonSerializable
     protected static array $openAPINullables = [
         'account_type' => false,
         'account_version' => false,
+        'add_on_largemeeting' => false,
+        'add_on_webinar' => false,
         'ai_account_type' => false,
         'area' => false,
         'avatar_url' => false,
         'department_list' => false,
         'email' => false,
+        'email_status' => false,
         'enable_ai_account' => false,
         'entry_time' => false,
+        'is_voov' => false,
         'job_title' => false,
         'phone' => false,
         'phone_status' => false,
@@ -623,13 +719,17 @@ class V1UsersUseridGet200Response implements ModelInterface, \JsonSerializable
     protected static $attributeMap = [
         'account_type' => 'account_type',
         'account_version' => 'account_version',
+        'add_on_largemeeting' => 'add_on_largemeeting',
+        'add_on_webinar' => 'add_on_webinar',
         'ai_account_type' => 'ai_account_type',
         'area' => 'area',
         'avatar_url' => 'avatar_url',
         'department_list' => 'department_list',
         'email' => 'email',
+        'email_status' => 'email_status',
         'enable_ai_account' => 'enable_ai_account',
         'entry_time' => 'entry_time',
+        'is_voov' => 'is_voov',
         'job_title' => 'job_title',
         'phone' => 'phone',
         'phone_status' => 'phone_status',
@@ -652,13 +752,17 @@ class V1UsersUseridGet200Response implements ModelInterface, \JsonSerializable
     protected static $setters = [
         'account_type' => 'setAccountType',
         'account_version' => 'setAccountVersion',
+        'add_on_largemeeting' => 'setAddOnLargemeeting',
+        'add_on_webinar' => 'setAddOnWebinar',
         'ai_account_type' => 'setAiAccountType',
         'area' => 'setArea',
         'avatar_url' => 'setAvatarUrl',
         'department_list' => 'setDepartmentList',
         'email' => 'setEmail',
+        'email_status' => 'setEmailStatus',
         'enable_ai_account' => 'setEnableAiAccount',
         'entry_time' => 'setEntryTime',
+        'is_voov' => 'setIsVoov',
         'job_title' => 'setJobTitle',
         'phone' => 'setPhone',
         'phone_status' => 'setPhoneStatus',
@@ -681,13 +785,17 @@ class V1UsersUseridGet200Response implements ModelInterface, \JsonSerializable
     protected static $getters = [
         'account_type' => 'getAccountType',
         'account_version' => 'getAccountVersion',
+        'add_on_largemeeting' => 'getAddOnLargemeeting',
+        'add_on_webinar' => 'getAddOnWebinar',
         'ai_account_type' => 'getAiAccountType',
         'area' => 'getArea',
         'avatar_url' => 'getAvatarUrl',
         'department_list' => 'getDepartmentList',
         'email' => 'getEmail',
+        'email_status' => 'getEmailStatus',
         'enable_ai_account' => 'getEnableAiAccount',
         'entry_time' => 'getEntryTime',
+        'is_voov' => 'getIsVoov',
         'job_title' => 'getJobTitle',
         'phone' => 'getPhone',
         'phone_status' => 'getPhoneStatus',
@@ -737,13 +845,17 @@ class V1UsersUseridGet200Response implements ModelInterface, \JsonSerializable
         $data = [
             'account_type' => $this->accountType,
             'account_version' => $this->accountVersion,
+            'add_on_largemeeting' => $this->addOnLargemeeting,
+            'add_on_webinar' => $this->addOnWebinar,
             'ai_account_type' => $this->aiAccountType,
             'area' => $this->area,
             'avatar_url' => $this->avatarUrl,
             'department_list' => $this->departmentList,
             'email' => $this->email,
+            'email_status' => $this->emailStatus,
             'enable_ai_account' => $this->enableAiAccount,
             'entry_time' => $this->entryTime,
+            'is_voov' => $this->isVoov,
             'job_title' => $this->jobTitle,
             'phone' => $this->phone,
             'phone_status' => $this->phoneStatus,

@@ -5,7 +5,7 @@
  *
  * SAAS版RESTFUL风格API
  *
- * The version of the OpenAPI document: v1.0.5
+ * The version of the OpenAPI document: v1.0.7
  */
 namespace wemeet\openapi\service\pstn\model;
 
@@ -29,7 +29,7 @@ class V1MeetingMeetingIdPhoneCalloutPost200Response implements ModelInterface, \
 
     /**
      * 外呼的电话号码对象列表。
-    * 类型：\wemeet\openapi\service\pstn\model\V1MeetingMeetingIdPhoneCalloutPost200ResponseInvalidPhoneNumbersInner[]
+    * 类型：\wemeet\openapi\service\pstn\model\V1MeetingMeetingIdPhoneCalloutPost200ResponsePhoneNumbersInner[]
      */
     protected $phoneNumbers = null;
 
@@ -92,7 +92,7 @@ class V1MeetingMeetingIdPhoneCalloutPost200Response implements ModelInterface, \
     protected static $openAPITypes = [
         'invalid_phone_numbers' => '\wemeet\openapi\service\pstn\model\V1MeetingMeetingIdPhoneCalloutPost200ResponseInvalidPhoneNumbersInner[]',
         'meeting_id' => 'string',
-        'phone_numbers' => '\wemeet\openapi\service\pstn\model\V1MeetingMeetingIdPhoneCalloutPost200ResponseInvalidPhoneNumbersInner[]'
+        'phone_numbers' => '\wemeet\openapi\service\pstn\model\V1MeetingMeetingIdPhoneCalloutPost200ResponsePhoneNumbersInner[]'
     ];
 
     /**

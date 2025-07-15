@@ -5,7 +5,7 @@
  *
  * SAAS版RESTFUL风格API
  *
- * The version of the OpenAPI document: v1.0.5
+ * The version of the OpenAPI document: v1.0.7
  */
 namespace wemeet\openapi\service\meetings\model;
 
@@ -41,6 +41,12 @@ class V1AsrConfigPutRequest implements ModelInterface, \JsonSerializable
      */
     protected $meetingId = null;
 
+    /**
+     * 录制文件 ID，若仅传入 record_file_id，未传入 meeting_id，则热词仅对该录制文件生效。
+    * 类型：string
+     */
+    protected $recordFileId = null;
+
     public function __construct(
         $jsonArray = []
     ) {
@@ -66,6 +72,9 @@ class V1AsrConfigPutRequest implements ModelInterface, \JsonSerializable
         }
         if (isset($jsonArray['meeting_id'])) {
             $this->meetingId = $jsonArray['meeting_id'];
+        }
+        if (isset($jsonArray['record_file_id'])) {
+            $this->recordFileId = $jsonArray['record_file_id'];
         }
     }
 
@@ -117,6 +126,18 @@ class V1AsrConfigPutRequest implements ModelInterface, \JsonSerializable
     public function setOperatorIdType(int $operatorIdType) {
         $this->operatorIdType = $operatorIdType;
     }
+    public function recordFileId(string $recordFileId): V1AsrConfigPutRequest {
+        $this->recordFileId = $recordFileId;
+        return $this;
+    }
+
+    public function getRecordFileId() {
+        return $this->recordFileId;
+    }
+
+    public function setRecordFileId(string $recordFileId) {
+        $this->recordFileId = $recordFileId;
+    }
     public function tag(string $tag): V1AsrConfigPutRequest {
         $this->tag = $tag;
         return $this;
@@ -140,6 +161,7 @@ class V1AsrConfigPutRequest implements ModelInterface, \JsonSerializable
         'meeting_id' => 'string',
         'operator_id' => 'string',
         'operator_id_type' => 'int',
+        'record_file_id' => 'string',
         'tag' => 'string'
     ];
 
@@ -155,6 +177,7 @@ class V1AsrConfigPutRequest implements ModelInterface, \JsonSerializable
         'meeting_id' => null,
         'operator_id' => null,
         'operator_id_type' => 'int64',
+        'record_file_id' => null,
         'tag' => null
     ];
 
@@ -168,6 +191,7 @@ class V1AsrConfigPutRequest implements ModelInterface, \JsonSerializable
         'meeting_id' => false,
         'operator_id' => false,
         'operator_id_type' => false,
+        'record_file_id' => false,
         'tag' => false
     ];
 
@@ -261,6 +285,7 @@ class V1AsrConfigPutRequest implements ModelInterface, \JsonSerializable
         'meeting_id' => 'meeting_id',
         'operator_id' => 'operator_id',
         'operator_id_type' => 'operator_id_type',
+        'record_file_id' => 'record_file_id',
         'tag' => 'tag'
     ];
 
@@ -274,6 +299,7 @@ class V1AsrConfigPutRequest implements ModelInterface, \JsonSerializable
         'meeting_id' => 'setMeetingId',
         'operator_id' => 'setOperatorId',
         'operator_id_type' => 'setOperatorIdType',
+        'record_file_id' => 'setRecordFileId',
         'tag' => 'setTag'
     ];
 
@@ -287,6 +313,7 @@ class V1AsrConfigPutRequest implements ModelInterface, \JsonSerializable
         'meeting_id' => 'getMeetingId',
         'operator_id' => 'getOperatorId',
         'operator_id_type' => 'getOperatorIdType',
+        'record_file_id' => 'getRecordFileId',
         'tag' => 'getTag'
     ];
 
@@ -327,6 +354,7 @@ class V1AsrConfigPutRequest implements ModelInterface, \JsonSerializable
             'meeting_id' => $this->meetingId,
             'operator_id' => $this->operatorId,
             'operator_id_type' => $this->operatorIdType,
+            'record_file_id' => $this->recordFileId,
             'tag' => $this->tag,
         ];
         return array_filter($data, function($value) {

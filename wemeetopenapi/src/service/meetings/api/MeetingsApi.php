@@ -5,7 +5,7 @@
  *
  * SAAS版RESTFUL风格API
  *
- * The version of the OpenAPI document: v1.0.5
+ * The version of the OpenAPI document: v1.0.7
  */
 namespace wemeet\openapi\service\meetings\api;
 
@@ -862,6 +862,18 @@ class MeetingsApi
          }
 
          $queryParams = [];
+         if (is_null($request->getOperatorId())) {
+            throw new InvalidArgumentException("operator_id is required and must be specified");
+         }
+         if (is_null($request->getOperatorIdType())) {
+            throw new InvalidArgumentException("operator_id_type is required and must be specified");
+         }
+         if ($request->getOperatorId() !== null) {
+             $queryParams['operator_id'] = $request->getOperatorId();
+         }
+         if ($request->getOperatorIdType() !== null) {
+             $queryParams['operator_id_type'] = $request->getOperatorIdType();
+         }
 
          $requestBody = null;
 
@@ -1417,6 +1429,12 @@ class MeetingsApi
          }
 
          $queryParams = [];
+         if (is_null($request->getOperatorId())) {
+            throw new InvalidArgumentException("operator_id is required and must be specified");
+         }
+         if (is_null($request->getOperatorIdType())) {
+            throw new InvalidArgumentException("operator_id_type is required and must be specified");
+         }
          if (is_null($request->getInstanceid())) {
             throw new InvalidArgumentException("instanceid is required and must be specified");
          }
@@ -3113,10 +3131,18 @@ class ApiV1MeetingsMeetingIdCancelPostResponse extends ApiResponse {
 class ApiV1MeetingsMeetingIdCustomerShortUrlGetRequest {
 
     protected string|null $meeting_id = null;
+    protected string|null $operator_id = null;
+    protected string|null $operator_id_type = null;
     protected object|null $body = null;
 
     public function getMeetingId(): string|null  {
         return $this->meeting_id;
+    }
+    public function getOperatorId(): string|null  {
+        return $this->operator_id;
+    }
+    public function getOperatorIdType(): string|null  {
+        return $this->operator_id_type;
     }
     public function getBody(): object|null  {
         return $this->body;
@@ -3125,6 +3151,16 @@ class ApiV1MeetingsMeetingIdCustomerShortUrlGetRequest {
 
     public function withMeetingId(string $meeting_id): ApiV1MeetingsMeetingIdCustomerShortUrlGetRequest  {
         $this->meeting_id = $meeting_id;
+        return $this;
+    }
+
+    public function withOperatorId(string $operator_id): ApiV1MeetingsMeetingIdCustomerShortUrlGetRequest  {
+        $this->operator_id = $operator_id;
+        return $this;
+    }
+
+    public function withOperatorIdType(string $operator_id_type): ApiV1MeetingsMeetingIdCustomerShortUrlGetRequest  {
+        $this->operator_id_type = $operator_id_type;
         return $this;
     }
     public function withBody(object $body)  {
@@ -3562,22 +3598,22 @@ class ApiV1MeetingsMeetingIdEnrollUnregistrationDeleteResponse extends ApiRespon
 class ApiV1MeetingsMeetingIdGetRequest {
 
     protected string|null $meeting_id = null;
-    protected string|null $instanceid = null;
     protected string|null $operator_id = null;
     protected string|null $operator_id_type = null;
+    protected string|null $instanceid = null;
     protected object|null $body = null;
 
     public function getMeetingId(): string|null  {
         return $this->meeting_id;
-    }
-    public function getInstanceid(): string|null  {
-        return $this->instanceid;
     }
     public function getOperatorId(): string|null  {
         return $this->operator_id;
     }
     public function getOperatorIdType(): string|null  {
         return $this->operator_id_type;
+    }
+    public function getInstanceid(): string|null  {
+        return $this->instanceid;
     }
     public function getBody(): object|null  {
         return $this->body;
@@ -3589,11 +3625,6 @@ class ApiV1MeetingsMeetingIdGetRequest {
         return $this;
     }
 
-    public function withInstanceid(string $instanceid): ApiV1MeetingsMeetingIdGetRequest  {
-        $this->instanceid = $instanceid;
-        return $this;
-    }
-
     public function withOperatorId(string $operator_id): ApiV1MeetingsMeetingIdGetRequest  {
         $this->operator_id = $operator_id;
         return $this;
@@ -3601,6 +3632,11 @@ class ApiV1MeetingsMeetingIdGetRequest {
 
     public function withOperatorIdType(string $operator_id_type): ApiV1MeetingsMeetingIdGetRequest  {
         $this->operator_id_type = $operator_id_type;
+        return $this;
+    }
+
+    public function withInstanceid(string $instanceid): ApiV1MeetingsMeetingIdGetRequest  {
+        $this->instanceid = $instanceid;
         return $this;
     }
     public function withBody(object $body)  {
@@ -3731,7 +3767,7 @@ class ApiV1MeetingsMeetingIdInviteesPutRequest {
 
 class ApiV1MeetingsMeetingIdInviteesPutResponse extends ApiResponse {
 
-    protected object $data;
+    protected \wemeet\openapi\service\meetings\model\V1MeetingsMeetingIdInviteesPut200Response $data;
 
     public function __construct(ApiResponse $response) {
         parent::__construct(
@@ -3740,7 +3776,7 @@ class ApiV1MeetingsMeetingIdInviteesPutResponse extends ApiResponse {
             $response->getBody()
         );
         try {
-            $this->data = $response->translate('object');
+            $this->data = $response->translate('\wemeet\openapi\service\meetings\model\V1MeetingsMeetingIdInviteesPut200Response');
         } catch (\Exception $e) {
             throw new Exception("translate失败: " . $e->getMessage(), $e->getCode(), $e);
         }

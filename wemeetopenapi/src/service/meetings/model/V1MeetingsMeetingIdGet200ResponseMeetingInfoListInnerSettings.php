@@ -5,7 +5,7 @@
  *
  * SAAS版RESTFUL风格API
  *
- * The version of the OpenAPI document: v1.0.5
+ * The version of the OpenAPI document: v1.0.7
  */
 namespace wemeet\openapi\service\meetings\model;
 
@@ -21,6 +21,12 @@ class V1MeetingsMeetingIdGet200ResponseMeetingInfoListInnerSettings implements M
     protected $allowInBeforeHost = null;
 
     /**
+     * 是否允许多端入会
+    * 类型：bool
+     */
+    protected $allowMultiDevice = null;
+
+    /**
     * 类型：bool
      */
     protected $allowScreenSharedWatermark = null;
@@ -31,6 +37,12 @@ class V1MeetingsMeetingIdGet200ResponseMeetingInfoListInnerSettings implements M
     protected $allowUnmuteSelf = null;
 
     /**
+     * 开启自动转写的会议默认不开启 true：开启 false：不开启
+    * 类型：bool
+     */
+    protected $autoAsr = null;
+
+    /**
     * 类型：bool
      */
     protected $autoInWaitingRoom = null;
@@ -39,12 +51,6 @@ class V1MeetingsMeetingIdGet200ResponseMeetingInfoListInnerSettings implements M
     * 类型：string
      */
     protected $autoRecordType = null;
-
-    /**
-     * 是否允许用户自己改名 1:允许用户自己改名，2:不允许用户自己改名，默认为1
-    * 类型：int
-     */
-    protected $changeNickname = null;
 
     /**
     * 类型：bool
@@ -73,6 +79,12 @@ class V1MeetingsMeetingIdGet200ResponseMeetingInfoListInnerSettings implements M
     protected $onlyUserJoinType = null;
 
     /**
+     * 设置主持人入会是否自动打开转写侧边栏 在auto_asr为true下才会生效，true:开启转写 false：不开启
+    * 类型：int
+     */
+    protected $openAsrView = null;
+
+    /**
     * 类型：bool
      */
     protected $participantJoinAutoRecord = null;
@@ -88,20 +100,23 @@ class V1MeetingsMeetingIdGet200ResponseMeetingInfoListInnerSettings implements M
         if (isset($jsonArray['allow_in_before_host'])) {
             $this->allowInBeforeHost = $jsonArray['allow_in_before_host'];
         }
+        if (isset($jsonArray['allow_multi_device'])) {
+            $this->allowMultiDevice = $jsonArray['allow_multi_device'];
+        }
         if (isset($jsonArray['allow_screen_shared_watermark'])) {
             $this->allowScreenSharedWatermark = $jsonArray['allow_screen_shared_watermark'];
         }
         if (isset($jsonArray['allow_unmute_self'])) {
             $this->allowUnmuteSelf = $jsonArray['allow_unmute_self'];
         }
+        if (isset($jsonArray['auto_asr'])) {
+            $this->autoAsr = $jsonArray['auto_asr'];
+        }
         if (isset($jsonArray['auto_in_waiting_room'])) {
             $this->autoInWaitingRoom = $jsonArray['auto_in_waiting_room'];
         }
         if (isset($jsonArray['auto_record_type'])) {
             $this->autoRecordType = $jsonArray['auto_record_type'];
-        }
-        if (isset($jsonArray['change_nickname'])) {
-            $this->changeNickname = $jsonArray['change_nickname'];
         }
         if (isset($jsonArray['enable_host_pause_auto_record'])) {
             $this->enableHostPauseAutoRecord = $jsonArray['enable_host_pause_auto_record'];
@@ -117,6 +132,9 @@ class V1MeetingsMeetingIdGet200ResponseMeetingInfoListInnerSettings implements M
         }
         if (isset($jsonArray['only_user_join_type'])) {
             $this->onlyUserJoinType = $jsonArray['only_user_join_type'];
+        }
+        if (isset($jsonArray['open_asr_view'])) {
+            $this->openAsrView = $jsonArray['open_asr_view'];
         }
         if (isset($jsonArray['participant_join_auto_record'])) {
             $this->participantJoinAutoRecord = $jsonArray['participant_join_auto_record'];
@@ -137,6 +155,18 @@ class V1MeetingsMeetingIdGet200ResponseMeetingInfoListInnerSettings implements M
 
     public function setAllowInBeforeHost(bool $allowInBeforeHost) {
         $this->allowInBeforeHost = $allowInBeforeHost;
+    }
+    public function allowMultiDevice(bool $allowMultiDevice): V1MeetingsMeetingIdGet200ResponseMeetingInfoListInnerSettings {
+        $this->allowMultiDevice = $allowMultiDevice;
+        return $this;
+    }
+
+    public function getAllowMultiDevice() {
+        return $this->allowMultiDevice;
+    }
+
+    public function setAllowMultiDevice(bool $allowMultiDevice) {
+        $this->allowMultiDevice = $allowMultiDevice;
     }
     public function allowScreenSharedWatermark(bool $allowScreenSharedWatermark): V1MeetingsMeetingIdGet200ResponseMeetingInfoListInnerSettings {
         $this->allowScreenSharedWatermark = $allowScreenSharedWatermark;
@@ -162,6 +192,18 @@ class V1MeetingsMeetingIdGet200ResponseMeetingInfoListInnerSettings implements M
     public function setAllowUnmuteSelf(bool $allowUnmuteSelf) {
         $this->allowUnmuteSelf = $allowUnmuteSelf;
     }
+    public function autoAsr(bool $autoAsr): V1MeetingsMeetingIdGet200ResponseMeetingInfoListInnerSettings {
+        $this->autoAsr = $autoAsr;
+        return $this;
+    }
+
+    public function getAutoAsr() {
+        return $this->autoAsr;
+    }
+
+    public function setAutoAsr(bool $autoAsr) {
+        $this->autoAsr = $autoAsr;
+    }
     public function autoInWaitingRoom(bool $autoInWaitingRoom): V1MeetingsMeetingIdGet200ResponseMeetingInfoListInnerSettings {
         $this->autoInWaitingRoom = $autoInWaitingRoom;
         return $this;
@@ -185,18 +227,6 @@ class V1MeetingsMeetingIdGet200ResponseMeetingInfoListInnerSettings implements M
 
     public function setAutoRecordType(string $autoRecordType) {
         $this->autoRecordType = $autoRecordType;
-    }
-    public function changeNickname(int $changeNickname): V1MeetingsMeetingIdGet200ResponseMeetingInfoListInnerSettings {
-        $this->changeNickname = $changeNickname;
-        return $this;
-    }
-
-    public function getChangeNickname() {
-        return $this->changeNickname;
-    }
-
-    public function setChangeNickname(int $changeNickname) {
-        $this->changeNickname = $changeNickname;
     }
     public function enableHostPauseAutoRecord(bool $enableHostPauseAutoRecord): V1MeetingsMeetingIdGet200ResponseMeetingInfoListInnerSettings {
         $this->enableHostPauseAutoRecord = $enableHostPauseAutoRecord;
@@ -258,6 +288,18 @@ class V1MeetingsMeetingIdGet200ResponseMeetingInfoListInnerSettings implements M
     public function setOnlyUserJoinType(int $onlyUserJoinType) {
         $this->onlyUserJoinType = $onlyUserJoinType;
     }
+    public function openAsrView(int $openAsrView): V1MeetingsMeetingIdGet200ResponseMeetingInfoListInnerSettings {
+        $this->openAsrView = $openAsrView;
+        return $this;
+    }
+
+    public function getOpenAsrView() {
+        return $this->openAsrView;
+    }
+
+    public function setOpenAsrView(int $openAsrView) {
+        $this->openAsrView = $openAsrView;
+    }
     public function participantJoinAutoRecord(bool $participantJoinAutoRecord): V1MeetingsMeetingIdGet200ResponseMeetingInfoListInnerSettings {
         $this->participantJoinAutoRecord = $participantJoinAutoRecord;
         return $this;
@@ -290,16 +332,18 @@ class V1MeetingsMeetingIdGet200ResponseMeetingInfoListInnerSettings implements M
       */
     protected static $openAPITypes = [
         'allow_in_before_host' => 'bool',
+        'allow_multi_device' => 'bool',
         'allow_screen_shared_watermark' => 'bool',
         'allow_unmute_self' => 'bool',
+        'auto_asr' => 'bool',
         'auto_in_waiting_room' => 'bool',
         'auto_record_type' => 'string',
-        'change_nickname' => 'int',
         'enable_host_pause_auto_record' => 'bool',
         'mute_enable_join' => 'bool',
         'mute_enable_type_join' => 'int',
         'only_allow_enterprise_user_join' => 'bool',
         'only_user_join_type' => 'int',
+        'open_asr_view' => 'int',
         'participant_join_auto_record' => 'bool',
         'water_mark_type' => 'int'
     ];
@@ -313,16 +357,18 @@ class V1MeetingsMeetingIdGet200ResponseMeetingInfoListInnerSettings implements M
       */
     protected static $openAPIFormats = [
         'allow_in_before_host' => null,
+        'allow_multi_device' => null,
         'allow_screen_shared_watermark' => null,
         'allow_unmute_self' => null,
+        'auto_asr' => null,
         'auto_in_waiting_room' => null,
         'auto_record_type' => null,
-        'change_nickname' => 'int64',
         'enable_host_pause_auto_record' => null,
         'mute_enable_join' => null,
         'mute_enable_type_join' => 'int64',
         'only_allow_enterprise_user_join' => null,
         'only_user_join_type' => 'int64',
+        'open_asr_view' => 'int64',
         'participant_join_auto_record' => null,
         'water_mark_type' => 'int64'
     ];
@@ -334,16 +380,18 @@ class V1MeetingsMeetingIdGet200ResponseMeetingInfoListInnerSettings implements M
       */
     protected static array $openAPINullables = [
         'allow_in_before_host' => false,
+        'allow_multi_device' => false,
         'allow_screen_shared_watermark' => false,
         'allow_unmute_self' => false,
+        'auto_asr' => false,
         'auto_in_waiting_room' => false,
         'auto_record_type' => false,
-        'change_nickname' => false,
         'enable_host_pause_auto_record' => false,
         'mute_enable_join' => false,
         'mute_enable_type_join' => false,
         'only_allow_enterprise_user_join' => false,
         'only_user_join_type' => false,
+        'open_asr_view' => false,
         'participant_join_auto_record' => false,
         'water_mark_type' => false
     ];
@@ -435,16 +483,18 @@ class V1MeetingsMeetingIdGet200ResponseMeetingInfoListInnerSettings implements M
      */
     protected static $attributeMap = [
         'allow_in_before_host' => 'allow_in_before_host',
+        'allow_multi_device' => 'allow_multi_device',
         'allow_screen_shared_watermark' => 'allow_screen_shared_watermark',
         'allow_unmute_self' => 'allow_unmute_self',
+        'auto_asr' => 'auto_asr',
         'auto_in_waiting_room' => 'auto_in_waiting_room',
         'auto_record_type' => 'auto_record_type',
-        'change_nickname' => 'change_nickname',
         'enable_host_pause_auto_record' => 'enable_host_pause_auto_record',
         'mute_enable_join' => 'mute_enable_join',
         'mute_enable_type_join' => 'mute_enable_type_join',
         'only_allow_enterprise_user_join' => 'only_allow_enterprise_user_join',
         'only_user_join_type' => 'only_user_join_type',
+        'open_asr_view' => 'open_asr_view',
         'participant_join_auto_record' => 'participant_join_auto_record',
         'water_mark_type' => 'water_mark_type'
     ];
@@ -456,16 +506,18 @@ class V1MeetingsMeetingIdGet200ResponseMeetingInfoListInnerSettings implements M
      */
     protected static $setters = [
         'allow_in_before_host' => 'setAllowInBeforeHost',
+        'allow_multi_device' => 'setAllowMultiDevice',
         'allow_screen_shared_watermark' => 'setAllowScreenSharedWatermark',
         'allow_unmute_self' => 'setAllowUnmuteSelf',
+        'auto_asr' => 'setAutoAsr',
         'auto_in_waiting_room' => 'setAutoInWaitingRoom',
         'auto_record_type' => 'setAutoRecordType',
-        'change_nickname' => 'setChangeNickname',
         'enable_host_pause_auto_record' => 'setEnableHostPauseAutoRecord',
         'mute_enable_join' => 'setMuteEnableJoin',
         'mute_enable_type_join' => 'setMuteEnableTypeJoin',
         'only_allow_enterprise_user_join' => 'setOnlyAllowEnterpriseUserJoin',
         'only_user_join_type' => 'setOnlyUserJoinType',
+        'open_asr_view' => 'setOpenAsrView',
         'participant_join_auto_record' => 'setParticipantJoinAutoRecord',
         'water_mark_type' => 'setWaterMarkType'
     ];
@@ -477,16 +529,18 @@ class V1MeetingsMeetingIdGet200ResponseMeetingInfoListInnerSettings implements M
      */
     protected static $getters = [
         'allow_in_before_host' => 'getAllowInBeforeHost',
+        'allow_multi_device' => 'getAllowMultiDevice',
         'allow_screen_shared_watermark' => 'getAllowScreenSharedWatermark',
         'allow_unmute_self' => 'getAllowUnmuteSelf',
+        'auto_asr' => 'getAutoAsr',
         'auto_in_waiting_room' => 'getAutoInWaitingRoom',
         'auto_record_type' => 'getAutoRecordType',
-        'change_nickname' => 'getChangeNickname',
         'enable_host_pause_auto_record' => 'getEnableHostPauseAutoRecord',
         'mute_enable_join' => 'getMuteEnableJoin',
         'mute_enable_type_join' => 'getMuteEnableTypeJoin',
         'only_allow_enterprise_user_join' => 'getOnlyAllowEnterpriseUserJoin',
         'only_user_join_type' => 'getOnlyUserJoinType',
+        'open_asr_view' => 'getOpenAsrView',
         'participant_join_auto_record' => 'getParticipantJoinAutoRecord',
         'water_mark_type' => 'getWaterMarkType'
     ];
@@ -525,16 +579,18 @@ class V1MeetingsMeetingIdGet200ResponseMeetingInfoListInnerSettings implements M
     public function jsonSerialize(): mixed {
         $data = [
             'allow_in_before_host' => $this->allowInBeforeHost,
+            'allow_multi_device' => $this->allowMultiDevice,
             'allow_screen_shared_watermark' => $this->allowScreenSharedWatermark,
             'allow_unmute_self' => $this->allowUnmuteSelf,
+            'auto_asr' => $this->autoAsr,
             'auto_in_waiting_room' => $this->autoInWaitingRoom,
             'auto_record_type' => $this->autoRecordType,
-            'change_nickname' => $this->changeNickname,
             'enable_host_pause_auto_record' => $this->enableHostPauseAutoRecord,
             'mute_enable_join' => $this->muteEnableJoin,
             'mute_enable_type_join' => $this->muteEnableTypeJoin,
             'only_allow_enterprise_user_join' => $this->onlyAllowEnterpriseUserJoin,
             'only_user_join_type' => $this->onlyUserJoinType,
+            'open_asr_view' => $this->openAsrView,
             'participant_join_auto_record' => $this->participantJoinAutoRecord,
             'water_mark_type' => $this->waterMarkType,
         ];

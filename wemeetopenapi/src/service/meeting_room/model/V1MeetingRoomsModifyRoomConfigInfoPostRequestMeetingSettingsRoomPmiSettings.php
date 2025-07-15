@@ -5,7 +5,7 @@
  *
  * SAAS版RESTFUL风格API
  *
- * The version of the OpenAPI document: v1.0.5
+ * The version of the OpenAPI document: v1.0.7
  */
 namespace wemeet\openapi\service\meeting_room\model;
 
@@ -19,6 +19,11 @@ class V1MeetingRoomsModifyRoomConfigInfoPostRequestMeetingSettingsRoomPmiSetting
     * 类型：bool
      */
     protected $allowInBeforeHost = null;
+
+    /**
+    * 类型：string[]
+     */
+    protected $hosts = null;
 
     /**
     * 类型：int
@@ -46,6 +51,9 @@ class V1MeetingRoomsModifyRoomConfigInfoPostRequestMeetingSettingsRoomPmiSetting
         if (isset($jsonArray['allow_in_before_host'])) {
             $this->allowInBeforeHost = $jsonArray['allow_in_before_host'];
         }
+        if (isset($jsonArray['hosts'])) {
+            $this->hosts = $jsonArray['hosts'];
+        }
         if (isset($jsonArray['mute_enable_type_join'])) {
             $this->muteEnableTypeJoin = $jsonArray['mute_enable_type_join'];
         }
@@ -71,6 +79,18 @@ class V1MeetingRoomsModifyRoomConfigInfoPostRequestMeetingSettingsRoomPmiSetting
 
     public function setAllowInBeforeHost(bool $allowInBeforeHost) {
         $this->allowInBeforeHost = $allowInBeforeHost;
+    }
+    public function hosts(array $hosts): V1MeetingRoomsModifyRoomConfigInfoPostRequestMeetingSettingsRoomPmiSettings {
+        $this->hosts = $hosts;
+        return $this;
+    }
+
+    public function getHosts() {
+        return $this->hosts;
+    }
+
+    public function setHosts(array $hosts) {
+        $this->hosts = $hosts;
     }
     public function muteEnableTypeJoin(int $muteEnableTypeJoin): V1MeetingRoomsModifyRoomConfigInfoPostRequestMeetingSettingsRoomPmiSettings {
         $this->muteEnableTypeJoin = $muteEnableTypeJoin;
@@ -128,6 +148,7 @@ class V1MeetingRoomsModifyRoomConfigInfoPostRequestMeetingSettingsRoomPmiSetting
       */
     protected static $openAPITypes = [
         'allow_in_before_host' => 'bool',
+        'hosts' => 'string[]',
         'mute_enable_type_join' => 'int',
         'only_enterprise_user_allowed' => 'bool',
         'room_pmi_psw' => 'string',
@@ -143,6 +164,7 @@ class V1MeetingRoomsModifyRoomConfigInfoPostRequestMeetingSettingsRoomPmiSetting
       */
     protected static $openAPIFormats = [
         'allow_in_before_host' => null,
+        'hosts' => null,
         'mute_enable_type_join' => 'int64',
         'only_enterprise_user_allowed' => null,
         'room_pmi_psw' => null,
@@ -156,6 +178,7 @@ class V1MeetingRoomsModifyRoomConfigInfoPostRequestMeetingSettingsRoomPmiSetting
       */
     protected static array $openAPINullables = [
         'allow_in_before_host' => false,
+        'hosts' => false,
         'mute_enable_type_join' => false,
         'only_enterprise_user_allowed' => false,
         'room_pmi_psw' => false,
@@ -249,6 +272,7 @@ class V1MeetingRoomsModifyRoomConfigInfoPostRequestMeetingSettingsRoomPmiSetting
      */
     protected static $attributeMap = [
         'allow_in_before_host' => 'allow_in_before_host',
+        'hosts' => 'hosts',
         'mute_enable_type_join' => 'mute_enable_type_join',
         'only_enterprise_user_allowed' => 'only_enterprise_user_allowed',
         'room_pmi_psw' => 'room_pmi_psw',
@@ -262,6 +286,7 @@ class V1MeetingRoomsModifyRoomConfigInfoPostRequestMeetingSettingsRoomPmiSetting
      */
     protected static $setters = [
         'allow_in_before_host' => 'setAllowInBeforeHost',
+        'hosts' => 'setHosts',
         'mute_enable_type_join' => 'setMuteEnableTypeJoin',
         'only_enterprise_user_allowed' => 'setOnlyEnterpriseUserAllowed',
         'room_pmi_psw' => 'setRoomPmiPsw',
@@ -275,6 +300,7 @@ class V1MeetingRoomsModifyRoomConfigInfoPostRequestMeetingSettingsRoomPmiSetting
      */
     protected static $getters = [
         'allow_in_before_host' => 'getAllowInBeforeHost',
+        'hosts' => 'getHosts',
         'mute_enable_type_join' => 'getMuteEnableTypeJoin',
         'only_enterprise_user_allowed' => 'getOnlyEnterpriseUserAllowed',
         'room_pmi_psw' => 'getRoomPmiPsw',
@@ -315,6 +341,7 @@ class V1MeetingRoomsModifyRoomConfigInfoPostRequestMeetingSettingsRoomPmiSetting
     public function jsonSerialize(): mixed {
         $data = [
             'allow_in_before_host' => $this->allowInBeforeHost,
+            'hosts' => $this->hosts,
             'mute_enable_type_join' => $this->muteEnableTypeJoin,
             'only_enterprise_user_allowed' => $this->onlyEnterpriseUserAllowed,
             'room_pmi_psw' => $this->roomPmiPsw,

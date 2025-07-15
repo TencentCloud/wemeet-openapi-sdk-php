@@ -5,7 +5,7 @@
  *
  * SAAS版RESTFUL风格API
  *
- * The version of the OpenAPI document: v1.0.5
+ * The version of the OpenAPI document: v1.0.7
  */
 namespace wemeet\openapi\service\meetings\model;
 
@@ -14,6 +14,11 @@ use wemeet\openapi\core\xhttp\ModelInterface;
 
 class V1MeetingsQueryMeetingidForDevicePostRequest implements ModelInterface, \JsonSerializable
 {
+    /**
+     * 会议ID。查询用户是否有设备在指定的会中。  企业自建鉴权方式，该参数必填且必须为本企业创建的会议。只能查询某个用户是否在某场本企业的会中。
+    * 类型：
+     */
+    protected $meetingId;
     /**
      * 操作者 ID，即查询者的信息。 operator_id 必须与 operator_id_type 配合使用。根据 operator_id_type 的值，operator_id 代表不同类型。
     * 类型：
@@ -25,9 +30,20 @@ class V1MeetingsQueryMeetingidForDevicePostRequest implements ModelInterface, \J
      */
     protected $operatorIdType;
 
+    /**
+     * 终端设备类型列表，该参数不带，则会查询所有设备上的会议信息，带则表示查询指定设备。 用户的终端设备类型： 0：PSTN 1：PC 2：Mac 3：Android 4：iOS 5：Web 6：iPad 7：Android Pad 8：小程序 9：voip、sip 设备 10：linux 20：Rooms for Touch Windows 21：Rooms for Touch MacOS 22：Rooms for Touch Android 30：Controller for Touch Windows 32：Controller for Touch Android 33：Controller for Touch iOS
+    * 类型：int[]
+     */
+    protected $instanceids = null;
+
     public function __construct(
         $jsonArray = []
     ) {
+        if (isset($jsonArray['meeting_id'])) {
+            $this->meetingId = $jsonArray['meeting_id'];
+        } else {
+            throw new \InvalidArgumentException('Missing required parameter meeting_id');
+        }
         if (isset($jsonArray['operator_id'])) {
             $this->operatorId = $jsonArray['operator_id'];
         } else {
@@ -38,8 +54,35 @@ class V1MeetingsQueryMeetingidForDevicePostRequest implements ModelInterface, \J
         } else {
             throw new \InvalidArgumentException('Missing required parameter operator_id_type');
         }
+        if (isset($jsonArray['instanceids'])) {
+            $this->instanceids = $jsonArray['instanceids'];
+        }
     }
 
+    public function instanceids(array $instanceids): V1MeetingsQueryMeetingidForDevicePostRequest {
+        $this->instanceids = $instanceids;
+        return $this;
+    }
+
+    public function getInstanceids() {
+        return $this->instanceids;
+    }
+
+    public function setInstanceids(array $instanceids) {
+        $this->instanceids = $instanceids;
+    }
+    public function meetingId(array $meetingId): V1MeetingsQueryMeetingidForDevicePostRequest {
+        $this->meetingId = $meetingId;
+        return $this;
+    }
+
+    public function getMeetingId() {
+        return $this->meetingId;
+    }
+
+    public function setMeetingId(array $meetingId) {
+        $this->meetingId = $meetingId;
+    }
     public function operatorId(string $operatorId): V1MeetingsQueryMeetingidForDevicePostRequest {
         $this->operatorId = $operatorId;
         return $this;
@@ -71,6 +114,8 @@ class V1MeetingsQueryMeetingidForDevicePostRequest implements ModelInterface, \J
       * @var string[]
       */
     protected static $openAPITypes = [
+        'instanceids' => 'int[]',
+        'meeting_id' => 'string[]',
         'operator_id' => 'string',
         'operator_id_type' => 'int'
     ];
@@ -83,6 +128,8 @@ class V1MeetingsQueryMeetingidForDevicePostRequest implements ModelInterface, \J
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
+        'instanceids' => 'int64',
+        'meeting_id' => null,
         'operator_id' => null,
         'operator_id_type' => 'int64'
     ];
@@ -93,6 +140,8 @@ class V1MeetingsQueryMeetingidForDevicePostRequest implements ModelInterface, \J
       * @var boolean[]
       */
     protected static array $openAPINullables = [
+        'instanceids' => false,
+        'meeting_id' => false,
         'operator_id' => false,
         'operator_id_type' => false
     ];
@@ -183,6 +232,8 @@ class V1MeetingsQueryMeetingidForDevicePostRequest implements ModelInterface, \J
      * @var string[]
      */
     protected static $attributeMap = [
+        'instanceids' => 'instanceids',
+        'meeting_id' => 'meeting_id',
         'operator_id' => 'operator_id',
         'operator_id_type' => 'operator_id_type'
     ];
@@ -193,6 +244,8 @@ class V1MeetingsQueryMeetingidForDevicePostRequest implements ModelInterface, \J
      * @var string[]
      */
     protected static $setters = [
+        'instanceids' => 'setInstanceids',
+        'meeting_id' => 'setMeetingId',
         'operator_id' => 'setOperatorId',
         'operator_id_type' => 'setOperatorIdType'
     ];
@@ -203,6 +256,8 @@ class V1MeetingsQueryMeetingidForDevicePostRequest implements ModelInterface, \J
      * @var string[]
      */
     protected static $getters = [
+        'instanceids' => 'getInstanceids',
+        'meeting_id' => 'getMeetingId',
         'operator_id' => 'getOperatorId',
         'operator_id_type' => 'getOperatorIdType'
     ];
@@ -240,6 +295,8 @@ class V1MeetingsQueryMeetingidForDevicePostRequest implements ModelInterface, \J
 
     public function jsonSerialize(): mixed {
         $data = [
+            'instanceids' => $this->instanceids,
+            'meeting_id' => $this->meetingId,
             'operator_id' => $this->operatorId,
             'operator_id_type' => $this->operatorIdType,
         ];

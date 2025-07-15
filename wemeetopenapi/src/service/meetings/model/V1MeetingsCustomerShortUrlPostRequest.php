@@ -5,7 +5,7 @@
  *
  * SAAS版RESTFUL风格API
  *
- * The version of the OpenAPI document: v1.0.5
+ * The version of the OpenAPI document: v1.0.7
  */
 namespace wemeet\openapi\service\meetings\model;
 
@@ -24,6 +24,14 @@ class V1MeetingsCustomerShortUrlPostRequest implements ModelInterface, \JsonSeri
     * 类型：
      */
     protected $meetingId;
+    /**
+    * 类型：
+     */
+    protected $operatorId;
+    /**
+    * 类型：
+     */
+    protected $operatorIdType;
 
     public function __construct(
         $jsonArray = []
@@ -37,6 +45,16 @@ class V1MeetingsCustomerShortUrlPostRequest implements ModelInterface, \JsonSeri
             $this->meetingId = $jsonArray['meeting_id'];
         } else {
             throw new \InvalidArgumentException('Missing required parameter meeting_id');
+        }
+        if (isset($jsonArray['operator_id'])) {
+            $this->operatorId = $jsonArray['operator_id'];
+        } else {
+            throw new \InvalidArgumentException('Missing required parameter operator_id');
+        }
+        if (isset($jsonArray['operator_id_type'])) {
+            $this->operatorIdType = $jsonArray['operator_id_type'];
+        } else {
+            throw new \InvalidArgumentException('Missing required parameter operator_id_type');
         }
     }
 
@@ -64,6 +82,30 @@ class V1MeetingsCustomerShortUrlPostRequest implements ModelInterface, \JsonSeri
     public function setMeetingId(string $meetingId) {
         $this->meetingId = $meetingId;
     }
+    public function operatorId(string $operatorId): V1MeetingsCustomerShortUrlPostRequest {
+        $this->operatorId = $operatorId;
+        return $this;
+    }
+
+    public function getOperatorId() {
+        return $this->operatorId;
+    }
+
+    public function setOperatorId(string $operatorId) {
+        $this->operatorId = $operatorId;
+    }
+    public function operatorIdType(int $operatorIdType): V1MeetingsCustomerShortUrlPostRequest {
+        $this->operatorIdType = $operatorIdType;
+        return $this;
+    }
+
+    public function getOperatorIdType() {
+        return $this->operatorIdType;
+    }
+
+    public function setOperatorIdType(int $operatorIdType) {
+        $this->operatorIdType = $operatorIdType;
+    }
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -72,7 +114,9 @@ class V1MeetingsCustomerShortUrlPostRequest implements ModelInterface, \JsonSeri
       */
     protected static $openAPITypes = [
         'customer_data' => 'string',
-        'meeting_id' => 'string'
+        'meeting_id' => 'string',
+        'operator_id' => 'string',
+        'operator_id_type' => 'int'
     ];
 
     /**
@@ -84,7 +128,9 @@ class V1MeetingsCustomerShortUrlPostRequest implements ModelInterface, \JsonSeri
       */
     protected static $openAPIFormats = [
         'customer_data' => null,
-        'meeting_id' => null
+        'meeting_id' => null,
+        'operator_id' => null,
+        'operator_id_type' => 'int64'
     ];
 
     /**
@@ -94,7 +140,9 @@ class V1MeetingsCustomerShortUrlPostRequest implements ModelInterface, \JsonSeri
       */
     protected static array $openAPINullables = [
         'customer_data' => false,
-        'meeting_id' => false
+        'meeting_id' => false,
+        'operator_id' => false,
+        'operator_id_type' => false
     ];
 
     /**
@@ -184,7 +232,9 @@ class V1MeetingsCustomerShortUrlPostRequest implements ModelInterface, \JsonSeri
      */
     protected static $attributeMap = [
         'customer_data' => 'customer_data',
-        'meeting_id' => 'meeting_id'
+        'meeting_id' => 'meeting_id',
+        'operator_id' => 'operator_id',
+        'operator_id_type' => 'operator_id_type'
     ];
 
     /**
@@ -194,7 +244,9 @@ class V1MeetingsCustomerShortUrlPostRequest implements ModelInterface, \JsonSeri
      */
     protected static $setters = [
         'customer_data' => 'setCustomerData',
-        'meeting_id' => 'setMeetingId'
+        'meeting_id' => 'setMeetingId',
+        'operator_id' => 'setOperatorId',
+        'operator_id_type' => 'setOperatorIdType'
     ];
 
     /**
@@ -204,7 +256,9 @@ class V1MeetingsCustomerShortUrlPostRequest implements ModelInterface, \JsonSeri
      */
     protected static $getters = [
         'customer_data' => 'getCustomerData',
-        'meeting_id' => 'getMeetingId'
+        'meeting_id' => 'getMeetingId',
+        'operator_id' => 'getOperatorId',
+        'operator_id_type' => 'getOperatorIdType'
     ];
 
     /**
@@ -242,6 +296,8 @@ class V1MeetingsCustomerShortUrlPostRequest implements ModelInterface, \JsonSeri
         $data = [
             'customer_data' => $this->customerData,
             'meeting_id' => $this->meetingId,
+            'operator_id' => $this->operatorId,
+            'operator_id_type' => $this->operatorIdType,
         ];
         return array_filter($data, function($value) {
             return !is_null($value) && $value !== '';

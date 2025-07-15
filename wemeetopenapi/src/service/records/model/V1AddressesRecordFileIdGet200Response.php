@@ -5,7 +5,7 @@
  *
  * SAAS版RESTFUL风格API
  *
- * The version of the OpenAPI document: v1.0.5
+ * The version of the OpenAPI document: v1.0.7
  */
 namespace wemeet\openapi\service\records\model;
 
@@ -16,16 +16,34 @@ class V1AddressesRecordFileIdGet200Response implements ModelInterface, \JsonSeri
 {
 
     /**
+     * ds-摘要
+    * 类型：\wemeet\openapi\service\records\model\V1AddressesRecordFileIdGet200ResponseAiDsMinutesInner[]
+     */
+    protected $aiDsMinutes = null;
+
+    /**
      * 录制转写文件（智能优化版）列表。OAuth 鉴权方式下，账号类型为个人免费版、企微创建企业时，该值返回为空。
     * 类型：\wemeet\openapi\service\records\model\V1AddressesRecordFileIdGet200ResponseAiMeetingTranscriptsInner[]
      */
     protected $aiMeetingTranscripts = null;
 
     /**
-     * 智能纪要列表。OAuth 鉴权方式下，账号类型为个人免费版、企微创建企业时，该值返回为空。
+     * 智能纪要列表。OAuth 鉴权方式下，账号类型为个人免费版、企微创建企业时，该值返回为空。 注：如会议录制不允许导出或被关闭下载，则不出现在此返回结果中。
     * 类型：\wemeet\openapi\service\records\model\V1AddressesRecordFileIdGet200ResponseAiMeetingTranscriptsInner[]
      */
     protected $aiMinutes = null;
+
+    /**
+     * 混元-发言人纪要
+    * 类型：\wemeet\openapi\service\records\model\V1AddressesRecordFileIdGet200ResponseAiDsMinutesInner[]
+     */
+    protected $aiSpeakerMinutes = null;
+
+    /**
+     * 混元-主题纪要
+    * 类型：\wemeet\openapi\service\records\model\V1AddressesRecordFileIdGet200ResponseAiDsMinutesInner[]
+     */
+    protected $aiTopicMinutes = null;
 
     /**
      * 音频下载地址。OAuth 鉴权方式下，账号类型为个人免费版、企微创建企业时，该值返回为空。
@@ -84,11 +102,20 @@ class V1AddressesRecordFileIdGet200Response implements ModelInterface, \JsonSeri
     public function __construct(
         $jsonArray = []
     ) {
+        if (isset($jsonArray['ai_ds_minutes'])) {
+            $this->aiDsMinutes = $jsonArray['ai_ds_minutes'];
+        }
         if (isset($jsonArray['ai_meeting_transcripts'])) {
             $this->aiMeetingTranscripts = $jsonArray['ai_meeting_transcripts'];
         }
         if (isset($jsonArray['ai_minutes'])) {
             $this->aiMinutes = $jsonArray['ai_minutes'];
+        }
+        if (isset($jsonArray['ai_speaker_minutes'])) {
+            $this->aiSpeakerMinutes = $jsonArray['ai_speaker_minutes'];
+        }
+        if (isset($jsonArray['ai_topic_minutes'])) {
+            $this->aiTopicMinutes = $jsonArray['ai_topic_minutes'];
         }
         if (isset($jsonArray['audio_address'])) {
             $this->audioAddress = $jsonArray['audio_address'];
@@ -119,6 +146,18 @@ class V1AddressesRecordFileIdGet200Response implements ModelInterface, \JsonSeri
         }
     }
 
+    public function aiDsMinutes(array $aiDsMinutes): V1AddressesRecordFileIdGet200Response {
+        $this->aiDsMinutes = $aiDsMinutes;
+        return $this;
+    }
+
+    public function getAiDsMinutes() {
+        return $this->aiDsMinutes;
+    }
+
+    public function setAiDsMinutes(array $aiDsMinutes) {
+        $this->aiDsMinutes = $aiDsMinutes;
+    }
     public function aiMeetingTranscripts(array $aiMeetingTranscripts): V1AddressesRecordFileIdGet200Response {
         $this->aiMeetingTranscripts = $aiMeetingTranscripts;
         return $this;
@@ -142,6 +181,30 @@ class V1AddressesRecordFileIdGet200Response implements ModelInterface, \JsonSeri
 
     public function setAiMinutes(array $aiMinutes) {
         $this->aiMinutes = $aiMinutes;
+    }
+    public function aiSpeakerMinutes(array $aiSpeakerMinutes): V1AddressesRecordFileIdGet200Response {
+        $this->aiSpeakerMinutes = $aiSpeakerMinutes;
+        return $this;
+    }
+
+    public function getAiSpeakerMinutes() {
+        return $this->aiSpeakerMinutes;
+    }
+
+    public function setAiSpeakerMinutes(array $aiSpeakerMinutes) {
+        $this->aiSpeakerMinutes = $aiSpeakerMinutes;
+    }
+    public function aiTopicMinutes(array $aiTopicMinutes): V1AddressesRecordFileIdGet200Response {
+        $this->aiTopicMinutes = $aiTopicMinutes;
+        return $this;
+    }
+
+    public function getAiTopicMinutes() {
+        return $this->aiTopicMinutes;
+    }
+
+    public function setAiTopicMinutes(array $aiTopicMinutes) {
+        $this->aiTopicMinutes = $aiTopicMinutes;
     }
     public function audioAddress(string $audioAddress): V1AddressesRecordFileIdGet200Response {
         $this->audioAddress = $audioAddress;
@@ -258,8 +321,11 @@ class V1AddressesRecordFileIdGet200Response implements ModelInterface, \JsonSeri
       * @var string[]
       */
     protected static $openAPITypes = [
+        'ai_ds_minutes' => '\wemeet\openapi\service\records\model\V1AddressesRecordFileIdGet200ResponseAiDsMinutesInner[]',
         'ai_meeting_transcripts' => '\wemeet\openapi\service\records\model\V1AddressesRecordFileIdGet200ResponseAiMeetingTranscriptsInner[]',
         'ai_minutes' => '\wemeet\openapi\service\records\model\V1AddressesRecordFileIdGet200ResponseAiMeetingTranscriptsInner[]',
+        'ai_speaker_minutes' => '\wemeet\openapi\service\records\model\V1AddressesRecordFileIdGet200ResponseAiDsMinutesInner[]',
+        'ai_topic_minutes' => '\wemeet\openapi\service\records\model\V1AddressesRecordFileIdGet200ResponseAiDsMinutesInner[]',
         'audio_address' => 'string',
         'audio_address_file_type' => 'string',
         'download_address' => 'string',
@@ -279,8 +345,11 @@ class V1AddressesRecordFileIdGet200Response implements ModelInterface, \JsonSeri
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
+        'ai_ds_minutes' => null,
         'ai_meeting_transcripts' => null,
         'ai_minutes' => null,
+        'ai_speaker_minutes' => null,
+        'ai_topic_minutes' => null,
         'audio_address' => null,
         'audio_address_file_type' => null,
         'download_address' => null,
@@ -298,8 +367,11 @@ class V1AddressesRecordFileIdGet200Response implements ModelInterface, \JsonSeri
       * @var boolean[]
       */
     protected static array $openAPINullables = [
+        'ai_ds_minutes' => false,
         'ai_meeting_transcripts' => false,
         'ai_minutes' => false,
+        'ai_speaker_minutes' => false,
+        'ai_topic_minutes' => false,
         'audio_address' => false,
         'audio_address_file_type' => false,
         'download_address' => false,
@@ -397,8 +469,11 @@ class V1AddressesRecordFileIdGet200Response implements ModelInterface, \JsonSeri
      * @var string[]
      */
     protected static $attributeMap = [
+        'ai_ds_minutes' => 'ai_ds_minutes',
         'ai_meeting_transcripts' => 'ai_meeting_transcripts',
         'ai_minutes' => 'ai_minutes',
+        'ai_speaker_minutes' => 'ai_speaker_minutes',
+        'ai_topic_minutes' => 'ai_topic_minutes',
         'audio_address' => 'audio_address',
         'audio_address_file_type' => 'audio_address_file_type',
         'download_address' => 'download_address',
@@ -416,8 +491,11 @@ class V1AddressesRecordFileIdGet200Response implements ModelInterface, \JsonSeri
      * @var string[]
      */
     protected static $setters = [
+        'ai_ds_minutes' => 'setAiDsMinutes',
         'ai_meeting_transcripts' => 'setAiMeetingTranscripts',
         'ai_minutes' => 'setAiMinutes',
+        'ai_speaker_minutes' => 'setAiSpeakerMinutes',
+        'ai_topic_minutes' => 'setAiTopicMinutes',
         'audio_address' => 'setAudioAddress',
         'audio_address_file_type' => 'setAudioAddressFileType',
         'download_address' => 'setDownloadAddress',
@@ -435,8 +513,11 @@ class V1AddressesRecordFileIdGet200Response implements ModelInterface, \JsonSeri
      * @var string[]
      */
     protected static $getters = [
+        'ai_ds_minutes' => 'getAiDsMinutes',
         'ai_meeting_transcripts' => 'getAiMeetingTranscripts',
         'ai_minutes' => 'getAiMinutes',
+        'ai_speaker_minutes' => 'getAiSpeakerMinutes',
+        'ai_topic_minutes' => 'getAiTopicMinutes',
         'audio_address' => 'getAudioAddress',
         'audio_address_file_type' => 'getAudioAddressFileType',
         'download_address' => 'getDownloadAddress',
@@ -481,8 +562,11 @@ class V1AddressesRecordFileIdGet200Response implements ModelInterface, \JsonSeri
 
     public function jsonSerialize(): mixed {
         $data = [
+            'ai_ds_minutes' => $this->aiDsMinutes,
             'ai_meeting_transcripts' => $this->aiMeetingTranscripts,
             'ai_minutes' => $this->aiMinutes,
+            'ai_speaker_minutes' => $this->aiSpeakerMinutes,
+            'ai_topic_minutes' => $this->aiTopicMinutes,
             'audio_address' => $this->audioAddress,
             'audio_address_file_type' => $this->audioAddressFileType,
             'download_address' => $this->downloadAddress,

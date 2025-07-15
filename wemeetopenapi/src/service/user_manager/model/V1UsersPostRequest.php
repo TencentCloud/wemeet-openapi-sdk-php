@@ -5,7 +5,7 @@
  *
  * SAAS版RESTFUL风格API
  *
- * The version of the OpenAPI document: v1.0.5
+ * The version of the OpenAPI document: v1.0.7
  */
 namespace wemeet\openapi\service\user_manager\model;
 
@@ -38,6 +38,18 @@ class V1UsersPostRequest implements ModelInterface, \JsonSerializable
     protected $username;
 
     /**
+     * 增强会议体验：房间规模升级许可。 0：回收房间规模升级许可 1：500方房间规模升级许可 2：1000方房间规模升级许可 3：2000方房间规模升级许可
+    * 类型：int
+     */
+    protected $addOnLargemeeting = null;
+
+    /**
+     * 增强会议体验：网络研讨会（Webinar）观众规模升级许可。 0：回收 Webinar 观众规模升级许可 1：Webinar 观众规模提升至 300 观众 2：Webinar 观众规模提升至 500 观众 3：Webinar 观众规模提升至 1000 观众 4：Webinar 观众规模提升至 2000 观众 5：Webinar 观众规模提升至 3000 观众 6：Webinar 观众规模提升至 5000 观众 7：Webinar 观众规模提升至 8000 观众 8：Webinar 观众规模提升至 10000 观众
+    * 类型：int
+     */
+    protected $addOnWebinar = null;
+
+    /**
     * 类型：string
      */
     protected $area = null;
@@ -47,6 +59,11 @@ class V1UsersPostRequest implements ModelInterface, \JsonSerializable
     * 类型：bool
      */
     protected $autoInvite = null;
+
+    /**
+    * 类型：string[]
+     */
+    protected $departmentList = null;
 
     /**
     * 类型：string
@@ -59,6 +76,12 @@ class V1UsersPostRequest implements ModelInterface, \JsonSerializable
     protected $entryTime = null;
 
     /**
+     * 是否为voov用户， 0:否  1:是
+    * 类型：int
+     */
+    protected $isVoov = null;
+
+    /**
     * 类型：string
      */
     protected $jobTitle = null;
@@ -69,7 +92,7 @@ class V1UsersPostRequest implements ModelInterface, \JsonSerializable
     protected $staffId = null;
 
     /**
-     * 1：高级账号  2：免费账号  3：免费账号100方 4:高级账号300方，5:高级账号500方，6：高级账号1000方，7:高级账号2000方     其中企业版/教育版：1，2 。免费组织 2。 商业版：2-7      根据传入的参数判断是否有该类型账号，没有则报错。创建成功即锁定该账号资源。默认值：商业版默认为高级账号，绑定资源为由小到大，资源消耗完账号为免费账号，企业版-高级账号
+     * 1：高级账号  2：免费账号  3：免费账号100方 4:高级账号300方，5:高级账号500方，6：高级账号1000方，7:高级账号2000方    8：高级账号100方（商业版） 9：高级账号（企业版/教育版/商业版）其中旧商业版：企业版/教育版：1，2 。免费组织 2。 商业版：2-7      新商业版：免费账号：2，高级账号：9。
     * 类型：int
      */
     protected $userAccountType = null;
@@ -102,17 +125,29 @@ class V1UsersPostRequest implements ModelInterface, \JsonSerializable
         } else {
             throw new \InvalidArgumentException('Missing required parameter username');
         }
+        if (isset($jsonArray['add_on_largemeeting'])) {
+            $this->addOnLargemeeting = $jsonArray['add_on_largemeeting'];
+        }
+        if (isset($jsonArray['add_on_webinar'])) {
+            $this->addOnWebinar = $jsonArray['add_on_webinar'];
+        }
         if (isset($jsonArray['area'])) {
             $this->area = $jsonArray['area'];
         }
         if (isset($jsonArray['auto_invite'])) {
             $this->autoInvite = $jsonArray['auto_invite'];
         }
+        if (isset($jsonArray['department_list'])) {
+            $this->departmentList = $jsonArray['department_list'];
+        }
         if (isset($jsonArray['email'])) {
             $this->email = $jsonArray['email'];
         }
         if (isset($jsonArray['entry_time'])) {
             $this->entryTime = $jsonArray['entry_time'];
+        }
+        if (isset($jsonArray['is_voov'])) {
+            $this->isVoov = $jsonArray['is_voov'];
         }
         if (isset($jsonArray['job_title'])) {
             $this->jobTitle = $jsonArray['job_title'];
@@ -125,6 +160,30 @@ class V1UsersPostRequest implements ModelInterface, \JsonSerializable
         }
     }
 
+    public function addOnLargemeeting(int $addOnLargemeeting): V1UsersPostRequest {
+        $this->addOnLargemeeting = $addOnLargemeeting;
+        return $this;
+    }
+
+    public function getAddOnLargemeeting() {
+        return $this->addOnLargemeeting;
+    }
+
+    public function setAddOnLargemeeting(int $addOnLargemeeting) {
+        $this->addOnLargemeeting = $addOnLargemeeting;
+    }
+    public function addOnWebinar(int $addOnWebinar): V1UsersPostRequest {
+        $this->addOnWebinar = $addOnWebinar;
+        return $this;
+    }
+
+    public function getAddOnWebinar() {
+        return $this->addOnWebinar;
+    }
+
+    public function setAddOnWebinar(int $addOnWebinar) {
+        $this->addOnWebinar = $addOnWebinar;
+    }
     public function area(string $area): V1UsersPostRequest {
         $this->area = $area;
         return $this;
@@ -149,6 +208,18 @@ class V1UsersPostRequest implements ModelInterface, \JsonSerializable
     public function setAutoInvite(bool $autoInvite) {
         $this->autoInvite = $autoInvite;
     }
+    public function departmentList(array $departmentList): V1UsersPostRequest {
+        $this->departmentList = $departmentList;
+        return $this;
+    }
+
+    public function getDepartmentList() {
+        return $this->departmentList;
+    }
+
+    public function setDepartmentList(array $departmentList) {
+        $this->departmentList = $departmentList;
+    }
     public function email(string $email): V1UsersPostRequest {
         $this->email = $email;
         return $this;
@@ -172,6 +243,18 @@ class V1UsersPostRequest implements ModelInterface, \JsonSerializable
 
     public function setEntryTime(int $entryTime) {
         $this->entryTime = $entryTime;
+    }
+    public function isVoov(int $isVoov): V1UsersPostRequest {
+        $this->isVoov = $isVoov;
+        return $this;
+    }
+
+    public function getIsVoov() {
+        return $this->isVoov;
+    }
+
+    public function setIsVoov(int $isVoov) {
+        $this->isVoov = $isVoov;
     }
     public function jobTitle(string $jobTitle): V1UsersPostRequest {
         $this->jobTitle = $jobTitle;
@@ -276,10 +359,14 @@ class V1UsersPostRequest implements ModelInterface, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
+        'add_on_largemeeting' => 'int',
+        'add_on_webinar' => 'int',
         'area' => 'string',
         'auto_invite' => 'bool',
+        'department_list' => 'string[]',
         'email' => 'string',
         'entry_time' => 'int',
+        'is_voov' => 'int',
         'job_title' => 'string',
         'operator_id' => 'string',
         'operator_id_type' => 'int',
@@ -298,10 +385,14 @@ class V1UsersPostRequest implements ModelInterface, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
+        'add_on_largemeeting' => 'int64',
+        'add_on_webinar' => 'int64',
         'area' => null,
         'auto_invite' => null,
+        'department_list' => null,
         'email' => null,
         'entry_time' => 'int64',
+        'is_voov' => 'int64',
         'job_title' => null,
         'operator_id' => null,
         'operator_id_type' => 'int64',
@@ -318,10 +409,14 @@ class V1UsersPostRequest implements ModelInterface, \JsonSerializable
       * @var boolean[]
       */
     protected static array $openAPINullables = [
+        'add_on_largemeeting' => false,
+        'add_on_webinar' => false,
         'area' => false,
         'auto_invite' => false,
+        'department_list' => false,
         'email' => false,
         'entry_time' => false,
+        'is_voov' => false,
         'job_title' => false,
         'operator_id' => false,
         'operator_id_type' => false,
@@ -418,10 +513,14 @@ class V1UsersPostRequest implements ModelInterface, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
+        'add_on_largemeeting' => 'add_on_largemeeting',
+        'add_on_webinar' => 'add_on_webinar',
         'area' => 'area',
         'auto_invite' => 'auto_invite',
+        'department_list' => 'department_list',
         'email' => 'email',
         'entry_time' => 'entry_time',
+        'is_voov' => 'is_voov',
         'job_title' => 'job_title',
         'operator_id' => 'operator_id',
         'operator_id_type' => 'operator_id_type',
@@ -438,10 +537,14 @@ class V1UsersPostRequest implements ModelInterface, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
+        'add_on_largemeeting' => 'setAddOnLargemeeting',
+        'add_on_webinar' => 'setAddOnWebinar',
         'area' => 'setArea',
         'auto_invite' => 'setAutoInvite',
+        'department_list' => 'setDepartmentList',
         'email' => 'setEmail',
         'entry_time' => 'setEntryTime',
+        'is_voov' => 'setIsVoov',
         'job_title' => 'setJobTitle',
         'operator_id' => 'setOperatorId',
         'operator_id_type' => 'setOperatorIdType',
@@ -458,10 +561,14 @@ class V1UsersPostRequest implements ModelInterface, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
+        'add_on_largemeeting' => 'getAddOnLargemeeting',
+        'add_on_webinar' => 'getAddOnWebinar',
         'area' => 'getArea',
         'auto_invite' => 'getAutoInvite',
+        'department_list' => 'getDepartmentList',
         'email' => 'getEmail',
         'entry_time' => 'getEntryTime',
+        'is_voov' => 'getIsVoov',
         'job_title' => 'getJobTitle',
         'operator_id' => 'getOperatorId',
         'operator_id_type' => 'getOperatorIdType',
@@ -505,10 +612,14 @@ class V1UsersPostRequest implements ModelInterface, \JsonSerializable
 
     public function jsonSerialize(): mixed {
         $data = [
+            'add_on_largemeeting' => $this->addOnLargemeeting,
+            'add_on_webinar' => $this->addOnWebinar,
             'area' => $this->area,
             'auto_invite' => $this->autoInvite,
+            'department_list' => $this->departmentList,
             'email' => $this->email,
             'entry_time' => $this->entryTime,
+            'is_voov' => $this->isVoov,
             'job_title' => $this->jobTitle,
             'operator_id' => $this->operatorId,
             'operator_id_type' => $this->operatorIdType,

@@ -5,7 +5,7 @@
  *
  * SAAS版RESTFUL风格API
  *
- * The version of the OpenAPI document: v1.0.5
+ * The version of the OpenAPI document: v1.0.7
  */
 namespace wemeet\openapi\service\meeting_room\model;
 
@@ -21,11 +21,19 @@ class V1MeetingRoomsRoomCallPut200Response implements ModelInterface, \JsonSeria
      */
     protected $inviteId = null;
 
+    /**
+    * 类型：int
+     */
+    protected $status = null;
+
     public function __construct(
         $jsonArray = []
     ) {
         if (isset($jsonArray['invite_id'])) {
             $this->inviteId = $jsonArray['invite_id'];
+        }
+        if (isset($jsonArray['status'])) {
+            $this->status = $jsonArray['status'];
         }
     }
 
@@ -41,6 +49,18 @@ class V1MeetingRoomsRoomCallPut200Response implements ModelInterface, \JsonSeria
     public function setInviteId(string $inviteId) {
         $this->inviteId = $inviteId;
     }
+    public function status(int $status): V1MeetingRoomsRoomCallPut200Response {
+        $this->status = $status;
+        return $this;
+    }
+
+    public function getStatus() {
+        return $this->status;
+    }
+
+    public function setStatus(int $status) {
+        $this->status = $status;
+    }
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -48,7 +68,8 @@ class V1MeetingRoomsRoomCallPut200Response implements ModelInterface, \JsonSeria
       * @var string[]
       */
     protected static $openAPITypes = [
-        'invite_id' => 'string'
+        'invite_id' => 'string',
+        'status' => 'int'
     ];
 
     /**
@@ -59,7 +80,8 @@ class V1MeetingRoomsRoomCallPut200Response implements ModelInterface, \JsonSeria
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'invite_id' => null
+        'invite_id' => null,
+        'status' => 'int64'
     ];
 
     /**
@@ -68,7 +90,8 @@ class V1MeetingRoomsRoomCallPut200Response implements ModelInterface, \JsonSeria
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'invite_id' => false
+        'invite_id' => false,
+        'status' => false
     ];
 
     /**
@@ -157,7 +180,8 @@ class V1MeetingRoomsRoomCallPut200Response implements ModelInterface, \JsonSeria
      * @var string[]
      */
     protected static $attributeMap = [
-        'invite_id' => 'invite_id'
+        'invite_id' => 'invite_id',
+        'status' => 'status'
     ];
 
     /**
@@ -166,7 +190,8 @@ class V1MeetingRoomsRoomCallPut200Response implements ModelInterface, \JsonSeria
      * @var string[]
      */
     protected static $setters = [
-        'invite_id' => 'setInviteId'
+        'invite_id' => 'setInviteId',
+        'status' => 'setStatus'
     ];
 
     /**
@@ -175,7 +200,8 @@ class V1MeetingRoomsRoomCallPut200Response implements ModelInterface, \JsonSeria
      * @var string[]
      */
     protected static $getters = [
-        'invite_id' => 'getInviteId'
+        'invite_id' => 'getInviteId',
+        'status' => 'getStatus'
     ];
 
     /**
@@ -212,6 +238,7 @@ class V1MeetingRoomsRoomCallPut200Response implements ModelInterface, \JsonSeria
     public function jsonSerialize(): mixed {
         $data = [
             'invite_id' => $this->inviteId,
+            'status' => $this->status,
         ];
         return array_filter($data, function($value) {
             return !is_null($value) && $value !== '';

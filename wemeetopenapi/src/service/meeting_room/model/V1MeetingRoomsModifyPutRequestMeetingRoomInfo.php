@@ -5,7 +5,7 @@
  *
  * SAAS版RESTFUL风格API
  *
- * The version of the OpenAPI document: v1.0.5
+ * The version of the OpenAPI document: v1.0.7
  */
 namespace wemeet\openapi\service\meeting_room\model;
 
@@ -24,6 +24,18 @@ class V1MeetingRoomsModifyPutRequestMeetingRoomInfo implements ModelInterface, \
     * 类型：
      */
     protected $meetingRoomType;
+
+    /**
+     * 配置管理员密码。 格式要求：输入应为1 - 16位的数字、字母或字符。 依赖说明：若启用管理员密码，此密码不可为空；若不启用，此密码无需输入。
+    * 类型：string
+     */
+    protected $adminPassword = null;
+
+    /**
+     * 会议室类型为1时，可选择是否启用管理员密码。 true：启用  false：不启用（默认值）
+    * 类型：bool
+     */
+    protected $adminPasswordEnabled = null;
 
     /**
      * 建筑。若非输入城市下现有建筑则自动创建该建筑与楼层。长度不超过36个字符或18个汉字。
@@ -56,6 +68,12 @@ class V1MeetingRoomsModifyPutRequestMeetingRoomInfo implements ModelInterface, \
     protected $floor = null;
 
     /**
+     * 标签。非现有标签则自动创建，最多设置10个标签，每个标签不超过40个字。
+    * 类型：string[]
+     */
+    protected $label = null;
+
+    /**
      * 会议室信令地址。会议室类型为2或4时必填写，与mra_register_account 二选一。
     * 类型：string
      */
@@ -73,18 +91,6 @@ class V1MeetingRoomsModifyPutRequestMeetingRoomInfo implements ModelInterface, \
      */
     protected $participantNumber = null;
 
-    /**
-     * 使用管理员密码时必须填写管理员密码（base64）。若不使用密码，该字段无效。输入应为1-16位的数字、字母或字符。
-    * 类型：string
-     */
-    protected $password = null;
-
-    /**
-     * 会议室类型为1时选择是否使用管理员密码，默认为 false。 true：使用 false：不使用
-    * 类型：bool
-     */
-    protected $usePassword = null;
-
     public function __construct(
         $jsonArray = []
     ) {
@@ -97,6 +103,12 @@ class V1MeetingRoomsModifyPutRequestMeetingRoomInfo implements ModelInterface, \
             $this->meetingRoomType = $jsonArray['meeting_room_type'];
         } else {
             throw new \InvalidArgumentException('Missing required parameter meeting_room_type');
+        }
+        if (isset($jsonArray['admin_password'])) {
+            $this->adminPassword = $jsonArray['admin_password'];
+        }
+        if (isset($jsonArray['admin_password_enabled'])) {
+            $this->adminPasswordEnabled = $jsonArray['admin_password_enabled'];
         }
         if (isset($jsonArray['building'])) {
             $this->building = $jsonArray['building'];
@@ -113,6 +125,9 @@ class V1MeetingRoomsModifyPutRequestMeetingRoomInfo implements ModelInterface, \
         if (isset($jsonArray['floor'])) {
             $this->floor = $jsonArray['floor'];
         }
+        if (isset($jsonArray['label'])) {
+            $this->label = $jsonArray['label'];
+        }
         if (isset($jsonArray['mra_address'])) {
             $this->mraAddress = $jsonArray['mra_address'];
         }
@@ -122,14 +137,32 @@ class V1MeetingRoomsModifyPutRequestMeetingRoomInfo implements ModelInterface, \
         if (isset($jsonArray['participant_number'])) {
             $this->participantNumber = $jsonArray['participant_number'];
         }
-        if (isset($jsonArray['password'])) {
-            $this->password = $jsonArray['password'];
-        }
-        if (isset($jsonArray['use_password'])) {
-            $this->usePassword = $jsonArray['use_password'];
-        }
     }
 
+    public function adminPassword(string $adminPassword): V1MeetingRoomsModifyPutRequestMeetingRoomInfo {
+        $this->adminPassword = $adminPassword;
+        return $this;
+    }
+
+    public function getAdminPassword() {
+        return $this->adminPassword;
+    }
+
+    public function setAdminPassword(string $adminPassword) {
+        $this->adminPassword = $adminPassword;
+    }
+    public function adminPasswordEnabled(bool $adminPasswordEnabled): V1MeetingRoomsModifyPutRequestMeetingRoomInfo {
+        $this->adminPasswordEnabled = $adminPasswordEnabled;
+        return $this;
+    }
+
+    public function getAdminPasswordEnabled() {
+        return $this->adminPasswordEnabled;
+    }
+
+    public function setAdminPasswordEnabled(bool $adminPasswordEnabled) {
+        $this->adminPasswordEnabled = $adminPasswordEnabled;
+    }
     public function building(string $building): V1MeetingRoomsModifyPutRequestMeetingRoomInfo {
         $this->building = $building;
         return $this;
@@ -189,6 +222,18 @@ class V1MeetingRoomsModifyPutRequestMeetingRoomInfo implements ModelInterface, \
 
     public function setFloor(string $floor) {
         $this->floor = $floor;
+    }
+    public function label(array $label): V1MeetingRoomsModifyPutRequestMeetingRoomInfo {
+        $this->label = $label;
+        return $this;
+    }
+
+    public function getLabel() {
+        return $this->label;
+    }
+
+    public function setLabel(array $label) {
+        $this->label = $label;
     }
     public function meetingRoomName(string $meetingRoomName): V1MeetingRoomsModifyPutRequestMeetingRoomInfo {
         $this->meetingRoomName = $meetingRoomName;
@@ -250,30 +295,6 @@ class V1MeetingRoomsModifyPutRequestMeetingRoomInfo implements ModelInterface, \
     public function setParticipantNumber(int $participantNumber) {
         $this->participantNumber = $participantNumber;
     }
-    public function password(string $password): V1MeetingRoomsModifyPutRequestMeetingRoomInfo {
-        $this->password = $password;
-        return $this;
-    }
-
-    public function getPassword() {
-        return $this->password;
-    }
-
-    public function setPassword(string $password) {
-        $this->password = $password;
-    }
-    public function usePassword(bool $usePassword): V1MeetingRoomsModifyPutRequestMeetingRoomInfo {
-        $this->usePassword = $usePassword;
-        return $this;
-    }
-
-    public function getUsePassword() {
-        return $this->usePassword;
-    }
-
-    public function setUsePassword(bool $usePassword) {
-        $this->usePassword = $usePassword;
-    }
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -281,18 +302,19 @@ class V1MeetingRoomsModifyPutRequestMeetingRoomInfo implements ModelInterface, \
       * @var string[]
       */
     protected static $openAPITypes = [
+        'admin_password' => 'string',
+        'admin_password_enabled' => 'bool',
         'building' => 'string',
         'city' => 'string',
         'desc' => 'string',
         'device' => 'string[]',
         'floor' => 'string',
+        'label' => 'string[]',
         'meeting_room_name' => 'string',
         'meeting_room_type' => 'int',
         'mra_address' => 'string',
         'mra_register_account' => 'string',
-        'participant_number' => 'int',
-        'password' => 'string',
-        'use_password' => 'bool'
+        'participant_number' => 'int'
     ];
 
     /**
@@ -303,18 +325,19 @@ class V1MeetingRoomsModifyPutRequestMeetingRoomInfo implements ModelInterface, \
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
+        'admin_password' => null,
+        'admin_password_enabled' => null,
         'building' => null,
         'city' => null,
         'desc' => null,
         'device' => null,
         'floor' => null,
+        'label' => null,
         'meeting_room_name' => null,
         'meeting_room_type' => 'int64',
         'mra_address' => null,
         'mra_register_account' => null,
-        'participant_number' => 'int64',
-        'password' => null,
-        'use_password' => null
+        'participant_number' => 'int64'
     ];
 
     /**
@@ -323,18 +346,19 @@ class V1MeetingRoomsModifyPutRequestMeetingRoomInfo implements ModelInterface, \
       * @var boolean[]
       */
     protected static array $openAPINullables = [
+        'admin_password' => false,
+        'admin_password_enabled' => false,
         'building' => false,
         'city' => false,
         'desc' => false,
         'device' => false,
         'floor' => false,
+        'label' => false,
         'meeting_room_name' => false,
         'meeting_room_type' => false,
         'mra_address' => false,
         'mra_register_account' => false,
-        'participant_number' => false,
-        'password' => false,
-        'use_password' => false
+        'participant_number' => false
     ];
 
     /**
@@ -423,18 +447,19 @@ class V1MeetingRoomsModifyPutRequestMeetingRoomInfo implements ModelInterface, \
      * @var string[]
      */
     protected static $attributeMap = [
+        'admin_password' => 'admin_password',
+        'admin_password_enabled' => 'admin_password_enabled',
         'building' => 'building',
         'city' => 'city',
         'desc' => 'desc',
         'device' => 'device',
         'floor' => 'floor',
+        'label' => 'label',
         'meeting_room_name' => 'meeting_room_name',
         'meeting_room_type' => 'meeting_room_type',
         'mra_address' => 'mra_address',
         'mra_register_account' => 'mra_register_account',
-        'participant_number' => 'participant_number',
-        'password' => 'password',
-        'use_password' => 'use_password'
+        'participant_number' => 'participant_number'
     ];
 
     /**
@@ -443,18 +468,19 @@ class V1MeetingRoomsModifyPutRequestMeetingRoomInfo implements ModelInterface, \
      * @var string[]
      */
     protected static $setters = [
+        'admin_password' => 'setAdminPassword',
+        'admin_password_enabled' => 'setAdminPasswordEnabled',
         'building' => 'setBuilding',
         'city' => 'setCity',
         'desc' => 'setDesc',
         'device' => 'setDevice',
         'floor' => 'setFloor',
+        'label' => 'setLabel',
         'meeting_room_name' => 'setMeetingRoomName',
         'meeting_room_type' => 'setMeetingRoomType',
         'mra_address' => 'setMraAddress',
         'mra_register_account' => 'setMraRegisterAccount',
-        'participant_number' => 'setParticipantNumber',
-        'password' => 'setPassword',
-        'use_password' => 'setUsePassword'
+        'participant_number' => 'setParticipantNumber'
     ];
 
     /**
@@ -463,18 +489,19 @@ class V1MeetingRoomsModifyPutRequestMeetingRoomInfo implements ModelInterface, \
      * @var string[]
      */
     protected static $getters = [
+        'admin_password' => 'getAdminPassword',
+        'admin_password_enabled' => 'getAdminPasswordEnabled',
         'building' => 'getBuilding',
         'city' => 'getCity',
         'desc' => 'getDesc',
         'device' => 'getDevice',
         'floor' => 'getFloor',
+        'label' => 'getLabel',
         'meeting_room_name' => 'getMeetingRoomName',
         'meeting_room_type' => 'getMeetingRoomType',
         'mra_address' => 'getMraAddress',
         'mra_register_account' => 'getMraRegisterAccount',
-        'participant_number' => 'getParticipantNumber',
-        'password' => 'getPassword',
-        'use_password' => 'getUsePassword'
+        'participant_number' => 'getParticipantNumber'
     ];
 
     /**
@@ -510,18 +537,19 @@ class V1MeetingRoomsModifyPutRequestMeetingRoomInfo implements ModelInterface, \
 
     public function jsonSerialize(): mixed {
         $data = [
+            'admin_password' => $this->adminPassword,
+            'admin_password_enabled' => $this->adminPasswordEnabled,
             'building' => $this->building,
             'city' => $this->city,
             'desc' => $this->desc,
             'device' => $this->device,
             'floor' => $this->floor,
+            'label' => $this->label,
             'meeting_room_name' => $this->meetingRoomName,
             'meeting_room_type' => $this->meetingRoomType,
             'mra_address' => $this->mraAddress,
             'mra_register_account' => $this->mraRegisterAccount,
             'participant_number' => $this->participantNumber,
-            'password' => $this->password,
-            'use_password' => $this->usePassword,
         ];
         return array_filter($data, function($value) {
             return !is_null($value) && $value !== '';

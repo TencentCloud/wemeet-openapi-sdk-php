@@ -5,7 +5,7 @@
  *
  * SAAS版RESTFUL风格API
  *
- * The version of the OpenAPI document: v1.0.5
+ * The version of the OpenAPI document: v1.0.7
  */
 namespace wemeet\openapi\service\meeting_control\model;
 
@@ -32,12 +32,6 @@ class V1RealControlMeetingsMeetingIdKickoutPutRequestUsersInner implements Model
      */
     protected $toOperatorIdType = null;
 
-    /**
-     * 用户的唯一标识uuid
-    * 类型：string
-     */
-    protected $uuid = null;
-
     public function __construct(
         $jsonArray = []
     ) {
@@ -51,9 +45,6 @@ class V1RealControlMeetingsMeetingIdKickoutPutRequestUsersInner implements Model
         }
         if (isset($jsonArray['to_operator_id_type'])) {
             $this->toOperatorIdType = $jsonArray['to_operator_id_type'];
-        }
-        if (isset($jsonArray['uuid'])) {
-            $this->uuid = $jsonArray['uuid'];
         }
     }
 
@@ -93,18 +84,6 @@ class V1RealControlMeetingsMeetingIdKickoutPutRequestUsersInner implements Model
     public function setToOperatorIdType(int $toOperatorIdType) {
         $this->toOperatorIdType = $toOperatorIdType;
     }
-    public function uuid(string $uuid): V1RealControlMeetingsMeetingIdKickoutPutRequestUsersInner {
-        $this->uuid = $uuid;
-        return $this;
-    }
-
-    public function getUuid() {
-        return $this->uuid;
-    }
-
-    public function setUuid(string $uuid) {
-        $this->uuid = $uuid;
-    }
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -114,8 +93,7 @@ class V1RealControlMeetingsMeetingIdKickoutPutRequestUsersInner implements Model
     protected static $openAPITypes = [
         'instanceid' => 'int',
         'to_operator_id' => 'string',
-        'to_operator_id_type' => 'int',
-        'uuid' => 'string'
+        'to_operator_id_type' => 'int'
     ];
 
     /**
@@ -128,8 +106,7 @@ class V1RealControlMeetingsMeetingIdKickoutPutRequestUsersInner implements Model
     protected static $openAPIFormats = [
         'instanceid' => 'int64',
         'to_operator_id' => null,
-        'to_operator_id_type' => 'int64',
-        'uuid' => null
+        'to_operator_id_type' => 'int64'
     ];
 
     /**
@@ -140,8 +117,7 @@ class V1RealControlMeetingsMeetingIdKickoutPutRequestUsersInner implements Model
     protected static array $openAPINullables = [
         'instanceid' => false,
         'to_operator_id' => false,
-        'to_operator_id_type' => false,
-        'uuid' => false
+        'to_operator_id_type' => false
     ];
 
     /**
@@ -232,8 +208,7 @@ class V1RealControlMeetingsMeetingIdKickoutPutRequestUsersInner implements Model
     protected static $attributeMap = [
         'instanceid' => 'instanceid',
         'to_operator_id' => 'to_operator_id',
-        'to_operator_id_type' => 'to_operator_id_type',
-        'uuid' => 'uuid'
+        'to_operator_id_type' => 'to_operator_id_type'
     ];
 
     /**
@@ -244,8 +219,7 @@ class V1RealControlMeetingsMeetingIdKickoutPutRequestUsersInner implements Model
     protected static $setters = [
         'instanceid' => 'setInstanceid',
         'to_operator_id' => 'setToOperatorId',
-        'to_operator_id_type' => 'setToOperatorIdType',
-        'uuid' => 'setUuid'
+        'to_operator_id_type' => 'setToOperatorIdType'
     ];
 
     /**
@@ -256,8 +230,7 @@ class V1RealControlMeetingsMeetingIdKickoutPutRequestUsersInner implements Model
     protected static $getters = [
         'instanceid' => 'getInstanceid',
         'to_operator_id' => 'getToOperatorId',
-        'to_operator_id_type' => 'getToOperatorIdType',
-        'uuid' => 'getUuid'
+        'to_operator_id_type' => 'getToOperatorIdType'
     ];
 
     /**
@@ -296,7 +269,6 @@ class V1RealControlMeetingsMeetingIdKickoutPutRequestUsersInner implements Model
             'instanceid' => $this->instanceid,
             'to_operator_id' => $this->toOperatorId,
             'to_operator_id_type' => $this->toOperatorIdType,
-            'uuid' => $this->uuid,
         ];
         return array_filter($data, function($value) {
             return !is_null($value) && $value !== '';

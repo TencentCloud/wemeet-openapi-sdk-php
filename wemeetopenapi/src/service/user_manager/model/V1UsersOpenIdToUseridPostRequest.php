@@ -5,7 +5,7 @@
  *
  * SAAS版RESTFUL风格API
  *
- * The version of the OpenAPI document: v1.0.5
+ * The version of the OpenAPI document: v1.0.7
  */
 namespace wemeet\openapi\service\user_manager\model;
 
@@ -14,6 +14,11 @@ use wemeet\openapi\core\xhttp\ModelInterface;
 
 class V1UsersOpenIdToUseridPostRequest implements ModelInterface, \JsonSerializable
 {
+    /**
+     * 需要转换的open_id列表 。一次最多1000个。
+    * 类型：
+     */
+    protected $openIdList;
     /**
      * 操作者ID
     * 类型：
@@ -33,6 +38,11 @@ class V1UsersOpenIdToUseridPostRequest implements ModelInterface, \JsonSerializa
     public function __construct(
         $jsonArray = []
     ) {
+        if (isset($jsonArray['open_id_list'])) {
+            $this->openIdList = $jsonArray['open_id_list'];
+        } else {
+            throw new \InvalidArgumentException('Missing required parameter open_id_list');
+        }
         if (isset($jsonArray['operator_id'])) {
             $this->operatorId = $jsonArray['operator_id'];
         } else {
@@ -50,6 +60,18 @@ class V1UsersOpenIdToUseridPostRequest implements ModelInterface, \JsonSerializa
         }
     }
 
+    public function openIdList(array $openIdList): V1UsersOpenIdToUseridPostRequest {
+        $this->openIdList = $openIdList;
+        return $this;
+    }
+
+    public function getOpenIdList() {
+        return $this->openIdList;
+    }
+
+    public function setOpenIdList(array $openIdList) {
+        $this->openIdList = $openIdList;
+    }
     public function operatorId(string $operatorId): V1UsersOpenIdToUseridPostRequest {
         $this->operatorId = $operatorId;
         return $this;
@@ -93,6 +115,7 @@ class V1UsersOpenIdToUseridPostRequest implements ModelInterface, \JsonSerializa
       * @var string[]
       */
     protected static $openAPITypes = [
+        'open_id_list' => 'string[]',
         'operator_id' => 'string',
         'operator_id_type' => 'int',
         'sdkid' => 'string'
@@ -106,6 +129,7 @@ class V1UsersOpenIdToUseridPostRequest implements ModelInterface, \JsonSerializa
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
+        'open_id_list' => null,
         'operator_id' => null,
         'operator_id_type' => 'int64',
         'sdkid' => null
@@ -117,6 +141,7 @@ class V1UsersOpenIdToUseridPostRequest implements ModelInterface, \JsonSerializa
       * @var boolean[]
       */
     protected static array $openAPINullables = [
+        'open_id_list' => false,
         'operator_id' => false,
         'operator_id_type' => false,
         'sdkid' => false
@@ -208,6 +233,7 @@ class V1UsersOpenIdToUseridPostRequest implements ModelInterface, \JsonSerializa
      * @var string[]
      */
     protected static $attributeMap = [
+        'open_id_list' => 'open_id_list',
         'operator_id' => 'operator_id',
         'operator_id_type' => 'operator_id_type',
         'sdkid' => 'sdkid'
@@ -219,6 +245,7 @@ class V1UsersOpenIdToUseridPostRequest implements ModelInterface, \JsonSerializa
      * @var string[]
      */
     protected static $setters = [
+        'open_id_list' => 'setOpenIdList',
         'operator_id' => 'setOperatorId',
         'operator_id_type' => 'setOperatorIdType',
         'sdkid' => 'setSdkid'
@@ -230,6 +257,7 @@ class V1UsersOpenIdToUseridPostRequest implements ModelInterface, \JsonSerializa
      * @var string[]
      */
     protected static $getters = [
+        'open_id_list' => 'getOpenIdList',
         'operator_id' => 'getOperatorId',
         'operator_id_type' => 'getOperatorIdType',
         'sdkid' => 'getSdkid'
@@ -268,6 +296,7 @@ class V1UsersOpenIdToUseridPostRequest implements ModelInterface, \JsonSerializa
 
     public function jsonSerialize(): mixed {
         $data = [
+            'open_id_list' => $this->openIdList,
             'operator_id' => $this->operatorId,
             'operator_id_type' => $this->operatorIdType,
             'sdkid' => $this->sdkid,

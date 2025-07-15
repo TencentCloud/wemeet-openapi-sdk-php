@@ -5,7 +5,7 @@
  *
  * SAAS版RESTFUL风格API
  *
- * The version of the OpenAPI document: v1.0.5
+ * The version of the OpenAPI document: v1.0.7
  */
 namespace wemeet\openapi\service\meetings\model;
 
@@ -57,12 +57,6 @@ class V1MeetingsMeetingIdWaitingRoomParticipantsGet200ResponseParticipantsInner 
      */
     protected $userid = null;
 
-    /**
-     * 用户的唯一标识uuid
-    * 类型：string
-     */
-    protected $uuid = null;
-
     public function __construct(
         $jsonArray = []
     ) {
@@ -86,9 +80,6 @@ class V1MeetingsMeetingIdWaitingRoomParticipantsGet200ResponseParticipantsInner 
         }
         if (isset($jsonArray['userid'])) {
             $this->userid = $jsonArray['userid'];
-        }
-        if (isset($jsonArray['uuid'])) {
-            $this->uuid = $jsonArray['uuid'];
         }
     }
 
@@ -176,18 +167,6 @@ class V1MeetingsMeetingIdWaitingRoomParticipantsGet200ResponseParticipantsInner 
     public function setUserid(string $userid) {
         $this->userid = $userid;
     }
-    public function uuid(string $uuid): V1MeetingsMeetingIdWaitingRoomParticipantsGet200ResponseParticipantsInner {
-        $this->uuid = $uuid;
-        return $this;
-    }
-
-    public function getUuid() {
-        return $this->uuid;
-    }
-
-    public function setUuid(string $uuid) {
-        $this->uuid = $uuid;
-    }
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -201,8 +180,7 @@ class V1MeetingsMeetingIdWaitingRoomParticipantsGet200ResponseParticipantsInner 
         'ms_open_id' => 'string',
         'open_id' => 'string',
         'user_name' => 'string',
-        'userid' => 'string',
-        'uuid' => 'string'
+        'userid' => 'string'
     ];
 
     /**
@@ -219,8 +197,7 @@ class V1MeetingsMeetingIdWaitingRoomParticipantsGet200ResponseParticipantsInner 
         'ms_open_id' => null,
         'open_id' => null,
         'user_name' => null,
-        'userid' => null,
-        'uuid' => null
+        'userid' => null
     ];
 
     /**
@@ -235,8 +212,7 @@ class V1MeetingsMeetingIdWaitingRoomParticipantsGet200ResponseParticipantsInner 
         'ms_open_id' => false,
         'open_id' => false,
         'user_name' => false,
-        'userid' => false,
-        'uuid' => false
+        'userid' => false
     ];
 
     /**
@@ -331,8 +307,7 @@ class V1MeetingsMeetingIdWaitingRoomParticipantsGet200ResponseParticipantsInner 
         'ms_open_id' => 'ms_open_id',
         'open_id' => 'open_id',
         'user_name' => 'user_name',
-        'userid' => 'userid',
-        'uuid' => 'uuid'
+        'userid' => 'userid'
     ];
 
     /**
@@ -347,8 +322,7 @@ class V1MeetingsMeetingIdWaitingRoomParticipantsGet200ResponseParticipantsInner 
         'ms_open_id' => 'setMsOpenId',
         'open_id' => 'setOpenId',
         'user_name' => 'setUserName',
-        'userid' => 'setUserid',
-        'uuid' => 'setUuid'
+        'userid' => 'setUserid'
     ];
 
     /**
@@ -363,8 +337,7 @@ class V1MeetingsMeetingIdWaitingRoomParticipantsGet200ResponseParticipantsInner 
         'ms_open_id' => 'getMsOpenId',
         'open_id' => 'getOpenId',
         'user_name' => 'getUserName',
-        'userid' => 'getUserid',
-        'uuid' => 'getUuid'
+        'userid' => 'getUserid'
     ];
 
     /**
@@ -407,7 +380,6 @@ class V1MeetingsMeetingIdWaitingRoomParticipantsGet200ResponseParticipantsInner 
             'open_id' => $this->openId,
             'user_name' => $this->userName,
             'userid' => $this->userid,
-            'uuid' => $this->uuid,
         ];
         return array_filter($data, function($value) {
             return !is_null($value) && $value !== '';

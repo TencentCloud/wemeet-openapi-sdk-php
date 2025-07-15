@@ -5,7 +5,7 @@
  *
  * SAAS版RESTFUL风格API
  *
- * The version of the OpenAPI document: v1.0.5
+ * The version of the OpenAPI document: v1.0.7
  */
 namespace wemeet\openapi\service\layout\model;
 
@@ -15,27 +15,26 @@ use wemeet\openapi\core\xhttp\ModelInterface;
 class V1MeetingsMeetingIdLayoutsPostRequestLayoutListInner implements ModelInterface, \JsonSerializable
 {
     /**
-    * 类型：
-     */
-    protected $layoutId;
-    /**
      * 布局单页对象列表
     * 类型：V1MeetingsMeetingIdLayoutsPostRequestLayoutListInnerPageListInner
      */
     protected $pageList;
 
+    /**
+    * 类型：string
+     */
+    protected $layoutId = null;
+
     public function __construct(
         $jsonArray = []
     ) {
-        if (isset($jsonArray['layout_id'])) {
-            $this->layoutId = $jsonArray['layout_id'];
-        } else {
-            throw new \InvalidArgumentException('Missing required parameter layout_id');
-        }
         if (isset($jsonArray['page_list'])) {
             $this->pageList = $jsonArray['page_list'];
         } else {
             throw new \InvalidArgumentException('Missing required parameter page_list');
+        }
+        if (isset($jsonArray['layout_id'])) {
+            $this->layoutId = $jsonArray['layout_id'];
         }
     }
 

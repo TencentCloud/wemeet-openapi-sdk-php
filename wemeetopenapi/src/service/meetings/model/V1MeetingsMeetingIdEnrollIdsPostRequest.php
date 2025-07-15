@@ -5,7 +5,7 @@
  *
  * SAAS版RESTFUL风格API
  *
- * The version of the OpenAPI document: v1.0.5
+ * The version of the OpenAPI document: v1.0.7
  */
 namespace wemeet\openapi\service\meetings\model;
 
@@ -29,12 +29,11 @@ class V1MeetingsMeetingIdEnrollIdsPostRequest implements ModelInterface, \JsonSe
     * 类型：
      */
     protected $operatorId;
-
     /**
      * 操作者 ID 的类型： 1：userid 2：open_id 如果 operator_id 和 userid 具有值，则以 operator_id 为准。
-    * 类型：int
+    * 类型：
      */
-    protected $operatorIdType = null;
+    protected $operatorIdType;
 
     /**
      * 查询报名 ID 的排序规则。当该账号存在多条报名记录（手机号导入、手动报名等）时，该接口返回的顺序。 1：优先查询手机号导入报名，再查询用户手动报名，默认值。 2：优先查询用户手动报名，再查手机号导入。
@@ -62,6 +61,8 @@ class V1MeetingsMeetingIdEnrollIdsPostRequest implements ModelInterface, \JsonSe
         }
         if (isset($jsonArray['operator_id_type'])) {
             $this->operatorIdType = $jsonArray['operator_id_type'];
+        } else {
+            throw new \InvalidArgumentException('Missing required parameter operator_id_type');
         }
         if (isset($jsonArray['sorting_rules'])) {
             $this->sortingRules = $jsonArray['sorting_rules'];

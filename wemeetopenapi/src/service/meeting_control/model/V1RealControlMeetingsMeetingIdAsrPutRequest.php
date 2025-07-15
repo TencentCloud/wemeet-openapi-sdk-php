@@ -5,7 +5,7 @@
  *
  * SAAS版RESTFUL风格API
  *
- * The version of the OpenAPI document: v1.0.5
+ * The version of the OpenAPI document: v1.0.7
  */
 namespace wemeet\openapi\service\meeting_control\model;
 
@@ -41,6 +41,18 @@ class V1RealControlMeetingsMeetingIdAsrPutRequest implements ModelInterface, \Js
      */
     protected $openAsrView = null;
 
+    /**
+     * 目标 Rooms ID。 当 Rooms 为会议创建者时，需要填写此 Rooms ID。 target_rooms_id 需与 target_rooms_id_type 配合使用。
+    * 类型：string
+     */
+    protected $targetRoomsId = null;
+
+    /**
+     * 目标 RoomsID 类型： 3：rooms 设备 rooms_id 5：会议室 ID meeting_room_id
+    * 类型：int
+     */
+    protected $targetRoomsIdType = null;
+
     public function __construct(
         $jsonArray = []
     ) {
@@ -66,6 +78,12 @@ class V1RealControlMeetingsMeetingIdAsrPutRequest implements ModelInterface, \Js
         }
         if (isset($jsonArray['open_asr_view'])) {
             $this->openAsrView = $jsonArray['open_asr_view'];
+        }
+        if (isset($jsonArray['target_rooms_id'])) {
+            $this->targetRoomsId = $jsonArray['target_rooms_id'];
+        }
+        if (isset($jsonArray['target_rooms_id_type'])) {
+            $this->targetRoomsIdType = $jsonArray['target_rooms_id_type'];
         }
     }
 
@@ -129,6 +147,30 @@ class V1RealControlMeetingsMeetingIdAsrPutRequest implements ModelInterface, \Js
     public function setOperatorIdType(int $operatorIdType) {
         $this->operatorIdType = $operatorIdType;
     }
+    public function targetRoomsId(string $targetRoomsId): V1RealControlMeetingsMeetingIdAsrPutRequest {
+        $this->targetRoomsId = $targetRoomsId;
+        return $this;
+    }
+
+    public function getTargetRoomsId() {
+        return $this->targetRoomsId;
+    }
+
+    public function setTargetRoomsId(string $targetRoomsId) {
+        $this->targetRoomsId = $targetRoomsId;
+    }
+    public function targetRoomsIdType(int $targetRoomsIdType): V1RealControlMeetingsMeetingIdAsrPutRequest {
+        $this->targetRoomsIdType = $targetRoomsIdType;
+        return $this;
+    }
+
+    public function getTargetRoomsIdType() {
+        return $this->targetRoomsIdType;
+    }
+
+    public function setTargetRoomsIdType(int $targetRoomsIdType) {
+        $this->targetRoomsIdType = $targetRoomsIdType;
+    }
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -140,7 +182,9 @@ class V1RealControlMeetingsMeetingIdAsrPutRequest implements ModelInterface, \Js
         'is_open' => 'bool',
         'open_asr_view' => 'int',
         'operator_id' => 'string',
-        'operator_id_type' => 'int'
+        'operator_id_type' => 'int',
+        'target_rooms_id' => 'string',
+        'target_rooms_id_type' => 'int'
     ];
 
     /**
@@ -155,7 +199,9 @@ class V1RealControlMeetingsMeetingIdAsrPutRequest implements ModelInterface, \Js
         'is_open' => null,
         'open_asr_view' => 'int64',
         'operator_id' => null,
-        'operator_id_type' => 'int64'
+        'operator_id_type' => 'int64',
+        'target_rooms_id' => null,
+        'target_rooms_id_type' => 'int64'
     ];
 
     /**
@@ -168,7 +214,9 @@ class V1RealControlMeetingsMeetingIdAsrPutRequest implements ModelInterface, \Js
         'is_open' => false,
         'open_asr_view' => false,
         'operator_id' => false,
-        'operator_id_type' => false
+        'operator_id_type' => false,
+        'target_rooms_id' => false,
+        'target_rooms_id_type' => false
     ];
 
     /**
@@ -261,7 +309,9 @@ class V1RealControlMeetingsMeetingIdAsrPutRequest implements ModelInterface, \Js
         'is_open' => 'is_open',
         'open_asr_view' => 'open_asr_view',
         'operator_id' => 'operator_id',
-        'operator_id_type' => 'operator_id_type'
+        'operator_id_type' => 'operator_id_type',
+        'target_rooms_id' => 'target_rooms_id',
+        'target_rooms_id_type' => 'target_rooms_id_type'
     ];
 
     /**
@@ -274,7 +324,9 @@ class V1RealControlMeetingsMeetingIdAsrPutRequest implements ModelInterface, \Js
         'is_open' => 'setIsOpen',
         'open_asr_view' => 'setOpenAsrView',
         'operator_id' => 'setOperatorId',
-        'operator_id_type' => 'setOperatorIdType'
+        'operator_id_type' => 'setOperatorIdType',
+        'target_rooms_id' => 'setTargetRoomsId',
+        'target_rooms_id_type' => 'setTargetRoomsIdType'
     ];
 
     /**
@@ -287,7 +339,9 @@ class V1RealControlMeetingsMeetingIdAsrPutRequest implements ModelInterface, \Js
         'is_open' => 'getIsOpen',
         'open_asr_view' => 'getOpenAsrView',
         'operator_id' => 'getOperatorId',
-        'operator_id_type' => 'getOperatorIdType'
+        'operator_id_type' => 'getOperatorIdType',
+        'target_rooms_id' => 'getTargetRoomsId',
+        'target_rooms_id_type' => 'getTargetRoomsIdType'
     ];
 
     /**
@@ -328,6 +382,8 @@ class V1RealControlMeetingsMeetingIdAsrPutRequest implements ModelInterface, \Js
             'open_asr_view' => $this->openAsrView,
             'operator_id' => $this->operatorId,
             'operator_id_type' => $this->operatorIdType,
+            'target_rooms_id' => $this->targetRoomsId,
+            'target_rooms_id_type' => $this->targetRoomsIdType,
         ];
         return array_filter($data, function($value) {
             return !is_null($value) && $value !== '';

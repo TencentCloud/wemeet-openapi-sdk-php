@@ -5,7 +5,7 @@
  *
  * SAAS版RESTFUL风格API
  *
- * The version of the OpenAPI document: v1.0.5
+ * The version of the OpenAPI document: v1.0.7
  */
 namespace wemeet\openapi\service\meetings\model;
 
@@ -38,6 +38,12 @@ class V1MeetingsMeetingIdPutRequestSettings implements ModelInterface, \JsonSeri
     * 类型：bool
      */
     protected $allowUnmuteSelf = null;
+
+    /**
+     * 是否开启自动转写（只给好未来开了）
+    * 类型：bool
+     */
+    protected $autoAsr = null;
 
     /**
      * 是否开启等候室，默认值为 false。 true：开启 false：不开启
@@ -82,10 +88,16 @@ class V1MeetingsMeetingIdPutRequestSettings implements ModelInterface, \JsonSeri
     protected $onlyEnterpriseUserAllowed = null;
 
     /**
-     * 是否仅受邀成员可入会，默认值为false，true：仅受邀成员可入会，false：所有成员可入会
-    * 类型：bool
+     * 成员入会限制，1：所有成员可入会，2：仅受邀成员可入会，3：仅企业内部成员可入会 ；当only_user_join_type和only_allow_enterprise_user_join同时传的时候，以only_user_join_type为准
+    * 类型：int
      */
-    protected $onlyInviteesAllowed = null;
+    protected $onlyUserJoinType = null;
+
+    /**
+     * 设置主持人入会是否自动打开转写侧边栏 在auto_asr为true下才会生效，true:开启转写 false：不开启
+    * 类型：int
+     */
+    protected $openAsrView = null;
 
     /**
      * 当有参会成员入会时立即开启云录制，默认值为 false 关闭，关闭时，主持人入会自动开启云录制；当设置为开启时，则有参会成员入会自动开启云录制。 说明： 该参数必须 auto_record_type 设置为“cloud”时才生效，该参数依赖企业账户设置，当企业强制锁定后，该参数必须与企业配置保持一致。 仅客户端2.7及以上版本生效。
@@ -126,6 +138,9 @@ class V1MeetingsMeetingIdPutRequestSettings implements ModelInterface, \JsonSeri
         if (isset($jsonArray['allow_unmute_self'])) {
             $this->allowUnmuteSelf = $jsonArray['allow_unmute_self'];
         }
+        if (isset($jsonArray['auto_asr'])) {
+            $this->autoAsr = $jsonArray['auto_asr'];
+        }
         if (isset($jsonArray['auto_in_waiting_room'])) {
             $this->autoInWaitingRoom = $jsonArray['auto_in_waiting_room'];
         }
@@ -147,8 +162,11 @@ class V1MeetingsMeetingIdPutRequestSettings implements ModelInterface, \JsonSeri
         if (isset($jsonArray['only_enterprise_user_allowed'])) {
             $this->onlyEnterpriseUserAllowed = $jsonArray['only_enterprise_user_allowed'];
         }
-        if (isset($jsonArray['only_invitees_allowed'])) {
-            $this->onlyInviteesAllowed = $jsonArray['only_invitees_allowed'];
+        if (isset($jsonArray['only_user_join_type'])) {
+            $this->onlyUserJoinType = $jsonArray['only_user_join_type'];
+        }
+        if (isset($jsonArray['open_asr_view'])) {
+            $this->openAsrView = $jsonArray['open_asr_view'];
         }
         if (isset($jsonArray['participant_join_auto_record'])) {
             $this->participantJoinAutoRecord = $jsonArray['participant_join_auto_record'];
@@ -211,6 +229,18 @@ class V1MeetingsMeetingIdPutRequestSettings implements ModelInterface, \JsonSeri
 
     public function setAllowUnmuteSelf(bool $allowUnmuteSelf) {
         $this->allowUnmuteSelf = $allowUnmuteSelf;
+    }
+    public function autoAsr(bool $autoAsr): V1MeetingsMeetingIdPutRequestSettings {
+        $this->autoAsr = $autoAsr;
+        return $this;
+    }
+
+    public function getAutoAsr() {
+        return $this->autoAsr;
+    }
+
+    public function setAutoAsr(bool $autoAsr) {
+        $this->autoAsr = $autoAsr;
     }
     public function autoInWaitingRoom(bool $autoInWaitingRoom): V1MeetingsMeetingIdPutRequestSettings {
         $this->autoInWaitingRoom = $autoInWaitingRoom;
@@ -296,17 +326,29 @@ class V1MeetingsMeetingIdPutRequestSettings implements ModelInterface, \JsonSeri
     public function setOnlyEnterpriseUserAllowed(bool $onlyEnterpriseUserAllowed) {
         $this->onlyEnterpriseUserAllowed = $onlyEnterpriseUserAllowed;
     }
-    public function onlyInviteesAllowed(bool $onlyInviteesAllowed): V1MeetingsMeetingIdPutRequestSettings {
-        $this->onlyInviteesAllowed = $onlyInviteesAllowed;
+    public function onlyUserJoinType(int $onlyUserJoinType): V1MeetingsMeetingIdPutRequestSettings {
+        $this->onlyUserJoinType = $onlyUserJoinType;
         return $this;
     }
 
-    public function getOnlyInviteesAllowed() {
-        return $this->onlyInviteesAllowed;
+    public function getOnlyUserJoinType() {
+        return $this->onlyUserJoinType;
     }
 
-    public function setOnlyInviteesAllowed(bool $onlyInviteesAllowed) {
-        $this->onlyInviteesAllowed = $onlyInviteesAllowed;
+    public function setOnlyUserJoinType(int $onlyUserJoinType) {
+        $this->onlyUserJoinType = $onlyUserJoinType;
+    }
+    public function openAsrView(int $openAsrView): V1MeetingsMeetingIdPutRequestSettings {
+        $this->openAsrView = $openAsrView;
+        return $this;
+    }
+
+    public function getOpenAsrView() {
+        return $this->openAsrView;
+    }
+
+    public function setOpenAsrView(int $openAsrView) {
+        $this->openAsrView = $openAsrView;
     }
     public function participantJoinAutoRecord(bool $participantJoinAutoRecord): V1MeetingsMeetingIdPutRequestSettings {
         $this->participantJoinAutoRecord = $participantJoinAutoRecord;
@@ -367,6 +409,7 @@ class V1MeetingsMeetingIdPutRequestSettings implements ModelInterface, \JsonSeri
         'allow_multi_device' => 'bool',
         'allow_screen_shared_watermark' => 'bool',
         'allow_unmute_self' => 'bool',
+        'auto_asr' => 'bool',
         'auto_in_waiting_room' => 'bool',
         'auto_record_type' => 'string',
         'change_nickname' => 'int',
@@ -374,7 +417,8 @@ class V1MeetingsMeetingIdPutRequestSettings implements ModelInterface, \JsonSeri
         'mute_enable_join' => 'bool',
         'mute_enable_type_join' => 'int',
         'only_enterprise_user_allowed' => 'bool',
-        'only_invitees_allowed' => 'bool',
+        'only_user_join_type' => 'int',
+        'open_asr_view' => 'int',
         'participant_join_auto_record' => 'bool',
         'play_ivr_on_join' => 'bool',
         'play_ivr_on_leave' => 'bool',
@@ -393,6 +437,7 @@ class V1MeetingsMeetingIdPutRequestSettings implements ModelInterface, \JsonSeri
         'allow_multi_device' => null,
         'allow_screen_shared_watermark' => null,
         'allow_unmute_self' => null,
+        'auto_asr' => null,
         'auto_in_waiting_room' => null,
         'auto_record_type' => null,
         'change_nickname' => 'int64',
@@ -400,7 +445,8 @@ class V1MeetingsMeetingIdPutRequestSettings implements ModelInterface, \JsonSeri
         'mute_enable_join' => null,
         'mute_enable_type_join' => 'int64',
         'only_enterprise_user_allowed' => null,
-        'only_invitees_allowed' => null,
+        'only_user_join_type' => 'int64',
+        'open_asr_view' => 'int64',
         'participant_join_auto_record' => null,
         'play_ivr_on_join' => null,
         'play_ivr_on_leave' => null,
@@ -417,6 +463,7 @@ class V1MeetingsMeetingIdPutRequestSettings implements ModelInterface, \JsonSeri
         'allow_multi_device' => false,
         'allow_screen_shared_watermark' => false,
         'allow_unmute_self' => false,
+        'auto_asr' => false,
         'auto_in_waiting_room' => false,
         'auto_record_type' => false,
         'change_nickname' => false,
@@ -424,7 +471,8 @@ class V1MeetingsMeetingIdPutRequestSettings implements ModelInterface, \JsonSeri
         'mute_enable_join' => false,
         'mute_enable_type_join' => false,
         'only_enterprise_user_allowed' => false,
-        'only_invitees_allowed' => false,
+        'only_user_join_type' => false,
+        'open_asr_view' => false,
         'participant_join_auto_record' => false,
         'play_ivr_on_join' => false,
         'play_ivr_on_leave' => false,
@@ -521,6 +569,7 @@ class V1MeetingsMeetingIdPutRequestSettings implements ModelInterface, \JsonSeri
         'allow_multi_device' => 'allow_multi_device',
         'allow_screen_shared_watermark' => 'allow_screen_shared_watermark',
         'allow_unmute_self' => 'allow_unmute_self',
+        'auto_asr' => 'auto_asr',
         'auto_in_waiting_room' => 'auto_in_waiting_room',
         'auto_record_type' => 'auto_record_type',
         'change_nickname' => 'change_nickname',
@@ -528,7 +577,8 @@ class V1MeetingsMeetingIdPutRequestSettings implements ModelInterface, \JsonSeri
         'mute_enable_join' => 'mute_enable_join',
         'mute_enable_type_join' => 'mute_enable_type_join',
         'only_enterprise_user_allowed' => 'only_enterprise_user_allowed',
-        'only_invitees_allowed' => 'only_invitees_allowed',
+        'only_user_join_type' => 'only_user_join_type',
+        'open_asr_view' => 'open_asr_view',
         'participant_join_auto_record' => 'participant_join_auto_record',
         'play_ivr_on_join' => 'play_ivr_on_join',
         'play_ivr_on_leave' => 'play_ivr_on_leave',
@@ -545,6 +595,7 @@ class V1MeetingsMeetingIdPutRequestSettings implements ModelInterface, \JsonSeri
         'allow_multi_device' => 'setAllowMultiDevice',
         'allow_screen_shared_watermark' => 'setAllowScreenSharedWatermark',
         'allow_unmute_self' => 'setAllowUnmuteSelf',
+        'auto_asr' => 'setAutoAsr',
         'auto_in_waiting_room' => 'setAutoInWaitingRoom',
         'auto_record_type' => 'setAutoRecordType',
         'change_nickname' => 'setChangeNickname',
@@ -552,7 +603,8 @@ class V1MeetingsMeetingIdPutRequestSettings implements ModelInterface, \JsonSeri
         'mute_enable_join' => 'setMuteEnableJoin',
         'mute_enable_type_join' => 'setMuteEnableTypeJoin',
         'only_enterprise_user_allowed' => 'setOnlyEnterpriseUserAllowed',
-        'only_invitees_allowed' => 'setOnlyInviteesAllowed',
+        'only_user_join_type' => 'setOnlyUserJoinType',
+        'open_asr_view' => 'setOpenAsrView',
         'participant_join_auto_record' => 'setParticipantJoinAutoRecord',
         'play_ivr_on_join' => 'setPlayIvrOnJoin',
         'play_ivr_on_leave' => 'setPlayIvrOnLeave',
@@ -569,6 +621,7 @@ class V1MeetingsMeetingIdPutRequestSettings implements ModelInterface, \JsonSeri
         'allow_multi_device' => 'getAllowMultiDevice',
         'allow_screen_shared_watermark' => 'getAllowScreenSharedWatermark',
         'allow_unmute_self' => 'getAllowUnmuteSelf',
+        'auto_asr' => 'getAutoAsr',
         'auto_in_waiting_room' => 'getAutoInWaitingRoom',
         'auto_record_type' => 'getAutoRecordType',
         'change_nickname' => 'getChangeNickname',
@@ -576,7 +629,8 @@ class V1MeetingsMeetingIdPutRequestSettings implements ModelInterface, \JsonSeri
         'mute_enable_join' => 'getMuteEnableJoin',
         'mute_enable_type_join' => 'getMuteEnableTypeJoin',
         'only_enterprise_user_allowed' => 'getOnlyEnterpriseUserAllowed',
-        'only_invitees_allowed' => 'getOnlyInviteesAllowed',
+        'only_user_join_type' => 'getOnlyUserJoinType',
+        'open_asr_view' => 'getOpenAsrView',
         'participant_join_auto_record' => 'getParticipantJoinAutoRecord',
         'play_ivr_on_join' => 'getPlayIvrOnJoin',
         'play_ivr_on_leave' => 'getPlayIvrOnLeave',
@@ -620,6 +674,7 @@ class V1MeetingsMeetingIdPutRequestSettings implements ModelInterface, \JsonSeri
             'allow_multi_device' => $this->allowMultiDevice,
             'allow_screen_shared_watermark' => $this->allowScreenSharedWatermark,
             'allow_unmute_self' => $this->allowUnmuteSelf,
+            'auto_asr' => $this->autoAsr,
             'auto_in_waiting_room' => $this->autoInWaitingRoom,
             'auto_record_type' => $this->autoRecordType,
             'change_nickname' => $this->changeNickname,
@@ -627,7 +682,8 @@ class V1MeetingsMeetingIdPutRequestSettings implements ModelInterface, \JsonSeri
             'mute_enable_join' => $this->muteEnableJoin,
             'mute_enable_type_join' => $this->muteEnableTypeJoin,
             'only_enterprise_user_allowed' => $this->onlyEnterpriseUserAllowed,
-            'only_invitees_allowed' => $this->onlyInviteesAllowed,
+            'only_user_join_type' => $this->onlyUserJoinType,
+            'open_asr_view' => $this->openAsrView,
             'participant_join_auto_record' => $this->participantJoinAutoRecord,
             'play_ivr_on_join' => $this->playIvrOnJoin,
             'play_ivr_on_leave' => $this->playIvrOnLeave,

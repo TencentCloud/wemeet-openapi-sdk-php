@@ -5,7 +5,7 @@
  *
  * SAAS版RESTFUL风格API
  *
- * The version of the OpenAPI document: v1.0.5
+ * The version of the OpenAPI document: v1.0.7
  */
 namespace wemeet\openapi\service\meetings\model;
 
@@ -44,6 +44,11 @@ class V1MeetingsMeetingIdParticipantsGet200ResponseParticipantsInner implements 
     * 类型：string
      */
     protected $ip = null;
+
+    /**
+    * 类型：bool
+     */
+    protected $isEnterpriseUser = null;
 
     /**
      * 参会者加入会议时间戳（单位秒）。
@@ -123,12 +128,6 @@ class V1MeetingsMeetingIdParticipantsGet200ResponseParticipantsInner implements 
     protected $userid = null;
 
     /**
-     * 用户的身份 ID，仅适用于单场会议。
-    * 类型：string
-     */
-    protected $uuid = null;
-
-    /**
      * 摄像头状态： true：开启 false：关闭
     * 类型：bool
      */
@@ -157,6 +156,9 @@ class V1MeetingsMeetingIdParticipantsGet200ResponseParticipantsInner implements 
         }
         if (isset($jsonArray['ip'])) {
             $this->ip = $jsonArray['ip'];
+        }
+        if (isset($jsonArray['is_enterprise_user'])) {
+            $this->isEnterpriseUser = $jsonArray['is_enterprise_user'];
         }
         if (isset($jsonArray['join_time'])) {
             $this->joinTime = $jsonArray['join_time'];
@@ -196,9 +198,6 @@ class V1MeetingsMeetingIdParticipantsGet200ResponseParticipantsInner implements 
         }
         if (isset($jsonArray['userid'])) {
             $this->userid = $jsonArray['userid'];
-        }
-        if (isset($jsonArray['uuid'])) {
-            $this->uuid = $jsonArray['uuid'];
         }
         if (isset($jsonArray['video_state'])) {
             $this->videoState = $jsonArray['video_state'];
@@ -267,6 +266,18 @@ class V1MeetingsMeetingIdParticipantsGet200ResponseParticipantsInner implements 
 
     public function setIp(string $ip) {
         $this->ip = $ip;
+    }
+    public function isEnterpriseUser(bool $isEnterpriseUser): V1MeetingsMeetingIdParticipantsGet200ResponseParticipantsInner {
+        $this->isEnterpriseUser = $isEnterpriseUser;
+        return $this;
+    }
+
+    public function getIsEnterpriseUser() {
+        return $this->isEnterpriseUser;
+    }
+
+    public function setIsEnterpriseUser(bool $isEnterpriseUser) {
+        $this->isEnterpriseUser = $isEnterpriseUser;
     }
     public function joinTime(string $joinTime): V1MeetingsMeetingIdParticipantsGet200ResponseParticipantsInner {
         $this->joinTime = $joinTime;
@@ -424,18 +435,6 @@ class V1MeetingsMeetingIdParticipantsGet200ResponseParticipantsInner implements 
     public function setUserid(string $userid) {
         $this->userid = $userid;
     }
-    public function uuid(string $uuid): V1MeetingsMeetingIdParticipantsGet200ResponseParticipantsInner {
-        $this->uuid = $uuid;
-        return $this;
-    }
-
-    public function getUuid() {
-        return $this->uuid;
-    }
-
-    public function setUuid(string $uuid) {
-        $this->uuid = $uuid;
-    }
     public function videoState(bool $videoState): V1MeetingsMeetingIdParticipantsGet200ResponseParticipantsInner {
         $this->videoState = $videoState;
         return $this;
@@ -472,6 +471,7 @@ class V1MeetingsMeetingIdParticipantsGet200ResponseParticipantsInner implements 
         'customer_data' => 'string',
         'instanceid' => 'int',
         'ip' => 'string',
+        'is_enterprise_user' => 'bool',
         'join_time' => 'string',
         'join_type' => 'int',
         'left_time' => 'string',
@@ -485,7 +485,6 @@ class V1MeetingsMeetingIdParticipantsGet200ResponseParticipantsInner implements 
         'user_name' => 'string',
         'user_role' => 'int',
         'userid' => 'string',
-        'uuid' => 'string',
         'video_state' => 'bool',
         'webinar_member_role' => 'int'
     ];
@@ -503,6 +502,7 @@ class V1MeetingsMeetingIdParticipantsGet200ResponseParticipantsInner implements 
         'customer_data' => null,
         'instanceid' => 'int64',
         'ip' => null,
+        'is_enterprise_user' => null,
         'join_time' => null,
         'join_type' => 'int64',
         'left_time' => null,
@@ -516,7 +516,6 @@ class V1MeetingsMeetingIdParticipantsGet200ResponseParticipantsInner implements 
         'user_name' => null,
         'user_role' => 'int64',
         'userid' => null,
-        'uuid' => null,
         'video_state' => null,
         'webinar_member_role' => 'int64'
     ];
@@ -532,6 +531,7 @@ class V1MeetingsMeetingIdParticipantsGet200ResponseParticipantsInner implements 
         'customer_data' => false,
         'instanceid' => false,
         'ip' => false,
+        'is_enterprise_user' => false,
         'join_time' => false,
         'join_type' => false,
         'left_time' => false,
@@ -545,7 +545,6 @@ class V1MeetingsMeetingIdParticipantsGet200ResponseParticipantsInner implements 
         'user_name' => false,
         'user_role' => false,
         'userid' => false,
-        'uuid' => false,
         'video_state' => false,
         'webinar_member_role' => false
     ];
@@ -641,6 +640,7 @@ class V1MeetingsMeetingIdParticipantsGet200ResponseParticipantsInner implements 
         'customer_data' => 'customer_data',
         'instanceid' => 'instanceid',
         'ip' => 'ip',
+        'is_enterprise_user' => 'is_enterprise_user',
         'join_time' => 'join_time',
         'join_type' => 'join_type',
         'left_time' => 'left_time',
@@ -654,7 +654,6 @@ class V1MeetingsMeetingIdParticipantsGet200ResponseParticipantsInner implements 
         'user_name' => 'user_name',
         'user_role' => 'user_role',
         'userid' => 'userid',
-        'uuid' => 'uuid',
         'video_state' => 'video_state',
         'webinar_member_role' => 'webinar_member_role'
     ];
@@ -670,6 +669,7 @@ class V1MeetingsMeetingIdParticipantsGet200ResponseParticipantsInner implements 
         'customer_data' => 'setCustomerData',
         'instanceid' => 'setInstanceid',
         'ip' => 'setIp',
+        'is_enterprise_user' => 'setIsEnterpriseUser',
         'join_time' => 'setJoinTime',
         'join_type' => 'setJoinType',
         'left_time' => 'setLeftTime',
@@ -683,7 +683,6 @@ class V1MeetingsMeetingIdParticipantsGet200ResponseParticipantsInner implements 
         'user_name' => 'setUserName',
         'user_role' => 'setUserRole',
         'userid' => 'setUserid',
-        'uuid' => 'setUuid',
         'video_state' => 'setVideoState',
         'webinar_member_role' => 'setWebinarMemberRole'
     ];
@@ -699,6 +698,7 @@ class V1MeetingsMeetingIdParticipantsGet200ResponseParticipantsInner implements 
         'customer_data' => 'getCustomerData',
         'instanceid' => 'getInstanceid',
         'ip' => 'getIp',
+        'is_enterprise_user' => 'getIsEnterpriseUser',
         'join_time' => 'getJoinTime',
         'join_type' => 'getJoinType',
         'left_time' => 'getLeftTime',
@@ -712,7 +712,6 @@ class V1MeetingsMeetingIdParticipantsGet200ResponseParticipantsInner implements 
         'user_name' => 'getUserName',
         'user_role' => 'getUserRole',
         'userid' => 'getUserid',
-        'uuid' => 'getUuid',
         'video_state' => 'getVideoState',
         'webinar_member_role' => 'getWebinarMemberRole'
     ];
@@ -755,6 +754,7 @@ class V1MeetingsMeetingIdParticipantsGet200ResponseParticipantsInner implements 
             'customer_data' => $this->customerData,
             'instanceid' => $this->instanceid,
             'ip' => $this->ip,
+            'is_enterprise_user' => $this->isEnterpriseUser,
             'join_time' => $this->joinTime,
             'join_type' => $this->joinType,
             'left_time' => $this->leftTime,
@@ -768,7 +768,6 @@ class V1MeetingsMeetingIdParticipantsGet200ResponseParticipantsInner implements 
             'user_name' => $this->userName,
             'user_role' => $this->userRole,
             'userid' => $this->userid,
-            'uuid' => $this->uuid,
             'video_state' => $this->videoState,
             'webinar_member_role' => $this->webinarMemberRole,
         ];

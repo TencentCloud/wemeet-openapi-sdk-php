@@ -5,7 +5,7 @@
  *
  * SAAS版RESTFUL风格API
  *
- * The version of the OpenAPI document: v1.0.5
+ * The version of the OpenAPI document: v1.0.7
  */
 namespace wemeet\openapi\service\records\model;
 
@@ -14,6 +14,12 @@ use wemeet\openapi\core\xhttp\ModelInterface;
 
 class V1RecordsTranscriptsDetailsGet200ResponseMinutesParagraphsInnerSpeakerInfo implements ModelInterface, \JsonSerializable
 {
+
+    /**
+     * 会议中为每个参会成员授予的临时 ID，以会议为维度，表示同一场会议内用户的唯一标识
+    * 类型：string
+     */
+    protected $msOpenId = null;
 
     /**
      * 同企业返回企业用户 userid。
@@ -30,6 +36,9 @@ class V1RecordsTranscriptsDetailsGet200ResponseMinutesParagraphsInnerSpeakerInfo
     public function __construct(
         $jsonArray = []
     ) {
+        if (isset($jsonArray['ms_open_id'])) {
+            $this->msOpenId = $jsonArray['ms_open_id'];
+        }
         if (isset($jsonArray['userid'])) {
             $this->userid = $jsonArray['userid'];
         }
@@ -38,6 +47,18 @@ class V1RecordsTranscriptsDetailsGet200ResponseMinutesParagraphsInnerSpeakerInfo
         }
     }
 
+    public function msOpenId(string $msOpenId): V1RecordsTranscriptsDetailsGet200ResponseMinutesParagraphsInnerSpeakerInfo {
+        $this->msOpenId = $msOpenId;
+        return $this;
+    }
+
+    public function getMsOpenId() {
+        return $this->msOpenId;
+    }
+
+    public function setMsOpenId(string $msOpenId) {
+        $this->msOpenId = $msOpenId;
+    }
     public function userid(string $userid): V1RecordsTranscriptsDetailsGet200ResponseMinutesParagraphsInnerSpeakerInfo {
         $this->userid = $userid;
         return $this;
@@ -69,6 +90,7 @@ class V1RecordsTranscriptsDetailsGet200ResponseMinutesParagraphsInnerSpeakerInfo
       * @var string[]
       */
     protected static $openAPITypes = [
+        'ms_open_id' => 'string',
         'userid' => 'string',
         'username' => 'string'
     ];
@@ -81,6 +103,7 @@ class V1RecordsTranscriptsDetailsGet200ResponseMinutesParagraphsInnerSpeakerInfo
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
+        'ms_open_id' => null,
         'userid' => null,
         'username' => null
     ];
@@ -91,6 +114,7 @@ class V1RecordsTranscriptsDetailsGet200ResponseMinutesParagraphsInnerSpeakerInfo
       * @var boolean[]
       */
     protected static array $openAPINullables = [
+        'ms_open_id' => false,
         'userid' => false,
         'username' => false
     ];
@@ -181,6 +205,7 @@ class V1RecordsTranscriptsDetailsGet200ResponseMinutesParagraphsInnerSpeakerInfo
      * @var string[]
      */
     protected static $attributeMap = [
+        'ms_open_id' => 'ms_open_id',
         'userid' => 'userid',
         'username' => 'username'
     ];
@@ -191,6 +216,7 @@ class V1RecordsTranscriptsDetailsGet200ResponseMinutesParagraphsInnerSpeakerInfo
      * @var string[]
      */
     protected static $setters = [
+        'ms_open_id' => 'setMsOpenId',
         'userid' => 'setUserid',
         'username' => 'setUsername'
     ];
@@ -201,6 +227,7 @@ class V1RecordsTranscriptsDetailsGet200ResponseMinutesParagraphsInnerSpeakerInfo
      * @var string[]
      */
     protected static $getters = [
+        'ms_open_id' => 'getMsOpenId',
         'userid' => 'getUserid',
         'username' => 'getUsername'
     ];
@@ -238,6 +265,7 @@ class V1RecordsTranscriptsDetailsGet200ResponseMinutesParagraphsInnerSpeakerInfo
 
     public function jsonSerialize(): mixed {
         $data = [
+            'ms_open_id' => $this->msOpenId,
             'userid' => $this->userid,
             'username' => $this->username,
         ];

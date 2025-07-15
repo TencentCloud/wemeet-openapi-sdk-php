@@ -5,7 +5,7 @@
  *
  * SAAS版RESTFUL风格API
  *
- * The version of the OpenAPI document: v1.0.5
+ * The version of the OpenAPI document: v1.0.7
  */
 namespace wemeet\openapi\service\meeting_room\model;
 
@@ -14,6 +14,18 @@ use wemeet\openapi\core\xhttp\ModelInterface;
 
 class V1MeetingRoomsMeetingRoomIdGet200ResponseBasicInfo implements ModelInterface, \JsonSerializable
 {
+
+    /**
+     * 管理员密码（base64编码）。 当 admin_password_enabled 为 false 时，则此键值对不返回。
+    * 类型：string
+     */
+    protected $adminPassword = null;
+
+    /**
+     * 管理员密码启用状态。 true：已启用  false：未启用
+    * 类型：bool
+     */
+    protected $adminPasswordEnabled = null;
 
     /**
      * 建筑
@@ -58,14 +70,20 @@ class V1MeetingRoomsMeetingRoomIdGet200ResponseBasicInfo implements ModelInterfa
     protected $participantNumber = null;
 
     /**
-     * 管理员密码（base64）
-    * 类型：string
+     * roomsID列表
+    * 类型：string[]
      */
-    protected $password = null;
+    protected $roomsIdList = null;
 
     public function __construct(
         $jsonArray = []
     ) {
+        if (isset($jsonArray['admin_password'])) {
+            $this->adminPassword = $jsonArray['admin_password'];
+        }
+        if (isset($jsonArray['admin_password_enabled'])) {
+            $this->adminPasswordEnabled = $jsonArray['admin_password_enabled'];
+        }
         if (isset($jsonArray['building'])) {
             $this->building = $jsonArray['building'];
         }
@@ -87,11 +105,35 @@ class V1MeetingRoomsMeetingRoomIdGet200ResponseBasicInfo implements ModelInterfa
         if (isset($jsonArray['participant_number'])) {
             $this->participantNumber = $jsonArray['participant_number'];
         }
-        if (isset($jsonArray['password'])) {
-            $this->password = $jsonArray['password'];
+        if (isset($jsonArray['rooms_id_list'])) {
+            $this->roomsIdList = $jsonArray['rooms_id_list'];
         }
     }
 
+    public function adminPassword(string $adminPassword): V1MeetingRoomsMeetingRoomIdGet200ResponseBasicInfo {
+        $this->adminPassword = $adminPassword;
+        return $this;
+    }
+
+    public function getAdminPassword() {
+        return $this->adminPassword;
+    }
+
+    public function setAdminPassword(string $adminPassword) {
+        $this->adminPassword = $adminPassword;
+    }
+    public function adminPasswordEnabled(bool $adminPasswordEnabled): V1MeetingRoomsMeetingRoomIdGet200ResponseBasicInfo {
+        $this->adminPasswordEnabled = $adminPasswordEnabled;
+        return $this;
+    }
+
+    public function getAdminPasswordEnabled() {
+        return $this->adminPasswordEnabled;
+    }
+
+    public function setAdminPasswordEnabled(bool $adminPasswordEnabled) {
+        $this->adminPasswordEnabled = $adminPasswordEnabled;
+    }
     public function building(string $building): V1MeetingRoomsMeetingRoomIdGet200ResponseBasicInfo {
         $this->building = $building;
         return $this;
@@ -176,17 +218,17 @@ class V1MeetingRoomsMeetingRoomIdGet200ResponseBasicInfo implements ModelInterfa
     public function setParticipantNumber(int $participantNumber) {
         $this->participantNumber = $participantNumber;
     }
-    public function password(string $password): V1MeetingRoomsMeetingRoomIdGet200ResponseBasicInfo {
-        $this->password = $password;
+    public function roomsIdList(array $roomsIdList): V1MeetingRoomsMeetingRoomIdGet200ResponseBasicInfo {
+        $this->roomsIdList = $roomsIdList;
         return $this;
     }
 
-    public function getPassword() {
-        return $this->password;
+    public function getRoomsIdList() {
+        return $this->roomsIdList;
     }
 
-    public function setPassword(string $password) {
-        $this->password = $password;
+    public function setRoomsIdList(array $roomsIdList) {
+        $this->roomsIdList = $roomsIdList;
     }
 
     /**
@@ -195,6 +237,8 @@ class V1MeetingRoomsMeetingRoomIdGet200ResponseBasicInfo implements ModelInterfa
       * @var string[]
       */
     protected static $openAPITypes = [
+        'admin_password' => 'string',
+        'admin_password_enabled' => 'bool',
         'building' => 'string',
         'city' => 'string',
         'desc' => 'string',
@@ -202,7 +246,7 @@ class V1MeetingRoomsMeetingRoomIdGet200ResponseBasicInfo implements ModelInterfa
         'floor' => 'string',
         'meeting_room_name' => 'string',
         'participant_number' => 'int',
-        'password' => 'string'
+        'rooms_id_list' => 'string[]'
     ];
 
     /**
@@ -213,6 +257,8 @@ class V1MeetingRoomsMeetingRoomIdGet200ResponseBasicInfo implements ModelInterfa
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
+        'admin_password' => null,
+        'admin_password_enabled' => null,
         'building' => null,
         'city' => null,
         'desc' => null,
@@ -220,7 +266,7 @@ class V1MeetingRoomsMeetingRoomIdGet200ResponseBasicInfo implements ModelInterfa
         'floor' => null,
         'meeting_room_name' => null,
         'participant_number' => 'int64',
-        'password' => null
+        'rooms_id_list' => null
     ];
 
     /**
@@ -229,6 +275,8 @@ class V1MeetingRoomsMeetingRoomIdGet200ResponseBasicInfo implements ModelInterfa
       * @var boolean[]
       */
     protected static array $openAPINullables = [
+        'admin_password' => false,
+        'admin_password_enabled' => false,
         'building' => false,
         'city' => false,
         'desc' => false,
@@ -236,7 +284,7 @@ class V1MeetingRoomsMeetingRoomIdGet200ResponseBasicInfo implements ModelInterfa
         'floor' => false,
         'meeting_room_name' => false,
         'participant_number' => false,
-        'password' => false
+        'rooms_id_list' => false
     ];
 
     /**
@@ -325,6 +373,8 @@ class V1MeetingRoomsMeetingRoomIdGet200ResponseBasicInfo implements ModelInterfa
      * @var string[]
      */
     protected static $attributeMap = [
+        'admin_password' => 'admin_password',
+        'admin_password_enabled' => 'admin_password_enabled',
         'building' => 'building',
         'city' => 'city',
         'desc' => 'desc',
@@ -332,7 +382,7 @@ class V1MeetingRoomsMeetingRoomIdGet200ResponseBasicInfo implements ModelInterfa
         'floor' => 'floor',
         'meeting_room_name' => 'meeting_room_name',
         'participant_number' => 'participant_number',
-        'password' => 'password'
+        'rooms_id_list' => 'rooms_id_list'
     ];
 
     /**
@@ -341,6 +391,8 @@ class V1MeetingRoomsMeetingRoomIdGet200ResponseBasicInfo implements ModelInterfa
      * @var string[]
      */
     protected static $setters = [
+        'admin_password' => 'setAdminPassword',
+        'admin_password_enabled' => 'setAdminPasswordEnabled',
         'building' => 'setBuilding',
         'city' => 'setCity',
         'desc' => 'setDesc',
@@ -348,7 +400,7 @@ class V1MeetingRoomsMeetingRoomIdGet200ResponseBasicInfo implements ModelInterfa
         'floor' => 'setFloor',
         'meeting_room_name' => 'setMeetingRoomName',
         'participant_number' => 'setParticipantNumber',
-        'password' => 'setPassword'
+        'rooms_id_list' => 'setRoomsIdList'
     ];
 
     /**
@@ -357,6 +409,8 @@ class V1MeetingRoomsMeetingRoomIdGet200ResponseBasicInfo implements ModelInterfa
      * @var string[]
      */
     protected static $getters = [
+        'admin_password' => 'getAdminPassword',
+        'admin_password_enabled' => 'getAdminPasswordEnabled',
         'building' => 'getBuilding',
         'city' => 'getCity',
         'desc' => 'getDesc',
@@ -364,7 +418,7 @@ class V1MeetingRoomsMeetingRoomIdGet200ResponseBasicInfo implements ModelInterfa
         'floor' => 'getFloor',
         'meeting_room_name' => 'getMeetingRoomName',
         'participant_number' => 'getParticipantNumber',
-        'password' => 'getPassword'
+        'rooms_id_list' => 'getRoomsIdList'
     ];
 
     /**
@@ -400,6 +454,8 @@ class V1MeetingRoomsMeetingRoomIdGet200ResponseBasicInfo implements ModelInterfa
 
     public function jsonSerialize(): mixed {
         $data = [
+            'admin_password' => $this->adminPassword,
+            'admin_password_enabled' => $this->adminPasswordEnabled,
             'building' => $this->building,
             'city' => $this->city,
             'desc' => $this->desc,
@@ -407,7 +463,7 @@ class V1MeetingRoomsMeetingRoomIdGet200ResponseBasicInfo implements ModelInterfa
             'floor' => $this->floor,
             'meeting_room_name' => $this->meetingRoomName,
             'participant_number' => $this->participantNumber,
-            'password' => $this->password,
+            'rooms_id_list' => $this->roomsIdList,
         ];
         return array_filter($data, function($value) {
             return !is_null($value) && $value !== '';

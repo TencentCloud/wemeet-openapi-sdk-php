@@ -5,7 +5,7 @@
  *
  * SAAS版RESTFUL风格API
  *
- * The version of the OpenAPI document: v1.0.5
+ * The version of the OpenAPI document: v1.0.7
  */
 namespace wemeet\openapi\service\user_manager\model;
 
@@ -18,6 +18,11 @@ class V1UsersUseridGet200ResponseDepartmentListInner implements ModelInterface, 
     /**
     * 类型：string
      */
+    protected $departmentFullName = null;
+
+    /**
+    * 类型：string
+     */
     protected $departmentId = null;
 
     /**
@@ -25,17 +30,40 @@ class V1UsersUseridGet200ResponseDepartmentListInner implements ModelInterface, 
      */
     protected $departmentName = null;
 
+    /**
+    * 类型：bool
+     */
+    protected $isMain = null;
+
     public function __construct(
         $jsonArray = []
     ) {
+        if (isset($jsonArray['department_full_name'])) {
+            $this->departmentFullName = $jsonArray['department_full_name'];
+        }
         if (isset($jsonArray['department_id'])) {
             $this->departmentId = $jsonArray['department_id'];
         }
         if (isset($jsonArray['department_name'])) {
             $this->departmentName = $jsonArray['department_name'];
         }
+        if (isset($jsonArray['is_main'])) {
+            $this->isMain = $jsonArray['is_main'];
+        }
     }
 
+    public function departmentFullName(string $departmentFullName): V1UsersUseridGet200ResponseDepartmentListInner {
+        $this->departmentFullName = $departmentFullName;
+        return $this;
+    }
+
+    public function getDepartmentFullName() {
+        return $this->departmentFullName;
+    }
+
+    public function setDepartmentFullName(string $departmentFullName) {
+        $this->departmentFullName = $departmentFullName;
+    }
     public function departmentId(string $departmentId): V1UsersUseridGet200ResponseDepartmentListInner {
         $this->departmentId = $departmentId;
         return $this;
@@ -60,6 +88,18 @@ class V1UsersUseridGet200ResponseDepartmentListInner implements ModelInterface, 
     public function setDepartmentName(string $departmentName) {
         $this->departmentName = $departmentName;
     }
+    public function isMain(bool $isMain): V1UsersUseridGet200ResponseDepartmentListInner {
+        $this->isMain = $isMain;
+        return $this;
+    }
+
+    public function getIsMain() {
+        return $this->isMain;
+    }
+
+    public function setIsMain(bool $isMain) {
+        $this->isMain = $isMain;
+    }
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -67,8 +107,10 @@ class V1UsersUseridGet200ResponseDepartmentListInner implements ModelInterface, 
       * @var string[]
       */
     protected static $openAPITypes = [
+        'department_full_name' => 'string',
         'department_id' => 'string',
-        'department_name' => 'string'
+        'department_name' => 'string',
+        'is_main' => 'bool'
     ];
 
     /**
@@ -79,8 +121,10 @@ class V1UsersUseridGet200ResponseDepartmentListInner implements ModelInterface, 
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
+        'department_full_name' => null,
         'department_id' => null,
-        'department_name' => null
+        'department_name' => null,
+        'is_main' => null
     ];
 
     /**
@@ -89,8 +133,10 @@ class V1UsersUseridGet200ResponseDepartmentListInner implements ModelInterface, 
       * @var boolean[]
       */
     protected static array $openAPINullables = [
+        'department_full_name' => false,
         'department_id' => false,
-        'department_name' => false
+        'department_name' => false,
+        'is_main' => false
     ];
 
     /**
@@ -179,8 +225,10 @@ class V1UsersUseridGet200ResponseDepartmentListInner implements ModelInterface, 
      * @var string[]
      */
     protected static $attributeMap = [
+        'department_full_name' => 'department_full_name',
         'department_id' => 'department_id',
-        'department_name' => 'department_name'
+        'department_name' => 'department_name',
+        'is_main' => 'is_main'
     ];
 
     /**
@@ -189,8 +237,10 @@ class V1UsersUseridGet200ResponseDepartmentListInner implements ModelInterface, 
      * @var string[]
      */
     protected static $setters = [
+        'department_full_name' => 'setDepartmentFullName',
         'department_id' => 'setDepartmentId',
-        'department_name' => 'setDepartmentName'
+        'department_name' => 'setDepartmentName',
+        'is_main' => 'setIsMain'
     ];
 
     /**
@@ -199,8 +249,10 @@ class V1UsersUseridGet200ResponseDepartmentListInner implements ModelInterface, 
      * @var string[]
      */
     protected static $getters = [
+        'department_full_name' => 'getDepartmentFullName',
         'department_id' => 'getDepartmentId',
-        'department_name' => 'getDepartmentName'
+        'department_name' => 'getDepartmentName',
+        'is_main' => 'getIsMain'
     ];
 
     /**
@@ -236,8 +288,10 @@ class V1UsersUseridGet200ResponseDepartmentListInner implements ModelInterface, 
 
     public function jsonSerialize(): mixed {
         $data = [
+            'department_full_name' => $this->departmentFullName,
             'department_id' => $this->departmentId,
             'department_name' => $this->departmentName,
+            'is_main' => $this->isMain,
         ];
         return array_filter($data, function($value) {
             return !is_null($value) && $value !== '';

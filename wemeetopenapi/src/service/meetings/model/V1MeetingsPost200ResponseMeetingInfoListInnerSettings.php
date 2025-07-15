@@ -5,7 +5,7 @@
  *
  * SAAS版RESTFUL风格API
  *
- * The version of the OpenAPI document: v1.0.5
+ * The version of the OpenAPI document: v1.0.7
  */
 namespace wemeet\openapi\service\meetings\model;
 
@@ -38,6 +38,12 @@ class V1MeetingsPost200ResponseMeetingInfoListInnerSettings implements ModelInte
     * 类型：bool
      */
     protected $allowUnmuteSelf = null;
+
+    /**
+     * 开启自动转写的会议默认不开启 true：开启 false：不开启
+    * 类型：bool
+     */
+    protected $autoAsr = null;
 
     /**
      * 开启等候室
@@ -88,6 +94,12 @@ class V1MeetingsPost200ResponseMeetingInfoListInnerSettings implements ModelInte
     protected $onlyUserJoinType = null;
 
     /**
+     * 设置主持人入会是否自动打开转写侧边栏 在auto_asr为true下才会生效，true:开启转写 false：不开启
+    * 类型：int
+     */
+    protected $openAsrView = null;
+
+    /**
      * 当有参会成员入会时立即开启云录制，默认值为 false 关闭，关闭时，主持人入会自动开启云录制；当设置为开启时，则有参会成员入会自动开启云录制。
     * 类型：bool
      */
@@ -126,6 +138,9 @@ class V1MeetingsPost200ResponseMeetingInfoListInnerSettings implements ModelInte
         if (isset($jsonArray['allow_unmute_self'])) {
             $this->allowUnmuteSelf = $jsonArray['allow_unmute_self'];
         }
+        if (isset($jsonArray['auto_asr'])) {
+            $this->autoAsr = $jsonArray['auto_asr'];
+        }
         if (isset($jsonArray['auto_in_waiting_room'])) {
             $this->autoInWaitingRoom = $jsonArray['auto_in_waiting_room'];
         }
@@ -149,6 +164,9 @@ class V1MeetingsPost200ResponseMeetingInfoListInnerSettings implements ModelInte
         }
         if (isset($jsonArray['only_user_join_type'])) {
             $this->onlyUserJoinType = $jsonArray['only_user_join_type'];
+        }
+        if (isset($jsonArray['open_asr_view'])) {
+            $this->openAsrView = $jsonArray['open_asr_view'];
         }
         if (isset($jsonArray['participant_join_auto_record'])) {
             $this->participantJoinAutoRecord = $jsonArray['participant_join_auto_record'];
@@ -211,6 +229,18 @@ class V1MeetingsPost200ResponseMeetingInfoListInnerSettings implements ModelInte
 
     public function setAllowUnmuteSelf(bool $allowUnmuteSelf) {
         $this->allowUnmuteSelf = $allowUnmuteSelf;
+    }
+    public function autoAsr(bool $autoAsr): V1MeetingsPost200ResponseMeetingInfoListInnerSettings {
+        $this->autoAsr = $autoAsr;
+        return $this;
+    }
+
+    public function getAutoAsr() {
+        return $this->autoAsr;
+    }
+
+    public function setAutoAsr(bool $autoAsr) {
+        $this->autoAsr = $autoAsr;
     }
     public function autoInWaitingRoom(bool $autoInWaitingRoom): V1MeetingsPost200ResponseMeetingInfoListInnerSettings {
         $this->autoInWaitingRoom = $autoInWaitingRoom;
@@ -308,6 +338,18 @@ class V1MeetingsPost200ResponseMeetingInfoListInnerSettings implements ModelInte
     public function setOnlyUserJoinType(int $onlyUserJoinType) {
         $this->onlyUserJoinType = $onlyUserJoinType;
     }
+    public function openAsrView(int $openAsrView): V1MeetingsPost200ResponseMeetingInfoListInnerSettings {
+        $this->openAsrView = $openAsrView;
+        return $this;
+    }
+
+    public function getOpenAsrView() {
+        return $this->openAsrView;
+    }
+
+    public function setOpenAsrView(int $openAsrView) {
+        $this->openAsrView = $openAsrView;
+    }
     public function participantJoinAutoRecord(bool $participantJoinAutoRecord): V1MeetingsPost200ResponseMeetingInfoListInnerSettings {
         $this->participantJoinAutoRecord = $participantJoinAutoRecord;
         return $this;
@@ -367,6 +409,7 @@ class V1MeetingsPost200ResponseMeetingInfoListInnerSettings implements ModelInte
         'allow_multi_device' => 'bool',
         'allow_screen_shared_watermark' => 'bool',
         'allow_unmute_self' => 'bool',
+        'auto_asr' => 'bool',
         'auto_in_waiting_room' => 'bool',
         'auto_record_type' => 'string',
         'change_nickname' => 'int',
@@ -375,6 +418,7 @@ class V1MeetingsPost200ResponseMeetingInfoListInnerSettings implements ModelInte
         'mute_enable_type_join' => 'int',
         'only_enterprise_user_allowed' => 'bool',
         'only_user_join_type' => 'int',
+        'open_asr_view' => 'int',
         'participant_join_auto_record' => 'bool',
         'play_ivr_on_join' => 'bool',
         'play_ivr_on_leave' => 'bool',
@@ -393,6 +437,7 @@ class V1MeetingsPost200ResponseMeetingInfoListInnerSettings implements ModelInte
         'allow_multi_device' => null,
         'allow_screen_shared_watermark' => null,
         'allow_unmute_self' => null,
+        'auto_asr' => null,
         'auto_in_waiting_room' => null,
         'auto_record_type' => null,
         'change_nickname' => 'int64',
@@ -401,6 +446,7 @@ class V1MeetingsPost200ResponseMeetingInfoListInnerSettings implements ModelInte
         'mute_enable_type_join' => 'int64',
         'only_enterprise_user_allowed' => null,
         'only_user_join_type' => 'int64',
+        'open_asr_view' => 'int64',
         'participant_join_auto_record' => null,
         'play_ivr_on_join' => null,
         'play_ivr_on_leave' => null,
@@ -417,6 +463,7 @@ class V1MeetingsPost200ResponseMeetingInfoListInnerSettings implements ModelInte
         'allow_multi_device' => false,
         'allow_screen_shared_watermark' => false,
         'allow_unmute_self' => false,
+        'auto_asr' => false,
         'auto_in_waiting_room' => false,
         'auto_record_type' => false,
         'change_nickname' => false,
@@ -425,6 +472,7 @@ class V1MeetingsPost200ResponseMeetingInfoListInnerSettings implements ModelInte
         'mute_enable_type_join' => false,
         'only_enterprise_user_allowed' => false,
         'only_user_join_type' => false,
+        'open_asr_view' => false,
         'participant_join_auto_record' => false,
         'play_ivr_on_join' => false,
         'play_ivr_on_leave' => false,
@@ -521,6 +569,7 @@ class V1MeetingsPost200ResponseMeetingInfoListInnerSettings implements ModelInte
         'allow_multi_device' => 'allow_multi_device',
         'allow_screen_shared_watermark' => 'allow_screen_shared_watermark',
         'allow_unmute_self' => 'allow_unmute_self',
+        'auto_asr' => 'auto_asr',
         'auto_in_waiting_room' => 'auto_in_waiting_room',
         'auto_record_type' => 'auto_record_type',
         'change_nickname' => 'change_nickname',
@@ -529,6 +578,7 @@ class V1MeetingsPost200ResponseMeetingInfoListInnerSettings implements ModelInte
         'mute_enable_type_join' => 'mute_enable_type_join',
         'only_enterprise_user_allowed' => 'only_enterprise_user_allowed',
         'only_user_join_type' => 'only_user_join_type',
+        'open_asr_view' => 'open_asr_view',
         'participant_join_auto_record' => 'participant_join_auto_record',
         'play_ivr_on_join' => 'play_ivr_on_join',
         'play_ivr_on_leave' => 'play_ivr_on_leave',
@@ -545,6 +595,7 @@ class V1MeetingsPost200ResponseMeetingInfoListInnerSettings implements ModelInte
         'allow_multi_device' => 'setAllowMultiDevice',
         'allow_screen_shared_watermark' => 'setAllowScreenSharedWatermark',
         'allow_unmute_self' => 'setAllowUnmuteSelf',
+        'auto_asr' => 'setAutoAsr',
         'auto_in_waiting_room' => 'setAutoInWaitingRoom',
         'auto_record_type' => 'setAutoRecordType',
         'change_nickname' => 'setChangeNickname',
@@ -553,6 +604,7 @@ class V1MeetingsPost200ResponseMeetingInfoListInnerSettings implements ModelInte
         'mute_enable_type_join' => 'setMuteEnableTypeJoin',
         'only_enterprise_user_allowed' => 'setOnlyEnterpriseUserAllowed',
         'only_user_join_type' => 'setOnlyUserJoinType',
+        'open_asr_view' => 'setOpenAsrView',
         'participant_join_auto_record' => 'setParticipantJoinAutoRecord',
         'play_ivr_on_join' => 'setPlayIvrOnJoin',
         'play_ivr_on_leave' => 'setPlayIvrOnLeave',
@@ -569,6 +621,7 @@ class V1MeetingsPost200ResponseMeetingInfoListInnerSettings implements ModelInte
         'allow_multi_device' => 'getAllowMultiDevice',
         'allow_screen_shared_watermark' => 'getAllowScreenSharedWatermark',
         'allow_unmute_self' => 'getAllowUnmuteSelf',
+        'auto_asr' => 'getAutoAsr',
         'auto_in_waiting_room' => 'getAutoInWaitingRoom',
         'auto_record_type' => 'getAutoRecordType',
         'change_nickname' => 'getChangeNickname',
@@ -577,6 +630,7 @@ class V1MeetingsPost200ResponseMeetingInfoListInnerSettings implements ModelInte
         'mute_enable_type_join' => 'getMuteEnableTypeJoin',
         'only_enterprise_user_allowed' => 'getOnlyEnterpriseUserAllowed',
         'only_user_join_type' => 'getOnlyUserJoinType',
+        'open_asr_view' => 'getOpenAsrView',
         'participant_join_auto_record' => 'getParticipantJoinAutoRecord',
         'play_ivr_on_join' => 'getPlayIvrOnJoin',
         'play_ivr_on_leave' => 'getPlayIvrOnLeave',
@@ -620,6 +674,7 @@ class V1MeetingsPost200ResponseMeetingInfoListInnerSettings implements ModelInte
             'allow_multi_device' => $this->allowMultiDevice,
             'allow_screen_shared_watermark' => $this->allowScreenSharedWatermark,
             'allow_unmute_self' => $this->allowUnmuteSelf,
+            'auto_asr' => $this->autoAsr,
             'auto_in_waiting_room' => $this->autoInWaitingRoom,
             'auto_record_type' => $this->autoRecordType,
             'change_nickname' => $this->changeNickname,
@@ -628,6 +683,7 @@ class V1MeetingsPost200ResponseMeetingInfoListInnerSettings implements ModelInte
             'mute_enable_type_join' => $this->muteEnableTypeJoin,
             'only_enterprise_user_allowed' => $this->onlyEnterpriseUserAllowed,
             'only_user_join_type' => $this->onlyUserJoinType,
+            'open_asr_view' => $this->openAsrView,
             'participant_join_auto_record' => $this->participantJoinAutoRecord,
             'play_ivr_on_join' => $this->playIvrOnJoin,
             'play_ivr_on_leave' => $this->playIvrOnLeave,

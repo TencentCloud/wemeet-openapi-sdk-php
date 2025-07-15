@@ -5,105 +5,80 @@
  *
  * SAAS版RESTFUL风格API
  *
- * The version of the OpenAPI document: v1.0.5
+ * The version of the OpenAPI document: v1.0.7
  */
-namespace wemeet\openapi\service\meeting_control\model;
+namespace wemeet\openapi\service\meetings\model;
 
 use wemeet\openapi\core\xhttp\ModelInterface;
 
 
-class V1RealControlMeetingsMeetingIdWaitingRoomPutRequestUsersInner implements ModelInterface, \JsonSerializable
+class V1MeetingsMeetingIdGet200ResponseMeetingInfoListInnerCurrentCoHostsInner implements ModelInterface, \JsonSerializable
 {
-    /**
-     * 用户的终端设备类型： 0：PSTN 1：PC 2：Mac 3：Android 4：iOS 5：Web 6：iPad 7：Android Pad 8：小程序 9：voip、sip 设备 10：linux 20：Rooms for Touch Windows 21：Rooms for Touch MacOS 22：Rooms for Touch Android 30：Controller for Touch Windows 32：Controller for Touch Android 33：Controller for Touch iOS 说明：请与被操作者的设备类型保持一致，否则不生效。
-    * 类型：
-     */
-    protected $instanceid;
 
     /**
-     * 用户ID，根据to_operator_id_type的值，使用不同的类型
     * 类型：string
      */
-    protected $toOperatorId = null;
+    protected $operatorId = null;
 
     /**
-     * 用户ID的类型：  4: ms_open_id
     * 类型：int
      */
-    protected $toOperatorIdType = null;
+    protected $operatorIdType = null;
 
     /**
-     * 用户的唯一标识uuid
     * 类型：string
      */
-    protected $uuid = null;
+    protected $userid = null;
 
     public function __construct(
         $jsonArray = []
     ) {
-        if (isset($jsonArray['instanceid'])) {
-            $this->instanceid = $jsonArray['instanceid'];
-        } else {
-            throw new \InvalidArgumentException('Missing required parameter instanceid');
+        if (isset($jsonArray['operator_id'])) {
+            $this->operatorId = $jsonArray['operator_id'];
         }
-        if (isset($jsonArray['to_operator_id'])) {
-            $this->toOperatorId = $jsonArray['to_operator_id'];
+        if (isset($jsonArray['operator_id_type'])) {
+            $this->operatorIdType = $jsonArray['operator_id_type'];
         }
-        if (isset($jsonArray['to_operator_id_type'])) {
-            $this->toOperatorIdType = $jsonArray['to_operator_id_type'];
-        }
-        if (isset($jsonArray['uuid'])) {
-            $this->uuid = $jsonArray['uuid'];
+        if (isset($jsonArray['userid'])) {
+            $this->userid = $jsonArray['userid'];
         }
     }
 
-    public function instanceid(int $instanceid): V1RealControlMeetingsMeetingIdWaitingRoomPutRequestUsersInner {
-        $this->instanceid = $instanceid;
+    public function operatorId(string $operatorId): V1MeetingsMeetingIdGet200ResponseMeetingInfoListInnerCurrentCoHostsInner {
+        $this->operatorId = $operatorId;
         return $this;
     }
 
-    public function getInstanceid() {
-        return $this->instanceid;
+    public function getOperatorId() {
+        return $this->operatorId;
     }
 
-    public function setInstanceid(int $instanceid) {
-        $this->instanceid = $instanceid;
+    public function setOperatorId(string $operatorId) {
+        $this->operatorId = $operatorId;
     }
-    public function toOperatorId(string $toOperatorId): V1RealControlMeetingsMeetingIdWaitingRoomPutRequestUsersInner {
-        $this->toOperatorId = $toOperatorId;
+    public function operatorIdType(int $operatorIdType): V1MeetingsMeetingIdGet200ResponseMeetingInfoListInnerCurrentCoHostsInner {
+        $this->operatorIdType = $operatorIdType;
         return $this;
     }
 
-    public function getToOperatorId() {
-        return $this->toOperatorId;
+    public function getOperatorIdType() {
+        return $this->operatorIdType;
     }
 
-    public function setToOperatorId(string $toOperatorId) {
-        $this->toOperatorId = $toOperatorId;
+    public function setOperatorIdType(int $operatorIdType) {
+        $this->operatorIdType = $operatorIdType;
     }
-    public function toOperatorIdType(int $toOperatorIdType): V1RealControlMeetingsMeetingIdWaitingRoomPutRequestUsersInner {
-        $this->toOperatorIdType = $toOperatorIdType;
+    public function userid(string $userid): V1MeetingsMeetingIdGet200ResponseMeetingInfoListInnerCurrentCoHostsInner {
+        $this->userid = $userid;
         return $this;
     }
 
-    public function getToOperatorIdType() {
-        return $this->toOperatorIdType;
+    public function getUserid() {
+        return $this->userid;
     }
 
-    public function setToOperatorIdType(int $toOperatorIdType) {
-        $this->toOperatorIdType = $toOperatorIdType;
-    }
-    public function uuid(string $uuid): V1RealControlMeetingsMeetingIdWaitingRoomPutRequestUsersInner {
-        $this->uuid = $uuid;
-        return $this;
-    }
-
-    public function getUuid() {
-        return $this->uuid;
-    }
-
-    public function setUuid(string $uuid) {
-        $this->uuid = $uuid;
+    public function setUserid(string $userid) {
+        $this->userid = $userid;
     }
 
     /**
@@ -112,10 +87,9 @@ class V1RealControlMeetingsMeetingIdWaitingRoomPutRequestUsersInner implements M
       * @var string[]
       */
     protected static $openAPITypes = [
-        'instanceid' => 'int',
-        'to_operator_id' => 'string',
-        'to_operator_id_type' => 'int',
-        'uuid' => 'string'
+        'operator_id' => 'string',
+        'operator_id_type' => 'int',
+        'userid' => 'string'
     ];
 
     /**
@@ -126,10 +100,9 @@ class V1RealControlMeetingsMeetingIdWaitingRoomPutRequestUsersInner implements M
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'instanceid' => 'int64',
-        'to_operator_id' => null,
-        'to_operator_id_type' => 'int64',
-        'uuid' => null
+        'operator_id' => null,
+        'operator_id_type' => 'int64',
+        'userid' => null
     ];
 
     /**
@@ -138,10 +111,9 @@ class V1RealControlMeetingsMeetingIdWaitingRoomPutRequestUsersInner implements M
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'instanceid' => false,
-        'to_operator_id' => false,
-        'to_operator_id_type' => false,
-        'uuid' => false
+        'operator_id' => false,
+        'operator_id_type' => false,
+        'userid' => false
     ];
 
     /**
@@ -230,10 +202,9 @@ class V1RealControlMeetingsMeetingIdWaitingRoomPutRequestUsersInner implements M
      * @var string[]
      */
     protected static $attributeMap = [
-        'instanceid' => 'instanceid',
-        'to_operator_id' => 'to_operator_id',
-        'to_operator_id_type' => 'to_operator_id_type',
-        'uuid' => 'uuid'
+        'operator_id' => 'operator_id',
+        'operator_id_type' => 'operator_id_type',
+        'userid' => 'userid'
     ];
 
     /**
@@ -242,10 +213,9 @@ class V1RealControlMeetingsMeetingIdWaitingRoomPutRequestUsersInner implements M
      * @var string[]
      */
     protected static $setters = [
-        'instanceid' => 'setInstanceid',
-        'to_operator_id' => 'setToOperatorId',
-        'to_operator_id_type' => 'setToOperatorIdType',
-        'uuid' => 'setUuid'
+        'operator_id' => 'setOperatorId',
+        'operator_id_type' => 'setOperatorIdType',
+        'userid' => 'setUserid'
     ];
 
     /**
@@ -254,10 +224,9 @@ class V1RealControlMeetingsMeetingIdWaitingRoomPutRequestUsersInner implements M
      * @var string[]
      */
     protected static $getters = [
-        'instanceid' => 'getInstanceid',
-        'to_operator_id' => 'getToOperatorId',
-        'to_operator_id_type' => 'getToOperatorIdType',
-        'uuid' => 'getUuid'
+        'operator_id' => 'getOperatorId',
+        'operator_id_type' => 'getOperatorIdType',
+        'userid' => 'getUserid'
     ];
 
     /**
@@ -293,10 +262,9 @@ class V1RealControlMeetingsMeetingIdWaitingRoomPutRequestUsersInner implements M
 
     public function jsonSerialize(): mixed {
         $data = [
-            'instanceid' => $this->instanceid,
-            'to_operator_id' => $this->toOperatorId,
-            'to_operator_id_type' => $this->toOperatorIdType,
-            'uuid' => $this->uuid,
+            'operator_id' => $this->operatorId,
+            'operator_id_type' => $this->operatorIdType,
+            'userid' => $this->userid,
         ];
         return array_filter($data, function($value) {
             return !is_null($value) && $value !== '';

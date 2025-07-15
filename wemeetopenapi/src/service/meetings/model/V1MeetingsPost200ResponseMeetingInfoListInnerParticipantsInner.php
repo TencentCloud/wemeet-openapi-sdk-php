@@ -5,7 +5,7 @@
  *
  * SAAS版RESTFUL风格API
  *
- * The version of the OpenAPI document: v1.0.5
+ * The version of the OpenAPI document: v1.0.7
  */
 namespace wemeet\openapi\service\meetings\model;
 
@@ -28,24 +28,6 @@ class V1MeetingsPost200ResponseMeetingInfoListInnerParticipantsInner implements 
     protected $nickName = null;
 
     /**
-     * 操作者ID，根据operator_id_type的值，使用不同的类型
-    * 类型：string
-     */
-    protected $operatorId = null;
-
-    /**
-     * 操作者ID的类型：1:userid  2:openid 3:rooms_id  4: ms_open_id
-    * 类型：int
-     */
-    protected $operatorIdType = null;
-
-    /**
-     * 头像地址
-    * 类型：string
-     */
-    protected $profilePhoto = null;
-
-    /**
     * 类型：string
      */
     protected $userid = null;
@@ -58,15 +40,6 @@ class V1MeetingsPost200ResponseMeetingInfoListInnerParticipantsInner implements 
         }
         if (isset($jsonArray['nick_name'])) {
             $this->nickName = $jsonArray['nick_name'];
-        }
-        if (isset($jsonArray['operator_id'])) {
-            $this->operatorId = $jsonArray['operator_id'];
-        }
-        if (isset($jsonArray['operator_id_type'])) {
-            $this->operatorIdType = $jsonArray['operator_id_type'];
-        }
-        if (isset($jsonArray['profile_photo'])) {
-            $this->profilePhoto = $jsonArray['profile_photo'];
         }
         if (isset($jsonArray['userid'])) {
             $this->userid = $jsonArray['userid'];
@@ -97,42 +70,6 @@ class V1MeetingsPost200ResponseMeetingInfoListInnerParticipantsInner implements 
     public function setNickName(string $nickName) {
         $this->nickName = $nickName;
     }
-    public function operatorId(string $operatorId): V1MeetingsPost200ResponseMeetingInfoListInnerParticipantsInner {
-        $this->operatorId = $operatorId;
-        return $this;
-    }
-
-    public function getOperatorId() {
-        return $this->operatorId;
-    }
-
-    public function setOperatorId(string $operatorId) {
-        $this->operatorId = $operatorId;
-    }
-    public function operatorIdType(int $operatorIdType): V1MeetingsPost200ResponseMeetingInfoListInnerParticipantsInner {
-        $this->operatorIdType = $operatorIdType;
-        return $this;
-    }
-
-    public function getOperatorIdType() {
-        return $this->operatorIdType;
-    }
-
-    public function setOperatorIdType(int $operatorIdType) {
-        $this->operatorIdType = $operatorIdType;
-    }
-    public function profilePhoto(string $profilePhoto): V1MeetingsPost200ResponseMeetingInfoListInnerParticipantsInner {
-        $this->profilePhoto = $profilePhoto;
-        return $this;
-    }
-
-    public function getProfilePhoto() {
-        return $this->profilePhoto;
-    }
-
-    public function setProfilePhoto(string $profilePhoto) {
-        $this->profilePhoto = $profilePhoto;
-    }
     public function userid(string $userid): V1MeetingsPost200ResponseMeetingInfoListInnerParticipantsInner {
         $this->userid = $userid;
         return $this;
@@ -154,9 +91,6 @@ class V1MeetingsPost200ResponseMeetingInfoListInnerParticipantsInner implements 
     protected static $openAPITypes = [
         'is_anonymous' => 'bool',
         'nick_name' => 'string',
-        'operator_id' => 'string',
-        'operator_id_type' => 'int',
-        'profile_photo' => 'string',
         'userid' => 'string'
     ];
 
@@ -170,9 +104,6 @@ class V1MeetingsPost200ResponseMeetingInfoListInnerParticipantsInner implements 
     protected static $openAPIFormats = [
         'is_anonymous' => null,
         'nick_name' => null,
-        'operator_id' => null,
-        'operator_id_type' => 'int64',
-        'profile_photo' => null,
         'userid' => null
     ];
 
@@ -184,9 +115,6 @@ class V1MeetingsPost200ResponseMeetingInfoListInnerParticipantsInner implements 
     protected static array $openAPINullables = [
         'is_anonymous' => false,
         'nick_name' => false,
-        'operator_id' => false,
-        'operator_id_type' => false,
-        'profile_photo' => false,
         'userid' => false
     ];
 
@@ -278,9 +206,6 @@ class V1MeetingsPost200ResponseMeetingInfoListInnerParticipantsInner implements 
     protected static $attributeMap = [
         'is_anonymous' => 'is_anonymous',
         'nick_name' => 'nick_name',
-        'operator_id' => 'operator_id',
-        'operator_id_type' => 'operator_id_type',
-        'profile_photo' => 'profile_photo',
         'userid' => 'userid'
     ];
 
@@ -292,9 +217,6 @@ class V1MeetingsPost200ResponseMeetingInfoListInnerParticipantsInner implements 
     protected static $setters = [
         'is_anonymous' => 'setIsAnonymous',
         'nick_name' => 'setNickName',
-        'operator_id' => 'setOperatorId',
-        'operator_id_type' => 'setOperatorIdType',
-        'profile_photo' => 'setProfilePhoto',
         'userid' => 'setUserid'
     ];
 
@@ -306,9 +228,6 @@ class V1MeetingsPost200ResponseMeetingInfoListInnerParticipantsInner implements 
     protected static $getters = [
         'is_anonymous' => 'getIsAnonymous',
         'nick_name' => 'getNickName',
-        'operator_id' => 'getOperatorId',
-        'operator_id_type' => 'getOperatorIdType',
-        'profile_photo' => 'getProfilePhoto',
         'userid' => 'getUserid'
     ];
 
@@ -347,9 +266,6 @@ class V1MeetingsPost200ResponseMeetingInfoListInnerParticipantsInner implements 
         $data = [
             'is_anonymous' => $this->isAnonymous,
             'nick_name' => $this->nickName,
-            'operator_id' => $this->operatorId,
-            'operator_id_type' => $this->operatorIdType,
-            'profile_photo' => $this->profilePhoto,
             'userid' => $this->userid,
         ];
         return array_filter($data, function($value) {

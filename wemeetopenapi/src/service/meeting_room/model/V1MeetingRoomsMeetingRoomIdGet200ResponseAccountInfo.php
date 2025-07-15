@@ -5,7 +5,7 @@
  *
  * SAAS版RESTFUL风格API
  *
- * The version of the OpenAPI document: v1.0.5
+ * The version of the OpenAPI document: v1.0.7
  */
 namespace wemeet\openapi\service\meeting_room\model;
 
@@ -27,12 +27,6 @@ class V1MeetingRoomsMeetingRoomIdGet200ResponseAccountInfo implements ModelInter
     protected $accountType = null;
 
     /**
-     * 1-预装 2-体验 3-付费
-    * 类型：int
-     */
-    protected $proAccountType = null;
-
-    /**
      * 有效期限
     * 类型：string
      */
@@ -46,9 +40,6 @@ class V1MeetingRoomsMeetingRoomIdGet200ResponseAccountInfo implements ModelInter
         }
         if (isset($jsonArray['account_type'])) {
             $this->accountType = $jsonArray['account_type'];
-        }
-        if (isset($jsonArray['pro_account_type'])) {
-            $this->proAccountType = $jsonArray['pro_account_type'];
         }
         if (isset($jsonArray['valid_period'])) {
             $this->validPeriod = $jsonArray['valid_period'];
@@ -79,18 +70,6 @@ class V1MeetingRoomsMeetingRoomIdGet200ResponseAccountInfo implements ModelInter
     public function setAccountType(int $accountType) {
         $this->accountType = $accountType;
     }
-    public function proAccountType(int $proAccountType): V1MeetingRoomsMeetingRoomIdGet200ResponseAccountInfo {
-        $this->proAccountType = $proAccountType;
-        return $this;
-    }
-
-    public function getProAccountType() {
-        return $this->proAccountType;
-    }
-
-    public function setProAccountType(int $proAccountType) {
-        $this->proAccountType = $proAccountType;
-    }
     public function validPeriod(string $validPeriod): V1MeetingRoomsMeetingRoomIdGet200ResponseAccountInfo {
         $this->validPeriod = $validPeriod;
         return $this;
@@ -112,7 +91,6 @@ class V1MeetingRoomsMeetingRoomIdGet200ResponseAccountInfo implements ModelInter
     protected static $openAPITypes = [
         'account_new_type' => 'int',
         'account_type' => 'int',
-        'pro_account_type' => 'int',
         'valid_period' => 'string'
     ];
 
@@ -126,7 +104,6 @@ class V1MeetingRoomsMeetingRoomIdGet200ResponseAccountInfo implements ModelInter
     protected static $openAPIFormats = [
         'account_new_type' => 'int64',
         'account_type' => 'int64',
-        'pro_account_type' => 'int64',
         'valid_period' => null
     ];
 
@@ -138,7 +115,6 @@ class V1MeetingRoomsMeetingRoomIdGet200ResponseAccountInfo implements ModelInter
     protected static array $openAPINullables = [
         'account_new_type' => false,
         'account_type' => false,
-        'pro_account_type' => false,
         'valid_period' => false
     ];
 
@@ -230,7 +206,6 @@ class V1MeetingRoomsMeetingRoomIdGet200ResponseAccountInfo implements ModelInter
     protected static $attributeMap = [
         'account_new_type' => 'account_new_type',
         'account_type' => 'account_type',
-        'pro_account_type' => 'pro_account_type',
         'valid_period' => 'valid_period'
     ];
 
@@ -242,7 +217,6 @@ class V1MeetingRoomsMeetingRoomIdGet200ResponseAccountInfo implements ModelInter
     protected static $setters = [
         'account_new_type' => 'setAccountNewType',
         'account_type' => 'setAccountType',
-        'pro_account_type' => 'setProAccountType',
         'valid_period' => 'setValidPeriod'
     ];
 
@@ -254,7 +228,6 @@ class V1MeetingRoomsMeetingRoomIdGet200ResponseAccountInfo implements ModelInter
     protected static $getters = [
         'account_new_type' => 'getAccountNewType',
         'account_type' => 'getAccountType',
-        'pro_account_type' => 'getProAccountType',
         'valid_period' => 'getValidPeriod'
     ];
 
@@ -293,7 +266,6 @@ class V1MeetingRoomsMeetingRoomIdGet200ResponseAccountInfo implements ModelInter
         $data = [
             'account_new_type' => $this->accountNewType,
             'account_type' => $this->accountType,
-            'pro_account_type' => $this->proAccountType,
             'valid_period' => $this->validPeriod,
         ];
         return array_filter($data, function($value) {

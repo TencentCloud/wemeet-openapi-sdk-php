@@ -5,7 +5,7 @@
  *
  * SAAS版RESTFUL风格API
  *
- * The version of the OpenAPI document: v1.0.5
+ * The version of the OpenAPI document: v1.0.7
  */
 namespace wemeet\openapi\service\records\model;
 
@@ -22,6 +22,11 @@ class V1RecordsTranscriptsDetailsGet200ResponseMinutes implements ModelInterface
     protected $audioDetect = null;
 
     /**
+    * 类型：string[]
+     */
+    protected $keywords = null;
+
+    /**
      * 段落对象列表
     * 类型：\wemeet\openapi\service\records\model\V1RecordsTranscriptsDetailsGet200ResponseMinutesParagraphsInner[]
      */
@@ -32,6 +37,9 @@ class V1RecordsTranscriptsDetailsGet200ResponseMinutes implements ModelInterface
     ) {
         if (isset($jsonArray['audio_detect'])) {
             $this->audioDetect = $jsonArray['audio_detect'];
+        }
+        if (isset($jsonArray['keywords'])) {
+            $this->keywords = $jsonArray['keywords'];
         }
         if (isset($jsonArray['paragraphs'])) {
             $this->paragraphs = $jsonArray['paragraphs'];
@@ -49,6 +57,18 @@ class V1RecordsTranscriptsDetailsGet200ResponseMinutes implements ModelInterface
 
     public function setAudioDetect(int $audioDetect) {
         $this->audioDetect = $audioDetect;
+    }
+    public function keywords(array $keywords): V1RecordsTranscriptsDetailsGet200ResponseMinutes {
+        $this->keywords = $keywords;
+        return $this;
+    }
+
+    public function getKeywords() {
+        return $this->keywords;
+    }
+
+    public function setKeywords(array $keywords) {
+        $this->keywords = $keywords;
     }
     public function paragraphs(array $paragraphs): V1RecordsTranscriptsDetailsGet200ResponseMinutes {
         $this->paragraphs = $paragraphs;
@@ -70,6 +90,7 @@ class V1RecordsTranscriptsDetailsGet200ResponseMinutes implements ModelInterface
       */
     protected static $openAPITypes = [
         'audio_detect' => 'int',
+        'keywords' => 'string[]',
         'paragraphs' => '\wemeet\openapi\service\records\model\V1RecordsTranscriptsDetailsGet200ResponseMinutesParagraphsInner[]'
     ];
 
@@ -82,6 +103,7 @@ class V1RecordsTranscriptsDetailsGet200ResponseMinutes implements ModelInterface
       */
     protected static $openAPIFormats = [
         'audio_detect' => 'int64',
+        'keywords' => null,
         'paragraphs' => null
     ];
 
@@ -92,6 +114,7 @@ class V1RecordsTranscriptsDetailsGet200ResponseMinutes implements ModelInterface
       */
     protected static array $openAPINullables = [
         'audio_detect' => false,
+        'keywords' => false,
         'paragraphs' => false
     ];
 
@@ -182,6 +205,7 @@ class V1RecordsTranscriptsDetailsGet200ResponseMinutes implements ModelInterface
      */
     protected static $attributeMap = [
         'audio_detect' => 'audio_detect',
+        'keywords' => 'keywords',
         'paragraphs' => 'paragraphs'
     ];
 
@@ -192,6 +216,7 @@ class V1RecordsTranscriptsDetailsGet200ResponseMinutes implements ModelInterface
      */
     protected static $setters = [
         'audio_detect' => 'setAudioDetect',
+        'keywords' => 'setKeywords',
         'paragraphs' => 'setParagraphs'
     ];
 
@@ -202,6 +227,7 @@ class V1RecordsTranscriptsDetailsGet200ResponseMinutes implements ModelInterface
      */
     protected static $getters = [
         'audio_detect' => 'getAudioDetect',
+        'keywords' => 'getKeywords',
         'paragraphs' => 'getParagraphs'
     ];
 
@@ -239,6 +265,7 @@ class V1RecordsTranscriptsDetailsGet200ResponseMinutes implements ModelInterface
     public function jsonSerialize(): mixed {
         $data = [
             'audio_detect' => $this->audioDetect,
+            'keywords' => $this->keywords,
             'paragraphs' => $this->paragraphs,
         ];
         return array_filter($data, function($value) {

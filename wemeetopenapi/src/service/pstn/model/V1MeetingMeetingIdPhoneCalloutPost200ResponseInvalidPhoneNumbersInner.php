@@ -5,7 +5,7 @@
  *
  * SAAS版RESTFUL风格API
  *
- * The version of the OpenAPI document: v1.0.5
+ * The version of the OpenAPI document: v1.0.7
  */
 namespace wemeet\openapi\service\pstn\model;
 
@@ -22,6 +22,12 @@ class V1MeetingMeetingIdPhoneCalloutPost200ResponseInvalidPhoneNumbersInner impl
     protected $area = null;
 
     /**
+     * 错误信息
+    * 类型：string
+     */
+    protected $errorMsg = null;
+
+    /**
     * 类型：string
      */
     protected $extensionNumber = null;
@@ -36,6 +42,9 @@ class V1MeetingMeetingIdPhoneCalloutPost200ResponseInvalidPhoneNumbersInner impl
     ) {
         if (isset($jsonArray['area'])) {
             $this->area = $jsonArray['area'];
+        }
+        if (isset($jsonArray['error_msg'])) {
+            $this->errorMsg = $jsonArray['error_msg'];
         }
         if (isset($jsonArray['extension_number'])) {
             $this->extensionNumber = $jsonArray['extension_number'];
@@ -56,6 +65,18 @@ class V1MeetingMeetingIdPhoneCalloutPost200ResponseInvalidPhoneNumbersInner impl
 
     public function setArea(int $area) {
         $this->area = $area;
+    }
+    public function errorMsg(string $errorMsg): V1MeetingMeetingIdPhoneCalloutPost200ResponseInvalidPhoneNumbersInner {
+        $this->errorMsg = $errorMsg;
+        return $this;
+    }
+
+    public function getErrorMsg() {
+        return $this->errorMsg;
+    }
+
+    public function setErrorMsg(string $errorMsg) {
+        $this->errorMsg = $errorMsg;
     }
     public function extensionNumber(string $extensionNumber): V1MeetingMeetingIdPhoneCalloutPost200ResponseInvalidPhoneNumbersInner {
         $this->extensionNumber = $extensionNumber;
@@ -89,6 +110,7 @@ class V1MeetingMeetingIdPhoneCalloutPost200ResponseInvalidPhoneNumbersInner impl
       */
     protected static $openAPITypes = [
         'area' => 'int',
+        'error_msg' => 'string',
         'extension_number' => 'string',
         'phone' => 'string'
     ];
@@ -102,6 +124,7 @@ class V1MeetingMeetingIdPhoneCalloutPost200ResponseInvalidPhoneNumbersInner impl
       */
     protected static $openAPIFormats = [
         'area' => 'int64',
+        'error_msg' => null,
         'extension_number' => null,
         'phone' => null
     ];
@@ -113,6 +136,7 @@ class V1MeetingMeetingIdPhoneCalloutPost200ResponseInvalidPhoneNumbersInner impl
       */
     protected static array $openAPINullables = [
         'area' => false,
+        'error_msg' => false,
         'extension_number' => false,
         'phone' => false
     ];
@@ -204,6 +228,7 @@ class V1MeetingMeetingIdPhoneCalloutPost200ResponseInvalidPhoneNumbersInner impl
      */
     protected static $attributeMap = [
         'area' => 'area',
+        'error_msg' => 'error_msg',
         'extension_number' => 'extension_number',
         'phone' => 'phone'
     ];
@@ -215,6 +240,7 @@ class V1MeetingMeetingIdPhoneCalloutPost200ResponseInvalidPhoneNumbersInner impl
      */
     protected static $setters = [
         'area' => 'setArea',
+        'error_msg' => 'setErrorMsg',
         'extension_number' => 'setExtensionNumber',
         'phone' => 'setPhone'
     ];
@@ -226,6 +252,7 @@ class V1MeetingMeetingIdPhoneCalloutPost200ResponseInvalidPhoneNumbersInner impl
      */
     protected static $getters = [
         'area' => 'getArea',
+        'error_msg' => 'getErrorMsg',
         'extension_number' => 'getExtensionNumber',
         'phone' => 'getPhone'
     ];
@@ -264,6 +291,7 @@ class V1MeetingMeetingIdPhoneCalloutPost200ResponseInvalidPhoneNumbersInner impl
     public function jsonSerialize(): mixed {
         $data = [
             'area' => $this->area,
+            'error_msg' => $this->errorMsg,
             'extension_number' => $this->extensionNumber,
             'phone' => $this->phone,
         ];

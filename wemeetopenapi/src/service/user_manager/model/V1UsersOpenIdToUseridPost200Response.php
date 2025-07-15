@@ -5,7 +5,7 @@
  *
  * SAAS版RESTFUL风格API
  *
- * The version of the OpenAPI document: v1.0.5
+ * The version of the OpenAPI document: v1.0.7
  */
 namespace wemeet\openapi\service\user_manager\model;
 
@@ -16,6 +16,12 @@ class V1UsersOpenIdToUseridPost200Response implements ModelInterface, \JsonSeria
 {
 
     /**
+     * 所有没有转换成功的open_id列表。 例如：open_id和sdkid不一致、open_id和自建应用不是同企业、open_id非法等情况。
+    * 类型：string[]
+     */
+    protected $invalidOpenIdList = null;
+
+    /**
      * 转换成功的该自建应用所在企业下的userid、open_id对应关系列表。
     * 类型：\wemeet\openapi\service\user_manager\model\V1UsersOpenIdToUseridPost200ResponseUseridListInner[]
      */
@@ -24,11 +30,26 @@ class V1UsersOpenIdToUseridPost200Response implements ModelInterface, \JsonSeria
     public function __construct(
         $jsonArray = []
     ) {
+        if (isset($jsonArray['invalid_open_id_list'])) {
+            $this->invalidOpenIdList = $jsonArray['invalid_open_id_list'];
+        }
         if (isset($jsonArray['userid_list'])) {
             $this->useridList = $jsonArray['userid_list'];
         }
     }
 
+    public function invalidOpenIdList(array $invalidOpenIdList): V1UsersOpenIdToUseridPost200Response {
+        $this->invalidOpenIdList = $invalidOpenIdList;
+        return $this;
+    }
+
+    public function getInvalidOpenIdList() {
+        return $this->invalidOpenIdList;
+    }
+
+    public function setInvalidOpenIdList(array $invalidOpenIdList) {
+        $this->invalidOpenIdList = $invalidOpenIdList;
+    }
     public function useridList(array $useridList): V1UsersOpenIdToUseridPost200Response {
         $this->useridList = $useridList;
         return $this;
@@ -48,6 +69,7 @@ class V1UsersOpenIdToUseridPost200Response implements ModelInterface, \JsonSeria
       * @var string[]
       */
     protected static $openAPITypes = [
+        'invalid_open_id_list' => 'string[]',
         'userid_list' => '\wemeet\openapi\service\user_manager\model\V1UsersOpenIdToUseridPost200ResponseUseridListInner[]'
     ];
 
@@ -59,6 +81,7 @@ class V1UsersOpenIdToUseridPost200Response implements ModelInterface, \JsonSeria
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
+        'invalid_open_id_list' => null,
         'userid_list' => null
     ];
 
@@ -68,6 +91,7 @@ class V1UsersOpenIdToUseridPost200Response implements ModelInterface, \JsonSeria
       * @var boolean[]
       */
     protected static array $openAPINullables = [
+        'invalid_open_id_list' => false,
         'userid_list' => false
     ];
 
@@ -157,6 +181,7 @@ class V1UsersOpenIdToUseridPost200Response implements ModelInterface, \JsonSeria
      * @var string[]
      */
     protected static $attributeMap = [
+        'invalid_open_id_list' => 'invalid_open_id_list',
         'userid_list' => 'userid_list'
     ];
 
@@ -166,6 +191,7 @@ class V1UsersOpenIdToUseridPost200Response implements ModelInterface, \JsonSeria
      * @var string[]
      */
     protected static $setters = [
+        'invalid_open_id_list' => 'setInvalidOpenIdList',
         'userid_list' => 'setUseridList'
     ];
 
@@ -175,6 +201,7 @@ class V1UsersOpenIdToUseridPost200Response implements ModelInterface, \JsonSeria
      * @var string[]
      */
     protected static $getters = [
+        'invalid_open_id_list' => 'getInvalidOpenIdList',
         'userid_list' => 'getUseridList'
     ];
 
@@ -211,6 +238,7 @@ class V1UsersOpenIdToUseridPost200Response implements ModelInterface, \JsonSeria
 
     public function jsonSerialize(): mixed {
         $data = [
+            'invalid_open_id_list' => $this->invalidOpenIdList,
             'userid_list' => $this->useridList,
         ];
         return array_filter($data, function($value) {

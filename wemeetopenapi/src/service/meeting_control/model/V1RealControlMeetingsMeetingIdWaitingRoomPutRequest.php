@@ -5,7 +5,7 @@
  *
  * SAAS版RESTFUL风格API
  *
- * The version of the OpenAPI document: v1.0.5
+ * The version of the OpenAPI document: v1.0.7
  */
 namespace wemeet\openapi\service\meeting_control\model;
 
@@ -26,7 +26,7 @@ class V1RealControlMeetingsMeetingIdWaitingRoomPutRequest implements ModelInterf
     protected $operateType;
     /**
      * 被操作用户对象信息列表
-    * 类型：V1RealControlMeetingsMeetingIdWaitingRoomPutRequestUsersInner
+    * 类型：V1RealControlMeetingsMeetingIdMutesPutRequestUser
      */
     protected $users;
 
@@ -161,7 +161,7 @@ class V1RealControlMeetingsMeetingIdWaitingRoomPutRequest implements ModelInterf
         'operate_type' => 'int',
         'operator_id' => 'string',
         'operator_id_type' => 'int',
-        'users' => '\wemeet\openapi\service\meeting_control\model\V1RealControlMeetingsMeetingIdWaitingRoomPutRequestUsersInner[]'
+        'users' => '\wemeet\openapi\service\meeting_control\model\V1RealControlMeetingsMeetingIdMutesPutRequestUser[]'
     ];
 
     /**

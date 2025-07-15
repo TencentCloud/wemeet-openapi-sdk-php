@@ -5,7 +5,7 @@
  *
  * SAAS版RESTFUL风格API
  *
- * The version of the OpenAPI document: v1.0.5
+ * The version of the OpenAPI document: v1.0.7
  */
 namespace wemeet\openapi\service\pstn\model;
 
@@ -23,18 +23,6 @@ class V1MeetingMeetingIdPhoneCalloutPostRequestPhoneNumbersInner implements Mode
     * 类型：
      */
     protected $phone;
-
-    /**
-     * 国家/地区代码。（例如：中国是86） 当前仅支持呼叫中国大陆、中国香港、美国的号码。
-    * 类型：int
-     */
-    protected $callingPartyArea = null;
-
-    /**
-     * 电话号码或固定电话总机号。
-    * 类型：string
-     */
-    protected $callingPartyPhoneNumber = null;
 
     /**
     * 类型：string
@@ -59,12 +47,6 @@ class V1MeetingMeetingIdPhoneCalloutPostRequestPhoneNumbersInner implements Mode
         } else {
             throw new \InvalidArgumentException('Missing required parameter phone');
         }
-        if (isset($jsonArray['calling_party_area'])) {
-            $this->callingPartyArea = $jsonArray['calling_party_area'];
-        }
-        if (isset($jsonArray['calling_party_phone_number'])) {
-            $this->callingPartyPhoneNumber = $jsonArray['calling_party_phone_number'];
-        }
         if (isset($jsonArray['extension_number'])) {
             $this->extensionNumber = $jsonArray['extension_number'];
         }
@@ -84,30 +66,6 @@ class V1MeetingMeetingIdPhoneCalloutPostRequestPhoneNumbersInner implements Mode
 
     public function setArea(int $area) {
         $this->area = $area;
-    }
-    public function callingPartyArea(int $callingPartyArea): V1MeetingMeetingIdPhoneCalloutPostRequestPhoneNumbersInner {
-        $this->callingPartyArea = $callingPartyArea;
-        return $this;
-    }
-
-    public function getCallingPartyArea() {
-        return $this->callingPartyArea;
-    }
-
-    public function setCallingPartyArea(int $callingPartyArea) {
-        $this->callingPartyArea = $callingPartyArea;
-    }
-    public function callingPartyPhoneNumber(string $callingPartyPhoneNumber): V1MeetingMeetingIdPhoneCalloutPostRequestPhoneNumbersInner {
-        $this->callingPartyPhoneNumber = $callingPartyPhoneNumber;
-        return $this;
-    }
-
-    public function getCallingPartyPhoneNumber() {
-        return $this->callingPartyPhoneNumber;
-    }
-
-    public function setCallingPartyPhoneNumber(string $callingPartyPhoneNumber) {
-        $this->callingPartyPhoneNumber = $callingPartyPhoneNumber;
     }
     public function extensionNumber(string $extensionNumber): V1MeetingMeetingIdPhoneCalloutPostRequestPhoneNumbersInner {
         $this->extensionNumber = $extensionNumber;
@@ -153,8 +111,6 @@ class V1MeetingMeetingIdPhoneCalloutPostRequestPhoneNumbersInner implements Mode
       */
     protected static $openAPITypes = [
         'area' => 'int',
-        'calling_party_area' => 'int',
-        'calling_party_phone_number' => 'string',
         'extension_number' => 'string',
         'nick_name' => 'string',
         'phone' => 'string'
@@ -169,8 +125,6 @@ class V1MeetingMeetingIdPhoneCalloutPostRequestPhoneNumbersInner implements Mode
       */
     protected static $openAPIFormats = [
         'area' => 'int64',
-        'calling_party_area' => 'int64',
-        'calling_party_phone_number' => null,
         'extension_number' => null,
         'nick_name' => null,
         'phone' => null
@@ -183,8 +137,6 @@ class V1MeetingMeetingIdPhoneCalloutPostRequestPhoneNumbersInner implements Mode
       */
     protected static array $openAPINullables = [
         'area' => false,
-        'calling_party_area' => false,
-        'calling_party_phone_number' => false,
         'extension_number' => false,
         'nick_name' => false,
         'phone' => false
@@ -277,8 +229,6 @@ class V1MeetingMeetingIdPhoneCalloutPostRequestPhoneNumbersInner implements Mode
      */
     protected static $attributeMap = [
         'area' => 'area',
-        'calling_party_area' => 'calling_party_area',
-        'calling_party_phone_number' => 'calling_party_phone_number',
         'extension_number' => 'extension_number',
         'nick_name' => 'nick_name',
         'phone' => 'phone'
@@ -291,8 +241,6 @@ class V1MeetingMeetingIdPhoneCalloutPostRequestPhoneNumbersInner implements Mode
      */
     protected static $setters = [
         'area' => 'setArea',
-        'calling_party_area' => 'setCallingPartyArea',
-        'calling_party_phone_number' => 'setCallingPartyPhoneNumber',
         'extension_number' => 'setExtensionNumber',
         'nick_name' => 'setNickName',
         'phone' => 'setPhone'
@@ -305,8 +253,6 @@ class V1MeetingMeetingIdPhoneCalloutPostRequestPhoneNumbersInner implements Mode
      */
     protected static $getters = [
         'area' => 'getArea',
-        'calling_party_area' => 'getCallingPartyArea',
-        'calling_party_phone_number' => 'getCallingPartyPhoneNumber',
         'extension_number' => 'getExtensionNumber',
         'nick_name' => 'getNickName',
         'phone' => 'getPhone'
@@ -346,8 +292,6 @@ class V1MeetingMeetingIdPhoneCalloutPostRequestPhoneNumbersInner implements Mode
     public function jsonSerialize(): mixed {
         $data = [
             'area' => $this->area,
-            'calling_party_area' => $this->callingPartyArea,
-            'calling_party_phone_number' => $this->callingPartyPhoneNumber,
             'extension_number' => $this->extensionNumber,
             'nick_name' => $this->nickName,
             'phone' => $this->phone,

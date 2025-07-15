@@ -5,7 +5,7 @@
  *
  * SAAS版RESTFUL风格API
  *
- * The version of the OpenAPI document: v1.0.5
+ * The version of the OpenAPI document: v1.0.7
  */
 namespace wemeet\openapi\service\user_manager\model;
 
@@ -14,6 +14,18 @@ use wemeet\openapi\core\xhttp\ModelInterface;
 
 class V1UsersAccountStatisticsGet200Response implements ModelInterface, \JsonSerializable
 {
+
+    /**
+     * 房间规模升级许可详情。
+    * 类型：\wemeet\openapi\service\user_manager\model\V1UsersAccountStatisticsGet200ResponseAddOnLargemeetingDetailsInner[]
+     */
+    protected $addOnLargemeetingDetails = null;
+
+    /**
+     * 网络研讨会（Webinar）观众规模升级许可详情。
+    * 类型：\wemeet\openapi\service\user_manager\model\V1UsersAccountStatisticsGet200ResponseAddOnWebinarDetailsInner[]
+     */
+    protected $addOnWebinarDetails = null;
 
     /**
      * ai账号类型使用对象（商业版不返回）
@@ -36,6 +48,12 @@ class V1UsersAccountStatisticsGet200Response implements ModelInterface, \JsonSer
     public function __construct(
         $jsonArray = []
     ) {
+        if (isset($jsonArray['add_on_largemeeting_details'])) {
+            $this->addOnLargemeetingDetails = $jsonArray['add_on_largemeeting_details'];
+        }
+        if (isset($jsonArray['add_on_webinar_details'])) {
+            $this->addOnWebinarDetails = $jsonArray['add_on_webinar_details'];
+        }
         if (isset($jsonArray['ai_account_details'])) {
             $this->aiAccountDetails = $jsonArray['ai_account_details'];
         }
@@ -47,6 +65,30 @@ class V1UsersAccountStatisticsGet200Response implements ModelInterface, \JsonSer
         }
     }
 
+    public function addOnLargemeetingDetails(array $addOnLargemeetingDetails): V1UsersAccountStatisticsGet200Response {
+        $this->addOnLargemeetingDetails = $addOnLargemeetingDetails;
+        return $this;
+    }
+
+    public function getAddOnLargemeetingDetails() {
+        return $this->addOnLargemeetingDetails;
+    }
+
+    public function setAddOnLargemeetingDetails(array $addOnLargemeetingDetails) {
+        $this->addOnLargemeetingDetails = $addOnLargemeetingDetails;
+    }
+    public function addOnWebinarDetails(array $addOnWebinarDetails): V1UsersAccountStatisticsGet200Response {
+        $this->addOnWebinarDetails = $addOnWebinarDetails;
+        return $this;
+    }
+
+    public function getAddOnWebinarDetails() {
+        return $this->addOnWebinarDetails;
+    }
+
+    public function setAddOnWebinarDetails(array $addOnWebinarDetails) {
+        $this->addOnWebinarDetails = $addOnWebinarDetails;
+    }
     public function aiAccountDetails(array $aiAccountDetails): V1UsersAccountStatisticsGet200Response {
         $this->aiAccountDetails = $aiAccountDetails;
         return $this;
@@ -90,6 +132,8 @@ class V1UsersAccountStatisticsGet200Response implements ModelInterface, \JsonSer
       * @var string[]
       */
     protected static $openAPITypes = [
+        'add_on_largemeeting_details' => '\wemeet\openapi\service\user_manager\model\V1UsersAccountStatisticsGet200ResponseAddOnLargemeetingDetailsInner[]',
+        'add_on_webinar_details' => '\wemeet\openapi\service\user_manager\model\V1UsersAccountStatisticsGet200ResponseAddOnWebinarDetailsInner[]',
         'ai_account_details' => '\wemeet\openapi\service\user_manager\model\V1UsersAccountStatisticsGet200ResponseAiAccountDetailsInner[]',
         'user_account_details' => '\wemeet\openapi\service\user_manager\model\V1UsersAccountStatisticsGet200ResponseUserAccountDetailsInner[]',
         'user_count' => 'int'
@@ -103,6 +147,8 @@ class V1UsersAccountStatisticsGet200Response implements ModelInterface, \JsonSer
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
+        'add_on_largemeeting_details' => null,
+        'add_on_webinar_details' => null,
         'ai_account_details' => null,
         'user_account_details' => null,
         'user_count' => 'int64'
@@ -114,6 +160,8 @@ class V1UsersAccountStatisticsGet200Response implements ModelInterface, \JsonSer
       * @var boolean[]
       */
     protected static array $openAPINullables = [
+        'add_on_largemeeting_details' => false,
+        'add_on_webinar_details' => false,
         'ai_account_details' => false,
         'user_account_details' => false,
         'user_count' => false
@@ -205,6 +253,8 @@ class V1UsersAccountStatisticsGet200Response implements ModelInterface, \JsonSer
      * @var string[]
      */
     protected static $attributeMap = [
+        'add_on_largemeeting_details' => 'add_on_largemeeting_details',
+        'add_on_webinar_details' => 'add_on_webinar_details',
         'ai_account_details' => 'ai_account_details',
         'user_account_details' => 'user_account_details',
         'user_count' => 'user_count'
@@ -216,6 +266,8 @@ class V1UsersAccountStatisticsGet200Response implements ModelInterface, \JsonSer
      * @var string[]
      */
     protected static $setters = [
+        'add_on_largemeeting_details' => 'setAddOnLargemeetingDetails',
+        'add_on_webinar_details' => 'setAddOnWebinarDetails',
         'ai_account_details' => 'setAiAccountDetails',
         'user_account_details' => 'setUserAccountDetails',
         'user_count' => 'setUserCount'
@@ -227,6 +279,8 @@ class V1UsersAccountStatisticsGet200Response implements ModelInterface, \JsonSer
      * @var string[]
      */
     protected static $getters = [
+        'add_on_largemeeting_details' => 'getAddOnLargemeetingDetails',
+        'add_on_webinar_details' => 'getAddOnWebinarDetails',
         'ai_account_details' => 'getAiAccountDetails',
         'user_account_details' => 'getUserAccountDetails',
         'user_count' => 'getUserCount'
@@ -265,6 +319,8 @@ class V1UsersAccountStatisticsGet200Response implements ModelInterface, \JsonSer
 
     public function jsonSerialize(): mixed {
         $data = [
+            'add_on_largemeeting_details' => $this->addOnLargemeetingDetails,
+            'add_on_webinar_details' => $this->addOnWebinarDetails,
             'ai_account_details' => $this->aiAccountDetails,
             'user_account_details' => $this->userAccountDetails,
             'user_count' => $this->userCount,
